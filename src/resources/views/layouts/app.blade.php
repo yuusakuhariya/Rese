@@ -11,7 +11,22 @@
 </head>
 
 <body>
+
+    <header class="header">
+        <div class="header_inner">
+            <div class="header_menu">
+                <button class="menu_button" href="/">
+                    <span class="hamburger_bar"></span>
+                    <span class="hamburger_bar"></span>
+                    <span class="hamburger_bar"></span>
+                </button>
+            </div>
+            <div class="header_title">Rese</div>
+        </div>
+    </header>
+
     @yield('content')
+
 </body>
 
 </html>
