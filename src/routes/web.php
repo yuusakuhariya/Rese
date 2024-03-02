@@ -14,4 +14,4 @@ use App\Http\Controllers\MypageController;
 |
 */
 
-Route::get('/', [MypageController::class, 'login']);
+Route::get('/', [MypageController::class, 'my_page']);
