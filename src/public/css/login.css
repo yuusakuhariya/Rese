@@ -15,7 +15,7 @@
     border-radius: 4px 4px 0 0;
 }
 
-.content_title_registration {
+.content_title_login {
     color: white;
     margin-left: 18px;
 }
@@ -24,7 +24,7 @@
     height: 80%;
 }
 
-.form_register {
+.form_login {
     height: 100%;
     padding: 20px 30px;
 }

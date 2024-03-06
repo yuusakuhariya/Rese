@@ -16,8 +16,10 @@
     <header class="header">
         <div class="header_inner">
             <div class="header_menu">
-                <button class="close_button" href="/">
-                    <span class="dli-close"></span>
+                <button class="close_button">
+                    <a class="close_button_inner" href="{{ $prevurl }}">
+                        <span class="dli-close"></span>
+                    </a>
                 </button>
             </div>
         </div>

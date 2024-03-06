@@ -9,9 +9,14 @@
 <main>
     <div class="container">
         <div class="content">
-            <div class="massage"><a href="">Home</a></div>
-            <div class="massage"><a href="">Logout</a></div>
-            <div class="massage"><a href="">Mypage</a></div>
+            <div class="massage"><a href="{{ route('shop_all') }}">Home</a></div>
+            <div class="massage">
+                <form class="logout-form" action="/logout" method="post">
+                    @csrf
+                    <button class="logout-button">logout</button>
+                </form>
+            </div>
+            <div class="massage"><a href="{{ route('my_page') }}">Mypage</a></div>
         </div>
     </div>
 </main>

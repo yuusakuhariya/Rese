@@ -17,18 +17,30 @@
                 <div class="header">
                     <div class="header_inner">
                         <div class="header_menu">
-                            <button class="menu_button" href="/">
-                                <span class="hamburger_bar"></span>
-                                <span class="hamburger_bar"></span>
-                                <span class="hamburger_bar"></span>
-                            </button>
+                            @if(auth()->check())
+                            <a href="{{ route('menu_1') }}">
+                                <button class="menu_button" href="/">
+                                    <span class="hamburger_bar"></span>
+                                    <span class="hamburger_bar"></span>
+                                    <span class="hamburger_bar"></span>
+                                </button>
+                            </a>
+                            @else
+                            <a href="{{ route('menu_2') }}">
+                                <button class="menu_button" href="/">
+                                    <span class="hamburger_bar"></span>
+                                    <span class="hamburger_bar"></span>
+                                    <span class="hamburger_bar"></span>
+                                </button>
+                            </a>
+                            @endif
                         </div>
                         <div class="header_title">Rese</div>
                     </div>
                 </div>
                 <div class="title">
                     <div class="back-button">
-                        <button class="left">＜</button>
+                        <div class="back-button_inner"><a class="inner" href="{{ route('shop_all') }}">＜</a></div>
                     </div>
                     <div class="shop-name">店名</div>
                 </div>
@@ -45,12 +57,12 @@
             </div>
 
             <div class="container-reservation">
-                <div class="content_reservation">
-                    <div class="reservation-title">予約</div>
-                    <div class="date">
-                        <input class="input_date" type="date" name="day" list="daylist" min="">
-                    </div>
-                    <form action="">
+                <form class="reservation-form" action="">
+                    <div class="content_reservation">
+                        <div class="reservation-title">予約</div>
+                        <div class="date">
+                            <input class="input_date" type="date" name="day" list="daylist" min="">
+                        </div>
                         <div class="select">
                             <select name="select-time">
                                 <option value="17:00">17:00</option>
@@ -67,33 +79,35 @@
                                 <option value="4人">4人</option>
                             </select>
                         </div>
-                    </form>
-                    <div class="inner-item">
-                        <table class="inner-table">
-                            <tr>
-                                <td class="item-name">Shop</td>
-                                <td class="item-name">店名</td>
-                            </tr>
-                            <tr>
-                                <td class="item-date">Date</td>
-                                <td class="item-date">日付</td>
-                            </tr>
-                            <tr>
-                                <td class="item-time">time</td>
-                                <td class="item-time">時間</td>
-                            </tr>
-                            <tr>
-                                <td class="item-number">Number</td>
-                                <td class="item-number">１人</td>
-                            </tr>
-                        </table>
+                        <div class="inner-item">
+                            <table class="inner-table">
+                                <tr>
+                                    <td class="item-name">Shop</td>
+                                    <td class="item-name">店名</td>
+                                </tr>
+                                <tr>
+                                    <td class="item-date">Date</td>
+                                    <td class="item-date">日付</td>
+                                </tr>
+                                <tr>
+                                    <td class="item-time">time</td>
+                                    <td class="item-time">時間</td>
+                                </tr>
+                                <tr>
+                                    <td class="item-number">Number</td>
+                                    <td class="item-number">１人</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="reservation-button">
-                    <button class="button">
-                        予約する
-                    </button>
-                </div>
+                    <div class="reservation-button">
+                        @if($isAuthenticated)
+                        <button class="button">
+                            予約する
+                        </button>
+                        @endif
+                    </div>
+                </form>
             </div>
         </div>
     </main>

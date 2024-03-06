@@ -21,3 +21,9 @@ a {
     color: rgb(50, 105, 255);
     text-decoration: none;
 }
+
+.logout-button {
+    font-size: 32px;
+    font-weight: bold;
+    color: rgb(50, 105, 255);
+}

@@ -17,7 +17,7 @@
     margin-bottom: 20px;
 }
 
-a {
+.message_inner {
     color: rgb(50, 105, 255);
     text-decoration: none;
 }

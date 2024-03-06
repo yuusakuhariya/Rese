@@ -15,11 +15,23 @@
     <header class="header">
         <div class="header_inner">
             <div class="header_menu">
-                <button class="menu_button" href="/">
-                    <span class="hamburger_bar"></span>
-                    <span class="hamburger_bar"></span>
-                    <span class="hamburger_bar"></span>
-                </button>
+                @if(auth()->check())
+                <a href="{{ route('menu_1') }}">
+                    <button class="menu_button" href="/">
+                        <span class="hamburger_bar"></span>
+                        <span class="hamburger_bar"></span>
+                        <span class="hamburger_bar"></span>
+                    </button>
+                </a>
+                @else
+                <a href="{{ route('menu_2') }}">
+                    <button class="menu_button" href="/">
+                        <span class="hamburger_bar"></span>
+                        <span class="hamburger_bar"></span>
+                        <span class="hamburger_bar"></span>
+                    </button>
+                </a>
+                @endif
             </div>
             <div class="header_title">Rese</div>
         </div>
@@ -105,16 +117,26 @@
                     </div>
                     <div class="card-content_button">
                         <div class="detail-button">
-                            <button class="detail">詳しくみる</button>
-                        </div>
-                        <div class="favorite-button">
-                            <button class="logo">
-                                <img class="favorite-icon" src="/image/heart-solid-red.svg" alt="">
+                            <button class="detail">
+                                <a class="detail-inner" href="{{ route('shop_detail') }}">詳しくみる</a>
                             </button>
                         </div>
+                        @if($isAuthenticated)
+                        <div class="favorite-button">
+                            <form action="">
+                                @csrf
+                                <input type="hidden" name="heart-icon">
+                                <button class="logo">
+                                    <img class="favorite-icon" src="/image/heart-solid-red.svg" alt="">
+                                </button>
+                            </form>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
+
+
             <div class="favorite-card">
                 <div class="card-img">
                     <img class="shop-img" src="" alt="">
