@@ -24,7 +24,11 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 Route::get('/', [MenuController::class, 'shop_all'])->name('shop_all');
 Route::get('/menu_2', [MenuController::class, 'menu_2'])->name('menu_2');
 Route::get('/menu_1', [MenuController::class, 'menu_1'])->name('menu_1');
-Route::get('/shop_detail', [MenuController::class, 'shop_detail'])->name('shop_detail');
+
+// 詳細と予約ページ表示（詳細）
+Route::get('/shop/{id}', [MenuController::class, 'show'])->name('shop_detail');
+Route::post('/done', [MenuController::class, 'store'])->name('store');
+
 Route::get('/my_page', [MenuController::class, 'my_page'])->name('my_page');
 
 // Fortifyのデフォルトログインと登録のルート

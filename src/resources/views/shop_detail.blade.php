@@ -42,29 +42,31 @@
                     <div class="back-button">
                         <div class="back-button_inner"><a class="inner" href="{{ route('shop_all') }}">＜</a></div>
                     </div>
-                    <div class="shop-name">店名</div>
+                    <div class="shop-name">{{ $shop->shop_name }}</div>
                 </div>
                 <div class="card-img">
-                    <img class="shop-img" src="" alt="">
+                    <img class="shop-img" src="{{ $shop->imag_path }}" alt="サンプル画像">
                 </div>
                 <div class="card-content_tag">
-                    <div class="tag-area">＃地名</div>
-                    <div class="tag-genre">＃ジャンル名</div>
+                    <div class="tag-area">＃{{ $shop->Area->area_name }}</div>
+                    <div class="tag-genre">＃{{ $shop->Genre->genre_name }}</div>
                 </div>
                 <div class="card-detail">
-                    ここに詳細が表示される
+                    {{ $shop->content }}
                 </div>
             </div>
 
             <div class="container-reservation">
-                <form class="reservation-form" action="">
+                <form class="reservation-form" action="{{ route('store') }}" method="post">
+                    @csrf
                     <div class="content_reservation">
                         <div class="reservation-title">予約</div>
                         <div class="date">
-                            <input class="input_date" type="date" name="day" list="daylist" min="">
+                            <input class="input_date" type="date" name="date" list="daylist" min="" onChange="document.getElementsByName('date_display')[0].value = this.value">
                         </div>
-                        <div class="select">
-                            <select name="select-time">
+                        <div class="select" required>
+                            <select name="time" onChange="this.form.time_display.value=this.options[selectedIndex].text">
+                                <option value="">選択してください</option>
                                 <option value="17:00">17:00</option>
                                 <option value="18:00">18:00</option>
                                 <option value="19:00">19:00</option>
@@ -72,37 +74,38 @@
                             </select>
                         </div>
                         <div class="select">
-                            <select name="select-number">
-                                <option value="1人">1人</option>
-                                <option value="2人">2人</option>
-                                <option value="3人">3人</option>
-                                <option value="4人">4人</option>
+                            <select name="number_of_person" onChange="this.form.person.value=this.options[selectedIndex].text">
+                                <option value="">選択してください</option>
+                                <option value="1">1人</option>
+                                <option value="2">2人</option>
+                                <option value="3">3人</option>
+                                <option value="4">4人</option>
                             </select>
                         </div>
                         <div class="inner-item">
                             <table class="inner-table">
                                 <tr>
                                     <td class="item-name">Shop</td>
-                                    <td class="item-name">店名</td>
+                                    <td class="item-name"><input type="hidden" name="shop_id" value="{{ $shop->id }}">{{ $shop->shop_name }}</td>
                                 </tr>
                                 <tr>
                                     <td class="item-date">Date</td>
-                                    <td class="item-date">日付</td>
+                                    <td class="item-date"><input class="item-date_inner" name="date_display" readonly></td>
                                 </tr>
                                 <tr>
                                     <td class="item-time">time</td>
-                                    <td class="item-time">時間</td>
+                                    <td class="item-time"><input class="item-date_inner" name="time_display" readonly></td>
                                 </tr>
                                 <tr>
                                     <td class="item-number">Number</td>
-                                    <td class="item-number">１人</td>
+                                    <td class="item-number"><input class="item-date_inner" name="person" readonly></td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                     <div class="reservation-button">
                         @if($isAuthenticated)
-                        <button class="button">
+                        <button class="button" type="submit">
                             予約する
                         </button>
                         @endif

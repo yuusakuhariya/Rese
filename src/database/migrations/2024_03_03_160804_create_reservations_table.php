@@ -17,7 +17,8 @@ class CreateReservationsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('shop_id')->constrained();
-            $table->datetime('datetime');
+            $table->date('date');
+            $table->time('time');
             $table->integer('number_of_person');
             $table->timestamps();
         });

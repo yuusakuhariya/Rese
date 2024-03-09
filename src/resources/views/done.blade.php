@@ -12,7 +12,7 @@
             <div class="content_message">
                 ご予約ありがとうございます
             </div>
-            <div class="content_message_back"><a href="">戻る</a></div>
+            <div class="content_message_back"><a class="back-button" href="{{ route('shop_all') }}">戻る</a></div>
         </div>
     </div>
 </main>

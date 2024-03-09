@@ -192,6 +192,12 @@ td {
     padding: 10px 30px 0 0;
 }
 
+.item-date_inner {
+    border: none;
+    background-color: rgb(83, 128, 252);
+    color: white;
+}
+
 .reservation-button {
     background: rgb(7, 73, 255);
     height: 10%;

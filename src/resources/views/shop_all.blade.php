@@ -105,20 +105,21 @@
 
     <main>
         <div class="all-shop_container">
+            @foreach ($AllShopLists as $shop)
             <div class="favorite-card">
                 <div class="card-img">
-                    <img class="shop-img" src="" alt="">
+                    <img class="shop-img" src="{{ $shop->imag_path }}" alt="サンプル画像">
                 </div>
                 <div class="card-content">
-                    <div class="card-content_shop-name">店名</div>
+                    <div class="card-content_shop-name">{{ $shop->shop_name }}</div>
                     <div class="card-content_tag">
-                        <div class="tag-area">＃地名</div>
-                        <div class="tag-genre">＃ジャンル名</div>
+                        <div class="tag-area">＃{{ $shop->Area->area_name }}</div>
+                        <div class="tag-genre">＃{{ $shop->Genre->genre_name }}</div>
                     </div>
                     <div class="card-content_button">
                         <div class="detail-button">
                             <button class="detail">
-                                <a class="detail-inner" href="{{ route('shop_detail') }}">詳しくみる</a>
+                                <a class="detail-inner" href="{{ route('shop_detail', ['id' => $shop->id]) }}">詳しくみる</a>
                             </button>
                         </div>
                         @if($isAuthenticated)
@@ -135,96 +136,8 @@
                     </div>
                 </div>
             </div>
+            @endforeach
 
-
-            <div class="favorite-card">
-                <div class="card-img">
-                    <img class="shop-img" src="" alt="">
-                </div>
-                <div class="card-content">
-                    <div class="card-content_shop-name">店名</div>
-                    <div class="card-content_tag">
-                        <div class="tag-area">＃地名</div>
-                        <div class="tag-genre">＃ジャンル名</div>
-                    </div>
-                    <div class="card-content_button">
-                        <div class="detail-button">
-                            <button class="detail">詳しくみる</button>
-                        </div>
-                        <div class="favorite-button">
-                            <button class="logo">
-                                <img class="favorite-icon" src="/image/heart-solid-red.svg" alt="">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="favorite-card">
-                <div class="card-img">
-                    <img class="shop-img" src="" alt="">
-                </div>
-                <div class="card-content">
-                    <div class="card-content_shop-name">店名</div>
-                    <div class="card-content_tag">
-                        <div class="tag-area">＃地名</div>
-                        <div class="tag-genre">＃ジャンル名</div>
-                    </div>
-                    <div class="card-content_button">
-                        <div class="detail-button">
-                            <button class="detail">詳しくみる</button>
-                        </div>
-                        <div class="favorite-button">
-                            <button class="logo">
-                                <img class="favorite-icon" src="/image/heart-solid-red.svg" alt="">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="favorite-card">
-                <div class="card-img">
-                    <img class="shop-img" src="" alt="">
-                </div>
-                <div class="card-content">
-                    <div class="card-content_shop-name">店名</div>
-                    <div class="card-content_tag">
-                        <div class="tag-area">＃地名</div>
-                        <div class="tag-genre">＃ジャンル名</div>
-                    </div>
-                    <div class="card-content_button">
-                        <div class="detail-button">
-                            <button class="detail">詳しくみる</button>
-                        </div>
-                        <div class="favorite-button">
-                            <button class="logo">
-                                <img class="favorite-icon" src="/image/heart-solid-red.svg" alt="">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="favorite-card">
-                <div class="card-img">
-                    <img class="shop-img" src="" alt="">
-                </div>
-                <div class="card-content">
-                    <div class="card-content_shop-name">店名</div>
-                    <div class="card-content_tag">
-                        <div class="tag-area">＃地名</div>
-                        <div class="tag-genre">＃ジャンル名</div>
-                    </div>
-                    <div class="card-content_button">
-                        <div class="detail-button">
-                            <button class="detail">詳しくみる</button>
-                        </div>
-                        <div class="favorite-button">
-                            <button class="logo">
-                                <img class="favorite-icon" src="/image/heart-solid-red.svg" alt="">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
 

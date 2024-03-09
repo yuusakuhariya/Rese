@@ -17,12 +17,12 @@ class Shop extends Model
         'img_path',
     ];
 
-    public function areas()
+    public function area()
     {
         return $this->belongsTo(Area::class);
     }
 
-    public function genres()
+    public function genre()
     {
         return $this->belongsTo(Genre::class);
     }
@@ -36,4 +36,5 @@ class Shop extends Model
     {
         return $this->hasMany(Reservation::class);
     }
+
 }
