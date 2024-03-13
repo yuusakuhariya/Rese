@@ -43,22 +43,45 @@ class User extends Authenticatable
     ];
 
 
-    // public function favorites()
-    // {
-    //     return $this->hasMany(Favorite::class);
-    // }
-
-    // public function reservations()
-    // {
-    //     return $this->hasMany(Reservation::class);
-    // }
-
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
     }
+
+    // 中間テーブルのリレーション
     public function favorites()
     {
-        return $this->hasMany(Favorite::class);
+        return $this->belongsToMany(Shop::class, 'favorites', 'user_id', 'shop_id');
+    }
+
+
+    // // この店に対してお気に入りのレコードが存在するか確認
+    // public function is_favorite($userId)
+    // {
+    //     return $this->favorites()->where('user_id', $userId)->exists();
+    // }
+
+    // いいね追加
+    public function favorite($userId)
+    {
+        // もしいいねがあれば、
+        // if($this->is_favorite($userId)){
+        //     // 何もしない
+        // } else {
+        //     // 中間テーブルのfavoritesテーブルに追加する
+            $this->favorites()->attach($userId);
+        // }
+    }
+
+    // いいね削除
+    public function unfavorite($userId)
+    {
+        // // もしいいねがあれば、
+        // if($this->is_favorite($userId)){
+        //     // 中間テーブルのfavoritesテーブルから削除する
+            $this->favorites()->detach($userId);
+        // } else {
+        //     // 何もしない
+        // }
     }
 }

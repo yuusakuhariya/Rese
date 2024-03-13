@@ -123,15 +123,29 @@
                             </button>
                         </div>
                         @if($isAuthenticated)
+                        @if(!in_array($shop->id, $favoriteShopIds))
                         <div class="favorite-button">
-                            <form action="">
+                            <form action="{{ route('addFavorites', ['id' => $shop->id, 'user_id' => auth()->user()->id, 'shop_id' => $shop->id]) }}" method="post">
                                 @csrf
+                                @method('PUT')
                                 <input type="hidden" name="heart-icon">
-                                <button class="logo">
+                                <button type="submit" class="logo">
+                                    <img class="favorite-icon" src="/image/heart-solid-gray.svg" alt="">
+                                </button>
+                            </form>
+                        </div>
+                        @else
+                        <div class="favorite-button">
+                            <form action="{{ route('removeFavorites', ['id' => $shop->id, 'user_id' => auth()->user()->id, 'shop_id' => $shop->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="heart-icon">
+                                <button type="submit" class="logo">
                                     <img class="favorite-icon" src="/image/heart-solid-red.svg" alt="">
                                 </button>
                             </form>
                         </div>
+                        @endif
                         @endif
                     </div>
                 </div>

@@ -43,7 +43,11 @@
                         </tr>
                     </table>
                 </div>
+                <div>
+                変更
+                </div>
             </div>
+            
         </div>
 
         <div class="favorite_content">
