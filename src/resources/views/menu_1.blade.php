@@ -16,7 +16,7 @@
                     <button class="logout-button">logout</button>
                 </form>
             </div>
-            <div class="massage"><a href="{{ route('my_page') }}">Mypage</a></div>
+            <div class="massage"><a href="{{ route('my_page', ['id' => auth()->user()->id]) }}">Mypage</a></div>
         </div>
     </div>
 </main>

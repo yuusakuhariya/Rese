@@ -9,12 +9,12 @@ use Illuminate\Http\Request;
 class ReservationController extends Controller
 {
     // 詳細と予約ページ（詳細）
-    public function show($shop_id)
+    public function shop_detail($shop_id)
     {
         // ログイン判定
         $isAuthenticated = auth()->check();
-        // $shop_idで指定されたIDを持つShopモデルをデータベースから検索。findOrFailメソッドはエラーをスルーする。
-        $shop = Shop::findOrFail($shop_id);
+        // $shop_idで指定されたIDを持つShopモデルをデータベースから検索。
+        $shop = Shop::find($shop_id);
 
         return view('shop_detail', compact('shop', 'isAuthenticated'));
     }
@@ -38,4 +38,48 @@ class ReservationController extends Controller
             return view('done');
         }
     }
+
+
+
+    // 評価機能（実装するときの参考にする）
+    // public function show($id)
+    // {
+    //     $reservation = Reservation::findOrFail($id);
+
+    //     // 予約が来店済みかどうかをチェック
+    //     if ($reservation->visited) {
+    //         // 評価フォームを表示
+    //         return view('reservation.show', compact('reservation'));
+    //     } else {
+    //         // エラーメッセージを表示して、評価を受け付けない
+    //         return back()->with('error', '予約が来店済みではありません。');
+    //     }
+    // }
+
+    // public function storeEvaluation(Request $request, $id)
+    // {
+    //     // ユーザーがログインしているかどうかを確認
+    //     if (!auth()->check()) {
+    //         return back()->with('error', 'ログインが必要です。'); // ログインしていない場合はエラーメッセージを返す
+    //     }
+
+    //     $reservation = Reservation::findOrFail($id);
+
+    //     // 予約が来店済みかどうかを再度確認
+    //     if ($reservation->visited) {
+    //         // 評価を保存
+    //         Evaluation::create([
+    //             'reservation_id' => $reservation->id,
+    //             'score' => $request->score,
+    //             'comment' => $request->comment,
+    //             'user_id' => auth()->user()->id,
+    //         ]);
+
+    //         // 成功メッセージを表示
+    //         return back()->with('success', '評価が受け付けられました。');
+    //     } else {
+    //         // エラーメッセージを表示して、評価を受け付けない
+    //         return back()->with('error', '予約が来店済みではありません。');
+    //     }
+    // }
 }

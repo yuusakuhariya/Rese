@@ -32,4 +32,30 @@ class Shop extends Model
         return $this->hasMany(Reservation::class);
     }
 
+    // キーワード検索機能
+    public function scopeKeywordSearch($query, $keyword)
+    {
+        if(!empty($keyword))
+        {
+            $query->where('shop_name', 'like', '%'. $keyword. '%');
+        }
+    }
+
+    // 地域検索機能
+        public function scopeAreaSearch($query, $area_id)
+        {
+            if(!empty($area_id))
+            {
+                $query->where('area_id', $area_id);
+            }
+        }
+
+    // ジャンル検索機能
+        public function scopeGenreSearch($query, $genre_id)
+        {
+            if (!empty($genre_id)) {
+                $query->where('genre_id', $genre_id);
+            }
+        }
+
 }
