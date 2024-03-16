@@ -36,6 +36,8 @@ Route::get('/menu_1', [MenuController::class, 'menu_1'])->name('menu_1');
 // 詳細と予約ページ表示（詳細）
 Route::get('/shop/{id}', [ReservationController::class, 'shop_detail'])->name('shop_detail');
 Route::post('/done', [ReservationController::class, 'store'])->name('store');
+Route::delete('/delete/{id}', [ReservationController::class, 'delete'])->name('delete');
+
 
 // 評価保存機能（実装するときの参考にする）
 // Route::post('/reservation/{id}/evaluation', [ReservationController::class, 'storeEvaluation'])->name('storeEvaluation');

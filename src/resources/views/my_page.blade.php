@@ -54,7 +54,11 @@
                             <div class="reservation-status_logo"><img src="/image/clock.svg"></div>
                             <div class="reservation-status_select">予約</div>
                         </div>
-                        <button class="inner-delete"><span></span></button>
+                        <form action="{{ route('delete', ['id' => $reservation->id]) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="inner-delete"><span></span></button>
+                        </form>
                     </div>
                     <div class="inner-item">
                         <table class="inner-table">

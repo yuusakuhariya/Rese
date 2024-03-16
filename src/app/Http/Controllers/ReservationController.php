@@ -21,22 +21,27 @@ class ReservationController extends Controller
 
     public function store(Request $request)
     {
-        // ユーザーがログインしていることを確認
-        if (auth()->check()) {
-            // ログインしているユーザーの ID を取得
-            $user_id = auth()->user()->id;
+        // ログイン判定
+        $user = auth()->user();
 
-            // 予約を作成して保存
-            $reservation = new Reservation();
-            $reservation->user_id = $user_id;
-            $reservation->shop_id = $request->shop_id;
-            $reservation->date = $request->date;
-            $reservation->time = $request->time;
-            $reservation->number_of_person = $request->number_of_person;
-            $reservation->save();
+        // 予約情報追加
+        Reservation::create([
+            'user_id' => $user->id,
+            'shop_id' => $request->shop_id,
+            'date' => $request->date,
+            'time' => $request->time,
+            'number_of_person' => $request->number_of_person
+        ]);
 
-            return view('done');
-        }
+        return view('done');
+    }
+
+    public function delete(Request $request)
+    {
+        Reservation::find($request->id)->delete();
+
+        return redirect()->back();
+
     }
 
 
