@@ -1,6 +1,5 @@
 .container {
     width: 400px;
-    height: 230px;
     margin: 40px auto;
     background: white;
     border-radius: 4px;
@@ -30,8 +29,12 @@
 }
 
 .form_field {
-    height: 40px;
     width: 100%;
+}
+
+.form_error {
+    text-align: center;
+    color: red;
 }
 
 span {

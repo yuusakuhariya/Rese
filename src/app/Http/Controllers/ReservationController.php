@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReservationRequest;
 use App\Models\Shop;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
@@ -12,14 +13,15 @@ class ReservationController extends Controller
     public function shop_detail($shop_id)
     {
         // ログイン判定
-        $isAuthenticated = auth()->check();
+        $user = auth()->user();
         // $shop_idで指定されたIDを持つShopモデルをデータベースから検索。
         $shop = Shop::find($shop_id);
 
-        return view('shop_detail', compact('shop', 'isAuthenticated'));
+        return view('shop_detail', compact('shop', 'user'));
     }
 
-    public function store(Request $request)
+    // 追加
+    public function store(ReservationRequest $request)
     {
         // ログイン判定
         $user = auth()->user();
@@ -36,12 +38,28 @@ class ReservationController extends Controller
         return view('done');
     }
 
+    // 削除
     public function delete(Request $request)
     {
         Reservation::find($request->id)->delete();
 
         return redirect()->back();
+    }
 
+    // 更新
+    public function update(Request $request)
+    {
+        // リクエストから予約のIDを取得
+        $reservationId = $request->id;
+
+        // リクエストから更新するデータを取得し、Reservationモデルを更新する
+        Reservation::where('id', $reservationId)->update([
+            'date' => $request->date,
+            'time' => $request->time,
+            'number_of_person' => $request->number_of_person,
+        ]);
+
+        return redirect()->back();
     }
 
 

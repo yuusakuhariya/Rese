@@ -252,3 +252,18 @@ td {
 .pagination li {
     display: inline-block;
 }
+
+.input_date {
+    color: white;
+    background-color: rgb(50, 105, 255);
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+select {
+    color: white;
+    background-color: rgb(50, 105, 255);
+    border: none;
+    font-size: 18px;
+}

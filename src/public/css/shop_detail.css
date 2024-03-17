@@ -151,7 +151,6 @@ button {
 .date {
     width: 100%;
     height: 30px;
-    margin-bottom: 16px;
 }
 
 .input_date {
@@ -164,7 +163,7 @@ button {
 .select {
     width: 90%;
     height: 30px;
-    margin-bottom: 16px;
+    margin-top: 16px;
 }
 
 select {
@@ -213,4 +212,8 @@ td {
 
 .reservation-form {
     height: 100%;
+}
+
+.error {
+    color: red;
 }

@@ -60,7 +60,9 @@
                             <button class="inner-delete"><span></span></button>
                         </form>
                     </div>
-                    <div class="inner-item">
+                    <form class="inner-item" action="{{ route('update', ['id' => $reservation->id]) }}" method="post">
+                        @csrf
+                        @method('PUT')
                         <table class="inner-table">
                             <tr>
                                 <td class="item-name">Shop</td>
@@ -68,21 +70,48 @@
                             </tr>
                             <tr>
                                 <td class="item-date">Date</td>
-                                <td class="item-date">{{ $reservation->date }}</td>
+                                <td class="item-date">
+                                    <input class="input_date" type="date" name="date" list="daylist" min="" value="{{ $reservation->date }}">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="item-time">time</td>
-                                <td class="item-time">{{ $reservation->time }}</td>
+                                <td class="item-time">
+                                    <select name="time">
+                                        <option value="">{{ $reservation->time }}</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="17:00">17:00</option>
+                                        <option value="18:00">18:00</option>
+                                        <option value="19:00">19:00</option>
+                                        <option value="20:00">20:00</option>
+                                        <option value="21:00">21:00</option>
+                                        <option value="22:00">22:00</option>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="item-number">Number</td>
-                                <td class="item-number">{{ $reservation->number_of_person }}人</td>
+                                <td class="item-number">
+                                    <select name="number_of_person">
+                                        <option value="">{{ $reservation->number_of_person }}人</option>
+                                        <option value="1">1人</option>
+                                        <option value="2">2人</option>
+                                        <option value="3">3人</option>
+                                        <option value="4">4人</option>
+                                        <option value="5">5人</option>
+                                        <option value="6">6人</option>
+                                        <option value="7">7人</option>
+                                        <option value="8">8人</option>
+                                        <option value="9">9人</option>
+                                        <option value="10">10人</option>
+                                    </select>
+                                </td>
                             </tr>
                         </table>
-                    </div>
                     <div class="reservation-change">
                         <button class="reservation-change_button" type="submit">変更</button>
                     </div>
+                    </form>
                 </div>
                 @endforeach
                 <div>
