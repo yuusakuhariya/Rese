@@ -38,6 +38,20 @@
                         @enderror
                     </div>
                 </div>
+                <div class="role">
+                    <label class="role-type" for="role">登録タイプ</label>
+                    <select name="role">
+                        <option value="">選択してください</option>
+                        <option value="user">ユーザー</option>
+                        <option value="shop">店舗代表者</option>
+                        <option value="admin">管理者</option>
+                    </select>
+                    <div class="form_error">
+                        @error('role')
+                        {{ $message }}
+                        @enderror
+                    </div>
+                </div>
                 <div align="right" class="form_field">
                     <button class="form_button" type="submit">登録</button>
                 </div>

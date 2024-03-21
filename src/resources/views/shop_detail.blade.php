@@ -128,11 +128,9 @@
                         </div>
                     </div>
                     <div class="reservation-button">
-                        @if($user)
                         <button class="button" type="submit">
                             予約する
                         </button>
-                        @endif
                     </div>
                 </form>
             </div>

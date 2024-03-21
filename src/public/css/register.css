@@ -30,6 +30,7 @@
 
 .form_field {
     width: 100%;
+    margin-bottom: 6px;
 }
 
 .form_error {
@@ -66,4 +67,22 @@ input::placeholder {
     font-size: 12px;
     padding: 2px 10px;
     text-decoration: none;
+}
+
+.role {
+    margin: 10px 0;
+    text-align: right;
+}
+
+.role-type {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+select {
+    border: 2px solid rgb(50, 105, 255);
+    border-radius: 4px;
+    background-color: rgb(50, 105, 255);
+    color: white;
+    font-size: 12px;
 }

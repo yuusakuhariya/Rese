@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Genre;
 use App\Models\Area;
+use Illuminate\Support\Facades\Gate;
 
 
 class ShopController extends Controller
@@ -13,16 +14,45 @@ class ShopController extends Controller
     public function shop_all(Request $request)
     {
         // ログイン判定
-        $isAuthenticated = auth()->check();
+        $user = auth()->user();
 
         // ユーザーがログインしている場合のみお気に入り情報を取得する
-        if ($isAuthenticated) {
+        if ($user) {
             // ログインしているユーザーのお気に入り店舗IDの配列を取得
             $favoriteShopIds = auth()->user()->favorites->pluck('id')->all();
         } else {
             // ログインしていない場合はお気に入り情報は空の配列とする
             $favoriteShopIds = [];
         }
+        // ユーザー、店舗代表者、管理者
+        // 権限
+        if (Gate::allows('user')) {
+            $AllShopLists = Shop::with('Area', 'Genre')->get();
+            $AllGenres = Genre::all();
+            $AllAreas = Area::all();
+
+            // 検索機能
+            if ($request->has('keyword')) {
+                $searchShops = Shop::with('genre', 'area')->AreaSearch($request->area_id)->GenreSearch($request->genre_id)->KeywordSearch($request->keyword)->get();
+            } else {
+                $searchShops = null;
+            }
+            // 'user' 権限を持っている場合の処理
+            return view('shop_all', compact('user', 'favoriteShopIds', 'searchShops', 'AllShopLists', 'AllGenres', 'AllAreas'));
+        } elseif (Gate::allows('shop')) {
+            // 'shop' 権限を持っている場合の処理
+            return view('shopManeger');
+        // } else{
+        //     // 権限を持っていない場合の処理
+        // return redirect()->route('login');
+        } elseif (Gate::allows('admin')) {
+            // 'shop' 権限を持っている場合の処理
+            return view('admin');
+            // } else{
+            //     // 権限を持っていない場合の処理
+            // return redirect()->route('login');
+        }
+
 
         // 検索機能
         if ($request->has('keyword')) {
@@ -36,6 +66,6 @@ class ShopController extends Controller
         $AllGenres = Genre::all();
         $AllAreas = Area::all();
 
-        return view('shop_all', compact('isAuthenticated', 'favoriteShopIds', 'searchShops', 'AllShopLists', 'AllGenres', 'AllAreas'));
+        return view('shop_all', compact('user', 'favoriteShopIds', 'searchShops', 'AllShopLists', 'AllGenres', 'AllAreas'));
     }
 }

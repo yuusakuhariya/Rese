@@ -78,7 +78,7 @@
                                 <a class="detail-inner" href="{{ route('shop_detail', ['id' => $shop->id]) }}">詳しくみる</a>
                             </button>
                         </div>
-                        @if($isAuthenticated)
+                        @if($user)
                         @if(!in_array($shop->id, $favoriteShopIds))
                         <div class="favorite-button">
                             <form action="{{ route('addFavorites', ['id' => $shop->id, 'user_id' => auth()->user()->id, 'shop_id' => $shop->id]) }}" method="post">
@@ -125,7 +125,7 @@
                                 <a class="detail-inner" href="{{ route('shop_detail', ['id' => $shop->id]) }}">詳しくみる</a>
                             </button>
                         </div>
-                        @if($isAuthenticated)
+                        @if($user)
                         @if(!in_array($shop->id, $favoriteShopIds))
                         <div class="favorite-button">
                             <form action="{{ route('addFavorites', ['id' => $shop->id, 'user_id' => auth()->user()->id, 'shop_id' => $shop->id]) }}" method="post">

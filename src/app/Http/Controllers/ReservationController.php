@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ReservationRequest;
+use App\Http\Requests\ReservationFormRequest;
 use App\Models\Shop;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
@@ -21,8 +21,13 @@ class ReservationController extends Controller
     }
 
     // 追加
-    public function store(ReservationRequest $request)
+    public function store(ReservationFormRequest $request)
     {
+        // ログインしていない場合はログインページへ
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
+
         // ログイン判定
         $user = auth()->user();
 

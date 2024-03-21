@@ -6,6 +6,7 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MypageController;
+// use App\Http\Controllers\RoleController;
 use App\Models\Favorite;
 use App\Models\Reservation;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
@@ -23,8 +24,7 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 */
 
 
-// ホーム画面（全店舗）
-Route::get('/', [ShopController::class, 'shop_all'])->name('shop_all');
+
 
 // 検索機能
 Route::get('/search', [shopController::class, 'shop_all'])->name('search');
@@ -55,10 +55,21 @@ Route::delete('/unfavorite/{id}/{user_id}/{shop_id}', [FavoriteController::class
 
 
 
-// Fortifyのデフォルトログインと登録のルート
+// ログインと登録のルート
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
     Route::post('/login', [AuthenticatedSessionController::class, 'store']);
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('/register', [RegisteredUserController::class, 'store']);
 });
+
+// ログインした店舗管理者のみがアクセス可能なルート
+Route::middleware('auth')->group(function () {
+    Route::get('/shopManeger', [ShopController::class, 'shopManeger'])->name('shopManeger');
+    Route::get('/admin', [ShopController::class, 'admin'])->name('admin');
+});
+
+//  ログインした店舗管理者のみがアクセス可能なルート
+
+// ホーム画面（全店舗）
+Route::get('/', [ShopController::class, 'shop_all'])->name('shop_all');
