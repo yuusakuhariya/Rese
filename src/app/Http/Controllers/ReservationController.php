@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ReservationFormRequest;
+
 use App\Models\Shop;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use App\Http\Requests\ReservationFormRequest;
 
 class ReservationController extends Controller
 {
@@ -39,7 +40,6 @@ class ReservationController extends Controller
             'time' => $request->time,
             'number_of_person' => $request->number_of_person
         ]);
-
         return view('done');
     }
 
@@ -52,7 +52,7 @@ class ReservationController extends Controller
     }
 
     // 更新
-    public function update(Request $request)
+    public function update(ReservationFormRequest $request)
     {
         // リクエストから予約のIDを取得
         $reservationId = $request->id;

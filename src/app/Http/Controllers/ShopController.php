@@ -24,6 +24,7 @@ class ShopController extends Controller
             // ログインしていない場合はお気に入り情報は空の配列とする
             $favoriteShopIds = [];
         }
+
         // ユーザー、店舗代表者、管理者
         // 権限
         if (Gate::allows('user')) {
@@ -37,20 +38,15 @@ class ShopController extends Controller
             } else {
                 $searchShops = null;
             }
+
             // 'user' 権限を持っている場合の処理
             return view('shop_all', compact('user', 'favoriteShopIds', 'searchShops', 'AllShopLists', 'AllGenres', 'AllAreas'));
         } elseif (Gate::allows('shop')) {
             // 'shop' 権限を持っている場合の処理
             return view('shopManeger');
-        // } else{
-        //     // 権限を持っていない場合の処理
-        // return redirect()->route('login');
         } elseif (Gate::allows('admin')) {
             // 'shop' 権限を持っている場合の処理
             return view('admin');
-            // } else{
-            //     // 権限を持っていない場合の処理
-            // return redirect()->route('login');
         }
 
 

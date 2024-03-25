@@ -95,8 +95,8 @@ button {
     border-radius: 4px;
     box-shadow: 3px 3px 2px rgb(167, 161, 161);
     padding: 30px;
-    height: 100%;
     font-size: 18px;
+    margin-bottom: 50px;
 }
 
 img {
@@ -118,6 +118,19 @@ img {
 
 td {
     padding: 10px 30px 0 0;
+}
+
+.future-button {
+    display: flex;
+}
+.review-button {
+    margin-right: 30px;
+}
+.review-button_inner {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 
@@ -185,7 +198,7 @@ td {
 }
 .favorite_inner-card {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .favorite-card {
@@ -194,6 +207,10 @@ td {
     background: white;
     border-radius: 4px;
     box-shadow: 3px 3px 2px rgb(167, 161, 161);
+    margin: 0  auto 50px 0;
+}
+.favorite-card:nth-child(2n) {
+    margin: 0 0 50px 0;
 }
 .card-img {
     width: 100%;

@@ -85,4 +85,22 @@ class User extends Authenticatable
         //     // 何もしない
         // }
     }
+
+    // キーワード（ユーザーの名前）検索機能
+    public function scopeKeywordSearch($query, $keyword)
+    {
+        if($keyword)
+        {
+            $query->where('name', 'like', '%'. $keyword . '%');
+        }
+    }
+
+    // 権限選択
+    public function scopeRoleSearch($query, $role)
+    {
+        if($role)
+        {
+            $query->where('role', $role);
+        }
+    }
 }

@@ -17,13 +17,11 @@ class MypageController extends Controller
 
         $reservations = Reservation::where('user_id', $user->id)
             ->with('shop')
-            ->paginate(1);
+            ->get();
 
         $favorites = Favorite::where('user_id', $user->id)
-        ->with('shop.area', 'shop.genre')
-        ->paginate(2);
-
-
+            ->with('shop.area', 'shop.genre')
+            ->get();
 
         return view('my_page', compact('reservations', 'user', 'favorites'));
     }

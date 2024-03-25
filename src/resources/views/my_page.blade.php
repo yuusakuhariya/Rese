@@ -54,11 +54,16 @@
                             <div class="reservation-status_logo"><img src="/image/clock.svg"></div>
                             <div class="reservation-status_select">予約</div>
                         </div>
-                        <form action="{{ route('delete', ['id' => $reservation->id]) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="inner-delete"><span></span></button>
-                        </form>
+                        <div class="future-button">
+                            <div class="review-button">
+                                <a class="review-button_inner" href="{{ route('review', ['id' => $reservation->id]) }}">評価</a>
+                            </div>
+                            <form class="delete-button" action="{{ route('delete', ['id' => $reservation->id]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="inner-delete"><span></span></button>
+                            </form>
+                        </div>
                     </div>
                     <form class="inner-item" action="{{ route('update', ['id' => $reservation->id]) }}" method="post">
                         @csrf
@@ -87,6 +92,11 @@
                                         <option value="21:00">21:00</option>
                                         <option value="22:00">22:00</option>
                                     </select>
+                                    <div class="error">
+                                        @error('time')
+                                        {{$errors->first('time')}}
+                                        @enderror
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -105,18 +115,20 @@
                                         <option value="9">9人</option>
                                         <option value="10">10人</option>
                                     </select>
+                                    <div class="error">
+                                        @error('number_of_person')
+                                        {{$errors->first('number_of_person')}}
+                                        @enderror
+                                    </div>
                                 </td>
                             </tr>
                         </table>
-                    <div class="reservation-change">
-                        <button class="reservation-change_button" type="submit">変更</button>
-                    </div>
+                        <div class="reservation-change">
+                            <button class="reservation-change_button" type="submit">変更</button>
+                        </div>
                     </form>
                 </div>
                 @endforeach
-                <div>
-                    {{ $reservations->links() }}
-                </div>
             </div>
 
             <div class="favorite_content">
@@ -149,9 +161,6 @@
                             </div>
                         </div>
                         @endforeach
-                    </div>
-                    <div>
-                        {{ $favorites->links() }}
                     </div>
                 </div>
             </div>

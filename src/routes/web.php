@@ -6,6 +6,8 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AdminController;
 // use App\Http\Controllers\RoleController;
 use App\Models\Favorite;
 use App\Models\Reservation;
@@ -26,8 +28,10 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 
 
-// 検索機能
-Route::get('/search', [shopController::class, 'shop_all'])->name('search');
+// 店検索機能
+Route::get('/search', [ShopController::class, 'shop_all'])->name('search');
+
+Route::get('/user_search', [AdminController::class, 'userSearch'])->name('userSearch');
 
 // メニュー画面（１、２）
 Route::get('/menu_2', [MenuController::class, 'menu_2'])->name('menu_2');
@@ -43,11 +47,18 @@ Route::delete('/delete/{id}', [ReservationController::class, 'delete'])->name('d
 Route::put('/update/{id}', [ReservationController::class, 'update'])->name('update');
 
 
+
+
 // 評価保存機能（実装するときの参考にする）
 // Route::post('/reservation/{id}/evaluation', [ReservationController::class, 'storeEvaluation'])->name('storeEvaluation');
 
 // マイページ
 Route::get('/my_page/{id}', [MypageController::class, 'my_page'])->name('my_page');
+
+// 評価ページ
+Route::get('/review/{id}', [ReviewController::class, 'review'])->name('review');
+// レビュー追加
+Route::post('/posting', [ReviewController::class, 'reviewStore'])->name('review-store');
 
 // お気に入り追加・削除
 Route::put('/favorite/{id}/{user_id}/{shop_id}', [FavoriteController::class, 'addFavorite'])->name('addFavorites');
