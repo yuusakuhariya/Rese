@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Genre;
 use App\Models\Area;
+use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 
 
@@ -32,7 +33,7 @@ class ShopController extends Controller
             $AllGenres = Genre::all();
             $AllAreas = Area::all();
 
-            // 検索機能
+            // 店検索機能
             if ($request->has('keyword')) {
                 $searchShops = Shop::with('genre', 'area')->AreaSearch($request->area_id)->GenreSearch($request->genre_id)->KeywordSearch($request->keyword)->get();
             } else {
@@ -44,9 +45,22 @@ class ShopController extends Controller
         } elseif (Gate::allows('shop')) {
             // 'shop' 権限を持っている場合の処理
             return view('shopManeger');
+
         } elseif (Gate::allows('admin')) {
             // 'shop' 権限を持っている場合の処理
-            return view('admin');
+
+            // //  ユーザー登録機能
+            // User::create([
+            //     'name' => $$request->name,
+            //     'email' => $request->email,
+            //     'password' => $request->password,
+            //     'role' => $request->role,
+            // ]);
+
+            // ユーザー検索機能
+            $userSearches = User::RoleSearch($request->role)->KeywordSearch($request->keyword)->get();
+
+            return view('admin', compact('userSearches'));
         }
 
 

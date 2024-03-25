@@ -24,24 +24,39 @@
     <main>
         <div class="shop-register_container">
             <h2 class="content-title">店舗代表者 登録</h2>
-            <form class="shop-register_form" action="">
+            <form class="shop-register_form" action="{{ route('userStore') }}" method="post">
+                @csrf
                 <div class="form-title">
                     <div class="form-title-inner">店舗代表者名</div>
                     <input class="form-input" type="name" name="name" placeholder="店舗代表者名" value="{{ old('name') }}">
                 </div>
-                <div class="form-error"></div>
-
+                <div class="form-error">
+                    @error('name')
+                    {{$errors->first('name')}}
+                    @enderror
+                </div>
                 <div class="form-title">
                     <div class="form-title-inner">メールアドレス</div>
                     <input class="form-input" type="email" name="email" placeholder="email" value="{{ old('email') }}">
                 </div>
-                <div class="form-error"></div>
-
+                <div class="form-error">
+                    @error('email')
+                    {{$errors->first('email')}}
+                    @enderror
+                </div>
                 <div class="form-title">
                     <div class="form-title-inner">パスワード</div>
                     <input class="form-input" type="password" name="password" placeholder="password">
                 </div>
-                <div class="form-error"></div>
+                <div class="form-error">
+                    @error('password')
+                    {{$errors->first('password')}}
+                    @enderror
+                </div>
+                <input class="form-input" type="hidden" name="role" value="shop">
+                <div class="button">
+                    <button class="form_button" type="submit">登録</button>
+                </div>
             </form>
         </div>
         <div class="user-list">
@@ -66,12 +81,18 @@
                         <th class="table-th_email">メールアドレス</th>
                         <th class="table-th_delete">削除</th>
                     </tr>
-                    @foreach ($userSearches as $userSearch)
+                    @foreach ($userSearches as $user)
                     <tr>
-                        <td class="table-td_role">{{ $userSearch->role }}</td>
-                        <td class="table-td_name">{{ $userSearch->name }}</td>
-                        <td class="table-td_email">{{ $userSearch->email }}</td>
-                        <td class="table-delete"><button class="delete-button" type="submit">削除</button></td>
+                        <td class="table-td_role">{{ $user->role }}</td>
+                        <td class="table-td_name">{{ $user->name }}</td>
+                        <td class="table-td_email">{{ $user->email }}</td>
+                        <td class="table-delete">
+                            <form class="delete-form" action="{{ route('userDelete', ['id' => $user->id]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="delete-button" type="submit">削除</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </table>

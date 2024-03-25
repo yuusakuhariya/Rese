@@ -30,8 +30,13 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 // 店検索機能
 Route::get('/search', [ShopController::class, 'shop_all'])->name('search');
+// ユーザー検索機能
+Route::get('/user_search', [ShopController::class, 'shop_all'])->name('userSearch');
+// 管理者からの店代表者登録
+Route::post('/user_create', [AdminController::class, 'userStore'])->name('userStore');
+// ユーザー削除
+Route::delete('/user_delete/{id}', [AdminController::class, 'userDelete'])->name('userDelete');
 
-Route::get('/user_search', [AdminController::class, 'userSearch'])->name('userSearch');
 
 // メニュー画面（１、２）
 Route::get('/menu_2', [MenuController::class, 'menu_2'])->name('menu_2');
