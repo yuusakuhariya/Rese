@@ -26,8 +26,7 @@ class ShopController extends Controller
             $favoriteShopIds = [];
         }
 
-        // ユーザー、店舗代表者、管理者
-        // 権限
+        // ユーザー、店舗代表者、管理者の権限
         if (Gate::allows('user')) {
             $AllShopLists = Shop::with('Area', 'Genre')->get();
             $AllGenres = Genre::all();
@@ -42,20 +41,15 @@ class ShopController extends Controller
 
             // 'user' 権限を持っている場合の処理
             return view('shop_all', compact('user', 'favoriteShopIds', 'searchShops', 'AllShopLists', 'AllGenres', 'AllAreas'));
-        } elseif (Gate::allows('shop')) {
+
             // 'shop' 権限を持っている場合の処理
+        } elseif (Gate::allows('shop')) {
+            // ここにログイン済みのデータを取得するコード記入？
+
             return view('shopManeger');
 
+            // 'admin' 権限を持っている場合の処理
         } elseif (Gate::allows('admin')) {
-            // 'shop' 権限を持っている場合の処理
-
-            // //  ユーザー登録機能
-            // User::create([
-            //     'name' => $$request->name,
-            //     'email' => $request->email,
-            //     'password' => $request->password,
-            //     'role' => $request->role,
-            // ]);
 
             // ユーザー検索機能
             $userSearches = User::RoleSearch($request->role)->KeywordSearch($request->keyword)->get();

@@ -8,6 +8,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ShopManegerController;
 // use App\Http\Controllers\RoleController;
 use App\Models\Favorite;
 use App\Models\Reservation;
@@ -30,12 +31,16 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 // 店検索機能
 Route::get('/search', [ShopController::class, 'shop_all'])->name('search');
+
+
 // ユーザー検索機能
 Route::get('/user_search', [ShopController::class, 'shop_all'])->name('userSearch');
 // 管理者からの店代表者登録
 Route::post('/user_create', [AdminController::class, 'userStore'])->name('userStore');
 // ユーザー削除
 Route::delete('/user_delete/{id}', [AdminController::class, 'userDelete'])->name('userDelete');
+
+Route::post('/shop_create', [ShopManegerController::class, 'shopStore'])->name('shopStore');
 
 
 // メニュー画面（１、２）
@@ -51,11 +56,6 @@ Route::delete('/delete/{id}', [ReservationController::class, 'delete'])->name('d
 // 予約更新
 Route::put('/update/{id}', [ReservationController::class, 'update'])->name('update');
 
-
-
-
-// 評価保存機能（実装するときの参考にする）
-// Route::post('/reservation/{id}/evaluation', [ReservationController::class, 'storeEvaluation'])->name('storeEvaluation');
 
 // マイページ
 Route::get('/my_page/{id}', [MypageController::class, 'my_page'])->name('my_page');
@@ -85,7 +85,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [ShopController::class, 'admin'])->name('admin');
 });
 
-//  ログインした店舗管理者のみがアクセス可能なルート
 
 // ホーム画面（全店舗）
 Route::get('/', [ShopController::class, 'shop_all'])->name('shop_all');
