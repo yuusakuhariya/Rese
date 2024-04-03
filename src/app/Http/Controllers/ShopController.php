@@ -44,9 +44,12 @@ class ShopController extends Controller
 
             // 'shop' 権限を持っている場合の処理
         } elseif (Gate::allows('shop')) {
-            // ここにログイン済みのデータを取得するコード記入？
 
-            return view('shopManeger');
+            $user = auth()->user();
+
+            $shops = Shop::with('Area', 'Genre')->where('user_id', $user->id)->get();
+
+            return view('shopManeger', compact('shops'));
 
             // 'admin' 権限を持っている場合の処理
         } elseif (Gate::allows('admin')) {

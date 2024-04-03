@@ -10,11 +10,12 @@ class Shop extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'shop_name',
         'area_id',
         'genre_id',
         'content',
-        'imag_path',
+        'img_path',
     ];
 
     public function area()

@@ -9,9 +9,8 @@ use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShopManegerController;
-// use App\Http\Controllers\RoleController;
-use App\Models\Favorite;
-use App\Models\Reservation;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\ReservationListController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
@@ -40,8 +39,10 @@ Route::post('/user_create', [AdminController::class, 'userStore'])->name('userSt
 // ユーザー削除
 Route::delete('/user_delete/{id}', [AdminController::class, 'userDelete'])->name('userDelete');
 
+// 店舗代表者による店舗作成
 Route::post('/shop_create', [ShopManegerController::class, 'shopStore'])->name('shopStore');
-
+// 店舗代表者による店舗更新
+Route::put('/shopUpdate', [ShopManegerController::class, 'shopUpdate'])->name('shopUpdate');
 
 // メニュー画面（１、２）
 Route::get('/menu_2', [MenuController::class, 'menu_2'])->name('menu_2');
@@ -88,3 +89,9 @@ Route::middleware('auth')->group(function () {
 
 // ホーム画面（全店舗）
 Route::get('/', [ShopController::class, 'shop_all'])->name('shop_all');
+
+// メール送信機能
+Route::post('/send-notification', [MailController::class, 'sendNotification'])->name('send.notification');
+
+// 各店舗の予約確認表示
+Route::get('/reservation_list/{id}', [ReservationListController::class, 'reservationList'])->name('reservationList');

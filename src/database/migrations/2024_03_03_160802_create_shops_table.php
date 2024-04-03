@@ -16,10 +16,11 @@ class CreateShopsTable extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             $table->string('shop_name', 100);
+            $table->foreignId('user_id')->constrained();
             $table->foreignId('area_id')->constrained();
             $table->foreignId('genre_id')->constrained();
             $table->text('content');
-            $table->string('imag_path');
+            $table->string('img_path');
             $table->timestamps();
         });
     }

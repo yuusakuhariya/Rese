@@ -59,6 +59,15 @@
                 </div>
             </form>
         </div>
+
+        <div>
+            <h3>Send Notification</h3>
+            <form action="{{ route('send.notification') }}" method="POST">
+                @csrf
+                <button type="submit">Send Notification Email</button>
+            </form>
+        </div>
+
         <div class="user-list">
             <h2 class="content-title">ユーザー一覧</h2>
             <div class="search">
