@@ -57,7 +57,6 @@
                 <div class="form-button">
                     <button class="form-button_inner" type="submit">メール送信</button>
                 </div>
-
             </form>
         </div>
     </main>
