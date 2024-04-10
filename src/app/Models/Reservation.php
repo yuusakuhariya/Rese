@@ -15,6 +15,8 @@ class Reservation extends Model
         'date',
         'time',
         'number_of_person',
+        'payment_status',
+        'payment_reference'
     ];
 
     public function user()

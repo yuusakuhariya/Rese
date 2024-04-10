@@ -19,6 +19,8 @@ class MypageController extends Controller
             ->with('shop')
             ->get();
 
+            
+
         $favorites = Favorite::where('user_id', $user->id)
             ->with('shop.area', 'shop.genre')
             ->get();

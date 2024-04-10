@@ -20,6 +20,8 @@ class CreateReservationsTable extends Migration
             $table->date('date');
             $table->time('time');
             $table->integer('number_of_person');
+            $table->string('payment_status')->nullable(); // 支払いの状態を示すフラグなど
+            $table->string('payment_reference')->nullable(); // Stripe の支払い ID やトランザクション ID
             $table->timestamps();
         });
     }
