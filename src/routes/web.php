@@ -14,6 +14,7 @@ use App\Http\Controllers\ReservationListController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\QRCodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,5 +98,12 @@ Route::post('/send-notification', [MailController::class, 'sendNotification'])->
 // 各店舗の予約確認表示
 Route::get('/reservation_list/{id}', [ReservationListController::class, 'reservationList'])->name('reservationList');
 
-
+// 決済機能
 Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge');
+
+// QRコード表示
+Route::get('/generate-qr-code', [QRCodeController::class, 'generateQRCode'])->name('QRCode');
+
+// QRコードの店認証
+Route::get('/reservations/{id}', [ReservationController::class, 'checkQRcode'])->name('checkQRcode');
+

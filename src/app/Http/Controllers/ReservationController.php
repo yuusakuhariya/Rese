@@ -7,6 +7,7 @@ use App\Models\Shop;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReservationFormRequest;
+use Symfony\Component\HttpKernel\DependencyInjection\ResettableServicePass;
 
 class ReservationController extends Controller
 {
@@ -65,5 +66,21 @@ class ReservationController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    // QRコード読み込み後のis_visitedデータ更新
+    public function checkQRcode($id)  // $idパラメーター取得
+    {
+        // Reservationモデルから$idを見つけ$reservationに代入
+        $reservation = Reservation::find($id);
+        // もし$reservationが存在する場合
+        if ($reservation) {
+            // $reservationのis_visitedカラムにtrueを入れる
+            $reservation->is_visited = true;
+            // $reservationを保存
+            $reservation->save();
+            // ログインフォームを表示
+            return view('auth.login');
+        }
     }
 }

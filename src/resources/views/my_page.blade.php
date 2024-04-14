@@ -54,6 +54,9 @@
                             <div class="reservation-status_logo"><img src="/image/clock.svg"></div>
                             <div class="reservation-status_select">予約</div>
                         </div>
+                        <div class="QRcode-button">
+                            <a class="QRcode-button_inner" href="{{ route('QRCode', ['id' => $reservation->id]) }}">QRコード表示</a>
+                        </div>
                         @if(Schema::hasColumn('reservations', 'payment_status') && empty($reservation->payment_status))
                         <form action="{{ route('stripe.charge', ['id' => $reservation->id]) }}" method="POST">
                             @csrf

@@ -26,6 +26,7 @@
                 <th class="table-th_date">予約日</th>
                 <th class="table-th_time">予約時間</th>
                 <th class="table-th_number-of-person">人数</th>
+                <th class="table-th_number-of-person">来店</th>
             </tr>
             @foreach ($reservations as $reservation)
             <tr>
@@ -34,6 +35,7 @@
                 <td class="table-td_date">{{ $reservation->date }}</td>
                 <td class="table-td_time">{{ $reservation->time }}</td>
                 <td class="table-td_number-of-person">{{ $reservation->number_of_person }}</td>
+                <td class="table-td_number-of-person">{{ $reservation->is_visited ? '済' : '未' }}</td>
             </tr>
             @endforeach
         </table>
