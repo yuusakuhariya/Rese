@@ -43,7 +43,7 @@
                 {{ auth()->user()->name }}さん
             </h2>
             <h3 class="review">
-                レビューしてね！！
+                レビューしてね！
             </h3>
         </div>
         <div class="review-container">
