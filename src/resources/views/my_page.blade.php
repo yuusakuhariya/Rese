@@ -150,7 +150,7 @@
                         @foreach($favorites as $favorite)
                         <div class="favorite-card">
                             <div class="card-img">
-                                <img class="shop-img" src="{{ $favorite->shop->imag_path }}" alt="">
+                                <img class="shop-img" src="{{ Storage::url($favorite->shop->img_path) }}" alt="">
                             </div>
                             <div class="card-content">
                                 <div class="card-content_shop-name">{{ $favorite->shop->shop_name }}</div>

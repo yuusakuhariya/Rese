@@ -45,7 +45,7 @@
                     <div class="shop-name">{{ $shop->shop_name }}</div>
                 </div>
                 <div class="card-img">
-                    <img class="shop-img" src="{{ $shop->imag_path }}" alt="サンプル画像">
+                    <img class="shop-img" src="{{ Storage::url($shop->img_path) }}" alt="サンプル画像">
                 </div>
                 <div class="card-content_tag">
                     <div class="tag-area">＃{{ $shop->Area->area_name }}</div>

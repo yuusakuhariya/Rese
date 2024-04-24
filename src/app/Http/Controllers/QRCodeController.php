@@ -22,7 +22,7 @@ class QRCodeController extends Controller
             $qrCode = QrCode::size(250)->generate($url);
             return view('qr_code', ['qrCode' => $qrCode]);
         } else {
-            // 予約情報が見つからない場合はエラーを返す
+            // 予約情報が見つからない場合は戻る
             return redirect()->back();
         }
     }
