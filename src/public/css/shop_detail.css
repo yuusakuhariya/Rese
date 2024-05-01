@@ -6,6 +6,17 @@ body {
     display: flex;
     margin: 30px 80px;
 }
+@media screen and (max-width : 767px) {
+    .container-all {
+        display: block;
+        margin: 20px 20px;
+    }
+}
+@media screen and (min-width : 768px) and (max-width: 1024px) {
+    .container-all {
+        display: block;
+    }
+}
 
 
 .header_inner {
@@ -69,6 +80,18 @@ button {
     width: 50%;
     margin-right: 50px;
     height: 100%;
+}
+@media screen and (max-width : 767px) {
+    .container-various {
+        width: 100%;
+        margin-right: 0px;
+    }
+}
+@media screen and (min-width : 768px) and (max-width: 1024px) {
+    .container-various {
+        width: 100%;
+        margin-right: 0px;
+    }
 }
 
 .title {
@@ -135,6 +158,18 @@ button {
     box-shadow: 3px 3px 2px rgb(167, 161, 161);
     margin-left: 50px;
 }
+@media screen and (max-width : 767px) {
+    .container-reservation {
+        width: 100%;
+            margin: 50px 0 0 0;
+    }
+}
+@media screen and (min-width : 768px) and (max-width: 1024px) {
+    .container-reservation {
+        width: 100%;
+        margin: 50px 0 0 0;
+    }
+}
 
 .content_reservation {
     height: 90%;
@@ -185,6 +220,8 @@ select {
     background: rgb(83, 128, 252);
     border-radius: 4px;
     color: white;
+    overflow: auto;
+    white-space: nowrap;
 }
 
 td {

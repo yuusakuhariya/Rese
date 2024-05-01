@@ -7,6 +7,19 @@ body {
     justify-content: space-between;
     margin: 30px 80px;
 }
+@media screen and (max-width : 767px) {
+    .header {
+        margin: 10px 20px;
+        display: block;
+        }
+}
+@media screen and (min-width : 768px) and (max-width: 1024px) {
+    .header {
+        margin: 30px 30px;
+    }
+}
+
+
 .header_inner {
     display: flex;
 }
@@ -75,10 +88,33 @@ button {
     border-radius: 4px;
     box-shadow: 3px 3px 2px rgb(167, 161, 161);
 }
+@media screen and (max-width : 767px) {
+    .search {
+        margin-top: 10px;
+        width: 100%;
+        }
+}
+@media screen and (min-width : 768px) and (max-width: 1024px) {
+    .search {
+        width: 60%;
+    }
+}
+
 .select {
     height: 70%;
     width: 15%;
 }
+@media screen and (max-width : 767px) {
+    .select {
+        width: 40%;
+    }
+}
+@media screen and (min-width : 768px) and (max-width: 1024px) {
+    .select {
+        width: 100%;
+    }
+}
+
 select {
     height: 100%;
     width: 100%;
@@ -106,17 +142,48 @@ select {
     background-size: 1em 1em;
     border-radius: 4px;
 }
+@media screen and (max-width : 767px) {
+    .search-button {
+        width: 12%;
+    }
+}
+@media screen and (min-width : 768px) and (max-width: 1024px) {
+    .search-button {
+        width: 20%;
+    }
+}
+
 .search-input {
     height: 100%;
     width: 65%;
     border: none;
 }
-
-
+@media screen and (max-width : 767px) {
+    .search-input {
+        width: 60%;
+    }
+}
+@media screen and (min-width : 768px) and (max-width: 1024px) {
+    .search-input {
+        width: 100%;
+    }
+}
 .all-shop_container {
     margin: 30px 80px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+}
+@media screen and (max-width : 767px) {
+    .all-shop_container {
+        margin:10px 20px;
+        display: block;
+    }
+}
+@media screen and (min-width : 768px) and (max-width: 1024px) {
+    .all-shop_container {
+        margin: 30px 30px;
+    }
 }
 
 .favorite-card {
@@ -125,10 +192,18 @@ select {
     background: white;
     border-radius: 4px;
     box-shadow: 3px 3px 2px rgb(167, 161, 161);
-    margin: 0 36px 36px 0;
+    margin-bottom: 30px;
 }
-.favorite-card:nth-child(4n) {
-    margin: 0 0 36px 0;
+@media screen and (max-width : 767px) {
+    .favorite-card {
+        width: 100%;
+        margin: 20px 0;
+    }
+}
+@media screen and (min-width : 768px) and (max-width: 1024px) {
+    .favorite-card {
+        width: 28%;
+    }
 }
 
 .card-img {

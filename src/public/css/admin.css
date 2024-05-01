@@ -5,6 +5,11 @@ body {
 .header {
     margin: 30px 80px;
 }
+@media screen and (max-width: 1024px) {
+    .header {
+        margin: 30px 30px;
+    }
+}
 
 button {
     border-color: transparent;
@@ -33,15 +38,33 @@ button {
     width: 40%;
     display: flex;
 }
+@media screen and (max-width: 1024px) {
+    .form-title {
+        width: 100%;
+        display: block;
+    }
+}
+
 .form-title-inner {
     width: 30%;
     font-size: 18px;
     font-weight: bold;
 }
+@media screen and (max-width: 1024px) {
+    .form-title-inner {
+        width: 100%;
+    }
+}
+
 .form-input {
     width: 70%;
     border-radius: 4px;
     border: 1px solid rgb(199, 199, 199);
+}
+@media screen and (max-width: 1024px) {
+    .form-input {
+        width: 50%;
+    }
 }
 
 .button {
@@ -55,13 +78,23 @@ button {
     border-radius: 4px;
     box-shadow: 3px 3px 2px rgb(167, 161, 161);
     color: white;
-    width: 5%;
+    width: 60px;
 }
 
 .user-list {
     margin: 40px 80px;
     text-align: center;
     border-top: 1px solid rgb(199, 199, 199);
+}
+@media screen and (max-width : 767px) {
+    .user-list {
+        margin: 10px 20px;
+    }
+}
+@media screen and (min-width : 768px) and (max-width: 1024px) {
+    .user-list {
+        margin: 30px 30px;
+    }
 }
 
 .content-title {
@@ -73,8 +106,14 @@ button {
     margin: 0 auto;
     margin-bottom: 20px;
 }
+@media screen and (max-width : 767px) {
+    .search-form {
+        width: 100%;
+    }
+}
+
 .list-table {
-    width: 70%;
+    width: 700px;
     margin: 0 auto;
 }
 
@@ -99,7 +138,7 @@ button {
     border-radius: 4px;
     box-shadow: 3px 3px 2px rgb(167, 161, 161);
     color: white;
-    width: 10%;
+    width: 60px;
 }
 
 table {
@@ -109,6 +148,11 @@ table {
 th, td {
     font-size: 20px;
     padding: 10px 8px;
+}
+
+.table {
+    overflow: auto;
+    white-space: nowrap;
 }
 
 .table-td_role {
@@ -127,7 +171,7 @@ th, td {
     width: 20%;
 }
 .delete-button {
-    width: 50%;
+    width: 60px;
     font-size: 16px;
     color: white;
     background: rgb(50, 105, 255);
@@ -135,6 +179,7 @@ th, td {
     font-weight: bold;
     box-shadow: 3px 3px 2px rgb(167, 161, 161);
 }
+
 
 .form-error {
     color: red;

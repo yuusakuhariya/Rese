@@ -7,6 +7,11 @@ body {
     justify-content: space-between;
     margin: 30px 80px;
 }
+@media screen and (max-width : 767px) {
+    .header {
+        margin: 20px 20px;
+    }
+}
 
 .header_inner {
     display: flex;
@@ -73,20 +78,33 @@ button {
 }
 
 .container {
-    margin: 30px 80px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
+@media screen and (max-width : 767px) {
+    .container {
+        display: block;
+    }
+}
 
 .reservation-status_content {
-    width: 480px;
+    width: 40%;
     height: 300px;
+    margin: 0 auto;
+}
+@media screen and (max-width : 767px) {
+    .reservation-status_content {
+        height: 100%;
+        width: 80%;
+    }
 }
 
 .reservation-status_title {
     margin-bottom: 20px;
     font-size: 26px;
     font-weight: bold;
+    text-align: center;
 }
 
 .reservation-status_inner {
@@ -99,6 +117,24 @@ button {
     margin-bottom: 50px;
 }
 
+.reservation-status_select {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.QRcode-button_inner {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 0 20px;
+}
+
+.payment {
+    margin: 0 20px;
+}
+
 img {
     height: 30px;
     width: 30px;
@@ -107,6 +143,8 @@ img {
 .inner-title {
     display: flex;
     justify-content: space-between;
+    overflow: auto;
+    white-space: nowrap;
 }
 .inner-title_label {
     display: flex;
@@ -114,6 +152,11 @@ img {
 }
 .reservation-status_logo {
     margin-right: 30px;
+}
+
+.inner-item {
+    overflow: auto;
+    white-space: nowrap;
 }
 
 td {
@@ -188,13 +231,21 @@ td {
 
 
 .favorite_content {
-    width: 760px;
+    width: 40%;
     height: 260px;
+    margin: 0 auto;
 }
+@media screen and (max-width : 767px) {
+    .favorite_content {
+        width: 80%;
+    }
+}
+
 .favorite_title-name {
     margin-bottom: 20px;
     font-size: 26px;
     font-weight: bold;
+    text-align: center;
 }
 .favorite_inner-card {
     display: flex;
@@ -209,9 +260,23 @@ td {
     box-shadow: 3px 3px 2px rgb(167, 161, 161);
     margin: 0  auto 50px 0;
 }
+@media screen and (max-width : 767px) {
+    .favorite-card {
+        width: 80%;
+        margin: 0 auto 50px;
+    }
+}
+
 .favorite-card:nth-child(2n) {
     margin: 0 0 50px 0;
 }
+@media screen and (max-width : 767px) {
+    .favorite-card:nth-child(2n) {
+        width: 80%;
+        margin: 0 auto 50px;
+    }
+}
+
 .card-img {
     width: 100%;
     height: 50%;

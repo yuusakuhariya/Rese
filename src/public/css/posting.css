@@ -7,6 +7,11 @@ body {
     justify-content: space-between;
     margin: 30px 80px;
 }
+@media screen and (max-width : 767px) {
+    .header {
+        margin: 20px 20px;
+    }
+}
 
 .header_inner {
     display: flex;

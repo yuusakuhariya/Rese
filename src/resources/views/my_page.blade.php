@@ -58,7 +58,7 @@
                             <a class="QRcode-button_inner" href="{{ route('QRCode', ['id' => $reservation->id]) }}">QRコード表示</a>
                         </div>
                         @if(Schema::hasColumn('reservations', 'payment_status') && empty($reservation->payment_status))
-                        <form action="{{ route('stripe.charge', ['id' => $reservation->id]) }}" method="POST">
+                        <form class="payment" action="{{ route('stripe.charge', ['id' => $reservation->id]) }}" method="POST">
                             @csrf
                             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ env('STRIPE_KEY') }}" data-amount="100" data-name="お支払い画面" data-label="先払い" data-description="現在はデモ画面です" data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto" data-currency="JPY">
                             </script>

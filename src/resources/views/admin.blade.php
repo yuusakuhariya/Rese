@@ -60,14 +60,6 @@
             </form>
         </div>
 
-        <div>
-            <h3>Send Notification</h3>
-            <form action="{{ route('send.notification') }}" method="POST">
-                @csrf
-                <button type="submit">Send Notification Email</button>
-            </form>
-        </div>
-
         <div class="user-list">
             <h2 class="content-title">ユーザー一覧</h2>
             <div class="search">
@@ -82,29 +74,30 @@
                     <input class="search-name" type="text" name="keyword" value="" placeholder="name">
                     <button class="search-button" type="submit">検索</button>
                 </form>
-
-                <table class="list-table">
-                    <tr>
-                        <th class="table-th_role">権限</th>
-                        <th class="table-th_name">名前</th>
-                        <th class="table-th_email">メールアドレス</th>
-                        <th class="table-th_delete">削除</th>
-                    </tr>
-                    @foreach ($userSearches as $user)
-                    <tr>
-                        <td class="table-td_role">{{ $user->role }}</td>
-                        <td class="table-td_name">{{ $user->name }}</td>
-                        <td class="table-td_email">{{ $user->email }}</td>
-                        <td class="table-delete">
-                            <form class="delete-form" action="{{ route('userDelete', ['id' => $user->id]) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button class="delete-button" type="submit">削除</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </table>
+                <div class="table">
+                    <table class="list-table">
+                        <tr>
+                            <th class="table-th_role">権限</th>
+                            <th class="table-th_name">名前</th>
+                            <th class="table-th_email">メールアドレス</th>
+                            <th class="table-th_delete">削除</th>
+                        </tr>
+                        @foreach ($userSearches as $user)
+                        <tr>
+                            <td class="table-td_role">{{ $user->role }}</td>
+                            <td class="table-td_name">{{ $user->name }}</td>
+                            <td class="table-td_email">{{ $user->email }}</td>
+                            <td class="table-delete">
+                                <form class="delete-form" action="{{ route('userDelete', ['id' => $user->id]) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="delete-button" type="submit">削除</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </div>
             </div>
         </div>
     </main>

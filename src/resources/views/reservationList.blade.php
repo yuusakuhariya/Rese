@@ -19,26 +19,28 @@
     </header>
 
     <main>
-        <table class="list-table">
-            <tr>
-                <th class="table-th_name">名前</th>
-                <th class="table-th_email">メールアドレス</th>
-                <th class="table-th_date">予約日</th>
-                <th class="table-th_time">予約時間</th>
-                <th class="table-th_number-of-person">人数</th>
-                <th class="table-th_number-of-person">来店</th>
-            </tr>
-            @foreach ($reservations as $reservation)
-            <tr>
-                <td class="table-td_name">{{ $reservation->user->name }}</td>
-                <td class="table-td_email">{{ $reservation->user->email }}</td>
-                <td class="table-td_date">{{ $reservation->date }}</td>
-                <td class="table-td_time">{{ $reservation->time }}</td>
-                <td class="table-td_number-of-person">{{ $reservation->number_of_person }}</td>
-                <td class="table-td_number-of-person">{{ $reservation->is_visited ? '済' : '未' }}</td>
-            </tr>
-            @endforeach
-        </table>
+        <div class="table">
+            <table class="list-table">
+                <tr>
+                    <th class="table-th_name">名前</th>
+                    <th class="table-th_email">メールアドレス</th>
+                    <th class="table-th_date">予約日</th>
+                    <th class="table-th_time">予約時間</th>
+                    <th class="table-th_number-of-person">人数</th>
+                    <th class="table-th_number-of-person">来店</th>
+                </tr>
+                @foreach ($reservations as $reservation)
+                <tr>
+                    <td class="table-td_name">{{ $reservation->user->name }}</td>
+                    <td class="table-td_email">{{ $reservation->user->email }}</td>
+                    <td class="table-td_date">{{ $reservation->date }}</td>
+                    <td class="table-td_time">{{ $reservation->time }}</td>
+                    <td class="table-td_number-of-person">{{ $reservation->number_of_person }}</td>
+                    <td class="table-td_number-of-person">{{ $reservation->is_visited ? '済' : '未' }}</td>
+                </tr>
+                @endforeach
+            </table>
+        </div>
 
         <div class="email-container">
             <h2 class="email-title">メール送信機能</h2>
