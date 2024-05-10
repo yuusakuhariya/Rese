@@ -59,7 +59,8 @@ Rese（飲食店予約サービス）
 ## テーブル設計
 （エクセルのテーブル設計載せる）
 
-![image](https://github.com/yuusakuhariya/Rese/assets/137383906/d7439793-2833-494b-92c1-ea385976a792)
+![image](https://github.com/yuusakuhariya/Rese/assets/137383906/5addbb6b-99c2-4e6d-b65d-0a28f6a7d2e0)
+
 
 
 ## ER図
