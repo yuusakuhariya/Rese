@@ -16,7 +16,7 @@
         <div class="header_inner">
             <form class="logout-form" action="/logout" method="post">
                 @csrf
-                <button class="logout-button">logout</button>
+                <button class="logout-button">ログアウト</button>
             </form>
         </div>
     </header>

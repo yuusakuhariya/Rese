@@ -9,9 +9,9 @@
 <main>
     <div class="container">
         <div class="content">
-            <div class="massage"><a class="message_inner" href="{{ route('shop_all') }}">Home</a></div>
-            <div class="massage"><a class="message_inner" href="{{ route('register') }}">Registration</a></div>
-            <div class="massage"><a class="message_inner" href="{{ route('login') }}">Login</a></div>
+            <div class="massage"><a class="message_inner" href="{{ route('shop_all') }}">ホーム</a></div>
+            <div class="massage"><a class="message_inner" href="{{ route('register') }}">新規登録</a></div>
+            <div class="massage"><a class="message_inner" href="{{ route('login') }}">ログイン</a></div>
         </div>
     </div>
 </main>

@@ -15,6 +15,7 @@ class Reservation extends Model
         'date',
         'time',
         'number_of_person',
+        'price',
         'payment_status',
         'payment_reference',
         'is_visited'

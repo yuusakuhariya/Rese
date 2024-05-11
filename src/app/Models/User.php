@@ -50,44 +50,22 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Reservation::class);
     }
 
-    // 中間テーブルのリレーション
     public function favorites()
     {
         return $this->belongsToMany(Shop::class, 'favorites', 'user_id', 'shop_id');
     }
 
 
-    // // この店に対してお気に入りのレコードが存在するか確認
-    // public function is_favorite($userId)
-    // {
-    //     return $this->favorites()->where('user_id', $userId)->exists();
-    // }
-
-    // いいね追加
     public function favorite($userId)
     {
-        // もしいいねがあれば、
-        // if($this->is_favorite($userId)){
-        //     // 何もしない
-        // } else {
-        //     // 中間テーブルのfavoritesテーブルに追加する
             $this->favorites()->attach($userId);
-        // }
     }
 
-    // いいね削除
     public function unfavorite($userId)
     {
-        // // もしいいねがあれば、
-        // if($this->is_favorite($userId)){
-        //     // 中間テーブルのfavoritesテーブルから削除する
             $this->favorites()->detach($userId);
-        // } else {
-        //     // 何もしない
-        // }
     }
 
-    // キーワード（ユーザーの名前）検索機能
     public function scopeKeywordSearch($query, $keyword)
     {
         if($keyword)
@@ -96,7 +74,7 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
-    // 権限選択
+
     public function scopeRoleSearch($query, $role)
     {
         if($role)

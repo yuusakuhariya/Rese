@@ -60,8 +60,9 @@
                         @if(Schema::hasColumn('reservations', 'payment_status') && empty($reservation->payment_status))
                         <form class="payment" action="{{ route('stripe.charge', ['id' => $reservation->id]) }}" method="POST">
                             @csrf
-                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ env('STRIPE_KEY') }}" data-amount="100" data-name="お支払い画面" data-label="先払い" data-description="現在はデモ画面です" data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto" data-currency="JPY">
+                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ env('STRIPE_KEY') }}" data-amount="{{ $reservation->price }}" data-name="お支払い画面" data-label="先払い" data-description="現在はデモ画面です" data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto" data-currency="JPY">
                             </script>
+                            <div class="payment_ng">※払い戻し不可</div>
                         </form>
                         @endif
                         <div class="future-button">
@@ -130,6 +131,12 @@
                                         {{$errors->first('number_of_person')}}
                                         @enderror
                                     </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="item-date">Price</td>
+                                <td class="item-date">
+                                    <input class="input_price" type="text" name="price" value="{{ $reservation->price }}">
                                 </td>
                             </tr>
                         </table>

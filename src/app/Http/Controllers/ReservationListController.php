@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Shop;
-use App\Models\User;
 use App\Models\Reservation;
 
 class ReservationListController extends Controller

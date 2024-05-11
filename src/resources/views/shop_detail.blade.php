@@ -106,6 +106,9 @@
                             {{$errors->first('number_of_person')}}
                             @enderror
                         </div>
+                        <div class="select">
+                            <input class="price_text" type="text" name="price" onChange="document.querySelector('input[name=\'price\'].item-date_inner').value = this.value;">
+                        </div>
                         <div class="inner-item">
                             <table class="inner-table">
                                 <tr>
@@ -123,6 +126,10 @@
                                 <tr>
                                     <td class="item-number">Number</td>
                                     <td class="item-number"><input class="item-date_inner" name="person" readonly></td>
+                                </tr>
+                                <tr>
+                                    <td class="item-number">Price</td>
+                                    <td class="item-number"><input class="item-date_inner" name="price" readonly></td>
                                 </tr>
                             </table>
                         </div>

@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Reservation;
@@ -18,7 +17,7 @@ class ReservationReminderMail extends Mailable
      * @return void
      */
 
-    public $reservation; // $reservationプロパティを定義
+    public $reservation;
 
     public function __construct(Reservation $reservation)
     {

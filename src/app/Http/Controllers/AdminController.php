@@ -11,7 +11,6 @@ class AdminController extends Controller
 {
     public function userStore(AdminFormRequest $request)
     {
-        //  ユーザー登録機能
         User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -21,7 +20,6 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    // ユーザー削除
     public function userDelete(Request $request)
     {
         User::find($request->id)->delete();

@@ -33,7 +33,6 @@ class Shop extends Model
         return $this->hasMany(Reservation::class);
     }
 
-    // キーワード（店の名前）検索機能
     public function scopeKeywordSearch($query, $keyword)
     {
         if(!empty($keyword))
@@ -42,22 +41,19 @@ class Shop extends Model
         }
     }
 
-    // 地域選択機能
-        public function scopeAreaSearch($query, $area_id)
+    public function scopeAreaSearch($query, $area_id)
+    {
+        if(!empty($area_id))
         {
-            if(!empty($area_id))
-            {
-                $query->where('area_id', $area_id);
-            }
+            $query->where('area_id', $area_id);
         }
+    }
 
-    // ジャンル選択機能
         public function scopeGenreSearch($query, $genre_id)
+    {
+        if (!empty($genre_id))
         {
-            if (!empty($genre_id))
-            {
-                $query->where('genre_id', $genre_id);
-            }
+            $query->where('genre_id', $genre_id);
         }
-
+    }
 }

@@ -2,12 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Shop;
-use App\Models\Reservation;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-
 class MenuController extends Controller
 {
     public function menu_2()
