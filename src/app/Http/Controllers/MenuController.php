@@ -31,4 +31,9 @@ class MenuController extends Controller
     {
         return view('my_page');
     }
+
+    public function shopManegerMenu()
+    {
+        return view('shopManegerMenu');
+    }
 }

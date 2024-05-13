@@ -49,6 +49,8 @@ Route::put('/shopUpdate', [ShopManegerController::class, 'shopUpdate'])->name('s
 // メニュー画面（１、２）
 Route::get('/menu_2', [MenuController::class, 'menu_2'])->name('menu_2');
 Route::get('/menu_1', [MenuController::class, 'menu_1'])->name('menu_1');
+// 店舗代表者メニュー
+Route::get('/shop_mg_menu', [MenuController::class, 'shopManegerMenu'])->name('shopManegerMenu');
 
 // 詳細と予約ページ表示（詳細）
 Route::get('/shop/{id}', [ReservationController::class, 'shop_detail'])->name('shop_detail');

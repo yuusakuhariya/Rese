@@ -12,12 +12,19 @@
 
 <body>
 
+
     <header class="header">
         <div class="header_inner">
-            <form class="logout-form" action="/logout" method="post">
-                @csrf
-                <button class="logout-button">ログアウト</button>
-            </form>
+            <div class="header_menu">
+                <a href="{{ route('shopManegerMenu') }}">
+                    <button class="menu_button" href="/">
+                        <span class="hamburger_bar"></span>
+                        <span class="hamburger_bar"></span>
+                        <span class="hamburger_bar"></span>
+                    </button>
+                </a>
+            </div>
+            <div class="header_title">Rese</div>
         </div>
     </header>
 
@@ -165,11 +172,6 @@
                     <div class="shop-card">
                         <div class="card-detail">{{ $shop->content }}</div>
                     </div>
-                </div>
-                <div class="button">
-                    <button class="reservationList_button">
-                        <a class="reservationList_button_inner" href=" {{ route('reservationList', ['id' => $shop->id]) }}">予約確認</a>
-                    </button>
                 </div>
                 @endforeach
             </div>
