@@ -7,8 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rese</title>
     <link rel="stylesheet" href="{{ asset('/css/sanitize.css') }}" />
+    @if(auth()->check())
+    <link rel="stylesheet" href="{{ asset('/css/menu_login.css') }}" />
+    @yield('css')
+    @else
     <link rel="stylesheet" href="{{ asset('/css/menu.css') }}" />
     @yield('css')
+    @endif
 </head>
 
 <body>

@@ -8,13 +8,23 @@
     <title>Rese</title>
     <link rel="stylesheet" href="{{ asset('/css/sanitize.css') }}" />
     <link rel="stylesheet" href="{{ asset('/css/reservationList.css') }}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
 
     <header class="header">
         <div class="header_inner">
-            <a class="back-button" href="/">back</a>
+            <div class="header_menu">
+                <a href="{{ route('reservationListMenu') }}">
+                    <button class="menu_button" href="/">
+                        <span class="hamburger_bar"></span>
+                        <span class="hamburger_bar"></span>
+                        <span class="hamburger_bar"></span>
+                    </button>
+                </a>
+            </div>
+            <div class="header_title">Rese</div>
         </div>
     </header>
 
@@ -40,6 +50,7 @@
                 </tr>
                 @endforeach
             </table>
+            <div class="pagination">{{ $reservations->links('vendor.pagination.bootstrap-4') }}</div>
         </div>
 
         <div class="email-container">

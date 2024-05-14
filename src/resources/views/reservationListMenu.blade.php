@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rese</title>
     <link rel="stylesheet" href="{{ asset('/css/sanitize.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/css/shopManegerMenu.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/reservationListMenu.css') }}" />
 </head>
 
 <body>
@@ -16,7 +16,7 @@
         <div class="header_inner">
             <div class="header_menu">
                 <button class="close_button">
-                    <a class="close_button_inner" href="/">
+                    <a class="close_button_inner" href="{{ url()->previous() }}">
                         <span class="dli-close"></span>
                     </a>
                 </button>
@@ -27,7 +27,7 @@
     <main>
         <div class="container">
             <div class="content">
-                <div class="massage"><a href="{{ route('reservationList', ['id' => auth()->user()->id]) }}">予約一覧</a></div>
+                <div class="massage"><a href="/">店舗情報</a></div>
                 <div class="massage">
                     <form class="logout-form" action="/logout" method="post">
                         @csrf
