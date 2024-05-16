@@ -70,13 +70,6 @@ button {
 }
 
 
-.logout-button {
-    font-size: 32px;
-    font-weight: bold;
-    color: rgb(250, 90, 40);
-    border: none;
-}
-
 .container {
     display: flex;
     margin: 30px 80px;

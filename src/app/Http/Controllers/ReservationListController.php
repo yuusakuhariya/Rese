@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Shop;
 use App\Models\Reservation;
-use Illuminate\Pagination\Paginator;
 
 class ReservationListController extends Controller
 {

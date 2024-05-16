@@ -52,28 +52,6 @@
             </table>
             <div class="pagination">{{ $reservations->links('vendor.pagination.bootstrap-4') }}</div>
         </div>
-
-        <div class="email-container">
-            <h2 class="email-title">メール送信機能</h2>
-            <form class="email-form" action="{{ route('send.notification') }}" method="POST">
-                @csrf
-                <input type="hidden" name="email" value="{{ $user->email }}">
-                <div class="form-subject">件名</div>
-                <input class="input-subject" type="text" name="subject">
-                <div class="form-email">メールアドレス</div>
-                <select class="select-email" name="userEmail" multiple>
-                    <option value="">選択してください</option>
-                    @foreach ($reservations as $reservation)
-                    <option value="{{ $reservation->user->email }}">{{ $reservation->user->email }}</option>
-                    @endforeach
-                </select>
-                <div class="form-content">内容</div>
-                <textarea class="form-text" name="content" cols="50" rows="14"></textarea>
-                <div class="form-button">
-                    <button class="form-button_inner" type="submit">メール送信</button>
-                </div>
-            </form>
-        </div>
     </main>
 
 </body>

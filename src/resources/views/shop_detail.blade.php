@@ -135,7 +135,7 @@
                         </div>
                     </div>
                     <div class="reservation-button">
-                        <button class="button" type="submit">
+                        <button class="button" onclick="return confirm('ログインしていません。\nログインページへ移動します。よろしいですか？')" type="submit">
                             予約する
                         </button>
                     </div>

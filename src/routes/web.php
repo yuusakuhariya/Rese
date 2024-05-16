@@ -36,10 +36,16 @@ Route::get('/search', [ShopController::class, 'shop_all'])->name('search');
 
 // ユーザー検索機能
 Route::get('/user_search', [ShopController::class, 'shop_all'])->name('userSearch');
+Route::get('/user_search', [AdminController::class, 'adminUserList'])->name('userSearch');
+
+// ユーザー一覧
+Route::get('/admin-userList', [AdminController::class, 'adminUserList'])->name('adminUserList');
 // 管理者からの店代表者登録
 Route::post('/user_create', [AdminController::class, 'userStore'])->name('userStore');
 // ユーザー削除
 Route::delete('/user_delete/{id}', [AdminController::class, 'userDelete'])->name('userDelete');
+// 管理者からのメール送信画面
+Route::get('/admin-mail', [AdminController::class, 'adminMail'])->name('adminMail');
 
 // 店舗代表者による店舗作成
 Route::post('/shop_create', [ShopManegerController::class, 'shopStore'])->name('shopStore');
@@ -53,6 +59,13 @@ Route::get('/menu_1', [MenuController::class, 'menu_1'])->name('menu_1');
 Route::get('/shop_mg_menu', [MenuController::class, 'shopManegerMenu'])->name('shopManegerMenu');
 // 予約一覧メニュー
 Route::get('/reservation_list_menu', [MenuController::class, 'reservationListMenu'])->name('reservationListMenu');
+
+// 管理者メニュー１
+Route::get('/admin-menu_1', [MenuController::class, 'adminMenu_1'])->name('adminMenu_1');
+// 管理者メニュー2
+Route::get('/admin-menu_2', [MenuController::class, 'adminMenu_2'])->name('adminMenu_2');
+// 管理者メニュー3
+Route::get('/admin-menu_3', [MenuController::class, 'adminMenu_3'])->name('adminMenu_3');
 
 
 // 詳細と予約ページ表示（詳細）

@@ -32,6 +32,7 @@ class MenuController extends Controller
         return view('my_page');
     }
 
+
     public function shopManegerMenu()
     {
         return view('shopManegerMenu');
@@ -40,5 +41,20 @@ class MenuController extends Controller
     public function reservationListMenu()
     {
         return view('reservationListMenu');
+    }
+
+    public function adminMenu_1()
+    {
+        return view('adminMenu_1');
+    }
+
+    public function adminMenu_2()
+    {
+        return view('adminMenu_2');
+    }
+
+    public function adminMenu_3()
+    {
+        return view('adminMenu_3');
     }
 }
