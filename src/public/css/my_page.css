@@ -326,6 +326,11 @@ td {
     text-decoration: none;
 }
 
+.detail-inner {
+    text-decoration: none;
+    color: white;
+}
+
 .favorite-icon {
     width: 30px;
     height: 30px;
@@ -360,4 +365,8 @@ select {
     background-color: rgb(43, 206, 218);
     border: none;
     font-size: 18px;
+}
+
+.error {
+    color: red;
 }

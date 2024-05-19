@@ -71,7 +71,12 @@ button {
 }
 
 
-
+.success-message{
+    text-align: center;
+    font-size: 26px;
+    color: red;
+    font-weight: bold;
+}
 
 .email-container {
     width: 70%;

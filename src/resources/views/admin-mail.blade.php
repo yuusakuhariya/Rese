@@ -28,6 +28,9 @@
     </header>
 
     <main>
+        @if (session('success'))
+        <div class="success-message">{{ session('success') }}</div>
+        @endif
         <div class="email-container">
             <h2 class="email-title">メール送信機能</h2>
             <form class="email-form" action="{{ route('send.notification') }}" method="POST">

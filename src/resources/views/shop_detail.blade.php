@@ -7,7 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rese</title>
     <link rel="stylesheet" href="{{ asset('/css/sanitize.css') }}" />
+    @if(auth()->check())
+    <link rel="stylesheet" href="{{ asset('/css/shop_detail_login.css') }}" />
+    @else
     <link rel="stylesheet" href="{{ asset('/css/shop_detail.css') }}" />
+    @endif
 </head>
 
 <body>
@@ -135,9 +139,15 @@
                         </div>
                     </div>
                     <div class="reservation-button">
+                        @if(auth()->check())
+                        <button class="button" type="submit">
+                            予約する
+                        </button>
+                        @else
                         <button class="button" onclick="return confirm('ログインしていません。\nログインページへ移動します。よろしいですか？')" type="submit">
                             予約する
                         </button>
+                        @endif
                     </div>
                 </form>
             </div>

@@ -28,6 +28,9 @@
     </header>
 
     <main>
+        @if (session('success'))
+        <div class="success-message">{{ session('success') }}</div>
+        @endif
         <div class="shop-register_container">
             <h2 class="content-title">店舗代表者 登録</h2>
             <form class="shop-register_form" action="{{ route('userStore') }}" method="post">

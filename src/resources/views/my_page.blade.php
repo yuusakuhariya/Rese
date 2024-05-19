@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="card-content_button">
                                     <div class="detail-button">
-                                        <button class="detail">詳しくみる</button>
+                                        <button class="detail"><a class="detail-inner" href="{{ route('shop_detail', ['id' => $favorite->shop->id]) }}">詳しくみる</a>
                                     </div>
                                     <div class="favorite-button">
                                         <button class="logo">

@@ -19,7 +19,7 @@ class AdminController extends Controller
             'password' => Hash::make($request->password),
             'role' => $request->role,
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('success', '登録が完了しました。');
     }
 
     public function userDelete(Request $request)
