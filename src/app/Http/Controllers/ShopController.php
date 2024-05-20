@@ -41,7 +41,7 @@ class ShopController extends Controller
 
         } elseif (Gate::allows('admin')) {
             $userSearches = User::RoleSearch($request->role)->KeywordSearch($request->keyword)->get();
-            return view('admin', compact('userSearches'));
+            return view('admin');
         }
 
 

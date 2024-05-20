@@ -69,7 +69,7 @@
             @foreach ($searchShops as $shop)
             <div class="favorite-card">
                 <div class="card-img">
-                    <img class="shop-img" src="{{ Storage::url($shop->img_path) }}" alt="サンプル画像">
+                    <img class="shop-img" src="{{ Storage::url($shop->img_path) }}" onerror="this.onerror=null; this.src='{{ $shop->img_path }}'" alt="サンプル画像">
                 </div>
                 <div class="card-content">
                     <div class="card-content_shop-name">{{ $shop->shop_name }}</div>
@@ -116,7 +116,7 @@
             @foreach ($AllShopLists as $shop)
             <div class="favorite-card">
                 <div class="card-img">
-                    <img class="shop-img" src="{{ Storage::url($shop->img_path) }}" alt="サンプル画像">
+                    <img class="shop-img" src="{{ Storage::url($shop->img_path) }}" onerror="this.onerror=null; this.src='{{ $shop->img_path }}'" alt="サンプル画像">
                 </div>
                 <div class="card-content">
                     <div class="card-content_shop-name">{{ $shop->shop_name }}</div>

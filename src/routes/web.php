@@ -28,19 +28,16 @@ use App\Http\Controllers\QRCodeController;
 */
 
 
-
-
+// ホーム画面（全店舗）
+Route::get('/', [ShopController::class, 'shop_all'])->name('shop_all');
 // 店検索機能
 Route::get('/search', [ShopController::class, 'shop_all'])->name('search');
 
-
 // ユーザー検索機能
-Route::get('/user_search', [ShopController::class, 'shop_all'])->name('userSearch');
 Route::get('/user_search', [AdminController::class, 'adminUserList'])->name('userSearch');
-
 // ユーザー一覧
 Route::get('/admin-userList', [AdminController::class, 'adminUserList'])->name('adminUserList');
-// 管理者からの店代表者登録
+// 店代表者登録
 Route::post('/user_create', [AdminController::class, 'userStore'])->name('userStore');
 // ユーザー削除
 Route::delete('/user_delete/{id}', [AdminController::class, 'userDelete'])->name('userDelete');
@@ -59,7 +56,6 @@ Route::get('/menu_1', [MenuController::class, 'menu_1'])->name('menu_1');
 Route::get('/shop_mg_menu', [MenuController::class, 'shopManegerMenu'])->name('shopManegerMenu');
 // 予約一覧メニュー
 Route::get('/reservation_list_menu', [MenuController::class, 'reservationListMenu'])->name('reservationListMenu');
-
 // 管理者メニュー１
 Route::get('/admin-menu_1', [MenuController::class, 'adminMenu_1'])->name('adminMenu_1');
 // 管理者メニュー2
@@ -68,7 +64,7 @@ Route::get('/admin-menu_2', [MenuController::class, 'adminMenu_2'])->name('admin
 Route::get('/admin-menu_3', [MenuController::class, 'adminMenu_3'])->name('adminMenu_3');
 
 
-// 詳細と予約ページ表示（詳細）
+// 詳細と予約ページ表示
 Route::get('/shop/{id}', [ReservationController::class, 'shop_detail'])->name('shop_detail');
 // 予約追加
 Route::post('/done', [ReservationController::class, 'store'])->name('store');
@@ -76,7 +72,6 @@ Route::post('/done', [ReservationController::class, 'store'])->name('store');
 Route::delete('/delete/{id}', [ReservationController::class, 'delete'])->name('delete');
 // 予約更新
 Route::put('/update/{id}', [ReservationController::class, 'update'])->name('update');
-
 
 // マイページ
 Route::get('/my_page/{id}', [MypageController::class, 'my_page'])->name('my_page');
@@ -89,7 +84,6 @@ Route::post('/posting', [ReviewController::class, 'reviewStore'])->name('review-
 // お気に入り追加・削除
 Route::put('/favorite/{id}/{user_id}/{shop_id}', [FavoriteController::class, 'addFavorite'])->name('addFavorites');
 Route::delete('/unfavorite/{id}/{user_id}/{shop_id}', [FavoriteController::class, 'removeFavorite'])->name('removeFavorites');
-
 
 
 // ログインと登録のルート
@@ -106,9 +100,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [ShopController::class, 'admin'])->name('admin');
 });
 
-
-// ホーム画面（全店舗）
-Route::get('/', [ShopController::class, 'shop_all'])->name('shop_all');
 
 // メール送信機能
 Route::post('/send-notification', [MailController::class, 'sendNotification'])->name('send.notification');
