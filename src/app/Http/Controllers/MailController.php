@@ -24,8 +24,8 @@ class MailController extends Controller
             'content' => $content
         ];
 
-
-        Mail::to($userEmail)->send(new NotificationMail($data));
+        $userEmails = array_map('trim', $userEmail);
+        Mail::to($userEmails)->send(new NotificationMail($data));
         return redirect()->back()->with('success', 'メール送信が完了しました。');
     }
 }

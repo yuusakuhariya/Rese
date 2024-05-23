@@ -39,7 +39,7 @@ class AdminController extends Controller
     public function adminMail()
     {
         $user = auth()->user();
-        $users = User::get();
+        $users = User::where('role','user')->get();
 
         return view('admin-mail', compact('user', 'users'));
     }

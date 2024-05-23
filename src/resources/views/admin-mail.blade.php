@@ -39,8 +39,8 @@
                 <div class="form-subject">件名</div>
                 <input class="input-subject" type="text" name="subject">
                 <div class="form-email">メールアドレス</div>
-                <select class="select-email" name="userEmail" multiple>
-                    <option value="">選択してください</option>
+                <select class="select-email" name="userEmail[]" multiple>
+                    <option value="">選択してください（複数選択可）</option>
                     @foreach ($users as $user)
                     <option value="{{ $user->email }}">{{ $user->email }}</option>
                     @endforeach
