@@ -29,9 +29,9 @@ use App\Http\Controllers\QRCodeController;
 
 
 // ホーム画面（全店舗）
-Route::get('/', [ShopController::class, 'shop_all'])->name('shop_all');
+Route::get('/', [ShopController::class, 'shopAll'])->name('shopAll');
 // 店検索機能
-Route::get('/search', [ShopController::class, 'shop_all'])->name('search');
+Route::get('/search', [ShopController::class, 'shopAll'])->name('search');
 
 // ユーザー検索機能
 Route::get('/user_search', [AdminController::class, 'adminUserList'])->name('userSearch');
@@ -50,10 +50,10 @@ Route::post('/shop_create', [ShopManegerController::class, 'shopStore'])->name('
 Route::put('/shopUpdate', [ShopManegerController::class, 'shopUpdate'])->name('shopUpdate');
 
 // メニュー画面（１、２）
-Route::get('/menu_2', [MenuController::class, 'menu_2'])->name('menu_2');
-Route::get('/menu_1', [MenuController::class, 'menu_1'])->name('menu_1');
+Route::get('/homeMenu', [MenuController::class, 'homeMenu'])->name('homeMenu');
+Route::get('/loginMenu', [MenuController::class, 'loginMenu'])->name('loginMenu');
 // 店舗代表者メニュー
-Route::get('/shop_mg_menu', [MenuController::class, 'shopManegerMenu'])->name('shopManegerMenu');
+Route::get('/shopMgMenu', [MenuController::class, 'shopManegerMenu'])->name('shopManegerMenu');
 // 予約一覧メニュー
 Route::get('/reservation_list_menu', [MenuController::class, 'reservationListMenu'])->name('reservationListMenu');
 // 管理者メニュー１

@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 class MenuController extends Controller
 {
-    public function menu_2()
+    public function homeMenu()
     {
         $prevurl = url()->previous();
-        return view('menu_2', compact('prevurl'));
+        return view('homeMenu', compact('prevurl'));
     }
 
-    public function menu_1()
+    public function loginMenu()
     {
         $prevurl = url()->previous();
-        return view('menu_1', compact('prevurl'));
+        return view('loginMenu', compact('prevurl'));
     }
 
 

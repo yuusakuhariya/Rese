@@ -8,10 +8,10 @@
     <title>Rese</title>
     <link rel="stylesheet" href="{{ asset('/css/sanitize.css') }}" />
     @if(auth()->check())
-    <link rel="stylesheet" href="{{ asset('/css/menu_login.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/loginMenuLayout.css') }}" />
     @yield('css')
     @else
-    <link rel="stylesheet" href="{{ asset('/css/menu.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/homeMenuLayout.css') }}" />
     @yield('css')
     @endif
 </head>

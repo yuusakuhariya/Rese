@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Gate;
 
 class ShopController extends Controller
 {
-    public function shop_all(Request $request)
+    public function shopAll(Request $request)
     {
         $user = auth()->user();
 
@@ -32,7 +32,7 @@ class ShopController extends Controller
             } else {
                 $searchShops = null;
             }
-            return view('shop_all', compact('user', 'favoriteShopIds', 'searchShops', 'AllShopLists', 'AllGenres', 'AllAreas'));
+            return view('shopAll', compact('user', 'favoriteShopIds', 'searchShops', 'AllShopLists', 'AllGenres', 'AllAreas'));
 
         } elseif (Gate::allows('shop')) {
             $user = auth()->user();
@@ -54,6 +54,6 @@ class ShopController extends Controller
         $AllShopLists = Shop::with('Area', 'Genre')->get();
         $AllGenres = Genre::all();
         $AllAreas = Area::all();
-        return view('shop_all', compact('user', 'favoriteShopIds', 'searchShops', 'AllShopLists', 'AllGenres', 'AllAreas'));
+        return view('shopAll', compact('user', 'favoriteShopIds', 'searchShops', 'AllShopLists', 'AllGenres', 'AllAreas'));
     }
 }

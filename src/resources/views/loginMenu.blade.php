@@ -1,7 +1,7 @@
-@extends('layouts.menu')
+@extends('layouts.menuLayout')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('/css/menu_1.css') }}" />
+<link rel="stylesheet" href="{{ asset('/css/loginMenu.css') }}" />
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
 <main>
     <div class="container">
         <div class="content">
-            <div class="massage"><a href="{{ route('shop_all') }}">ホーム</a></div>
+            <div class="massage"><a href="{{ route('shopAll') }}">ホーム</a></div>
             <div class="massage">
                 <form class="logout-form" action="/logout" method="post">
                     @csrf

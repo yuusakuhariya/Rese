@@ -15,7 +15,7 @@
 
     <header class="header">
         <div class="header_inner">
-            <a href="{{ route('menu_2') }}">
+            <a href="{{ route('homeMenu') }}">
                 <button class="menu_button" type="submit">
                     <span class="hamburger_bar"></span>
                     <span class="hamburger_bar"></span>

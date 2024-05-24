@@ -16,7 +16,7 @@
         <div class="header_inner">
             <div class="header_menu">
                 @if(auth()->check())
-                <a href="{{ route('menu_1') }}">
+                <a href="{{ route('loginMenu') }}">
                     <button class="menu_button" href="/">
                         <span class="hamburger_bar"></span>
                         <span class="hamburger_bar"></span>
@@ -24,7 +24,7 @@
                     </button>
                 </a>
                 @else
-                <a href="{{ route('menu_2') }}">
+                <a href="{{ route('homeMenu') }}">
                     <button class="menu_button" href="/">
                         <span class="hamburger_bar"></span>
                         <span class="hamburger_bar"></span>
