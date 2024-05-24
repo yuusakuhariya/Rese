@@ -8,9 +8,9 @@
     <title>Rese</title>
     <link rel="stylesheet" href="{{ asset('/css/sanitize.css') }}" />
     @if(auth()->check())
-    <link rel="stylesheet" href="{{ asset('/css/shop_detail_login.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/shopDetailLogin.css') }}" />
     @else
-    <link rel="stylesheet" href="{{ asset('/css/shop_detail.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/shopDetail.css') }}" />
     @endif
 </head>
 

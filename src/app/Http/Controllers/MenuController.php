@@ -27,9 +27,9 @@ class MenuController extends Controller
         return view('auth.register');
     }
 
-    public function my_page()
+    public function myPage()
     {
-        return view('my_page');
+        return view('myPage');
     }
 
 
@@ -43,18 +43,18 @@ class MenuController extends Controller
         return view('reservationListMenu');
     }
 
-    public function adminMenu_1()
+    public function adminMenuUserListMail()
     {
-        return view('adminMenu_1');
+        return view('adminMenuUserListMail');
     }
 
-    public function adminMenu_2()
+    public function adminMenuShopRegisterMail()
     {
-        return view('adminMenu_2');
+        return view('adminMenuShopRegisterMail');
     }
 
-    public function adminMenu_3()
+    public function adminMenuShopRegisterUserList()
     {
-        return view('adminMenu_3');
+        return view('adminMenuShopRegisterUserList');
     }
 }

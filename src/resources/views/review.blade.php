@@ -47,7 +47,7 @@
             </h3>
         </div>
         <div class="review-container">
-            <form class="review-form" action="{{ route('review-store') }}" method="post">
+            <form class="review-form" action="{{ route('reviewStore') }}" method="post">
                 @csrf
                 <input type="hidden" name="shop_id" value="{{ $reservationId->shop_id }}">
                 <div class="rate-form">

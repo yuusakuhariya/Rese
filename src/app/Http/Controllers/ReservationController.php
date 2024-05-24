@@ -10,11 +10,11 @@ use App\Http\Requests\ReservationFormRequest;
 
 class ReservationController extends Controller
 {
-    public function shop_detail($shop_id)
+    public function shopDetail($shop_id)
     {
         $user = auth()->user();
         $shop = Shop::find($shop_id);
-        return view('shop_detail', compact('shop', 'user'));
+        return view('shopDetail', compact('shop', 'user'));
     }
 
     public function store(ReservationFormRequest $request)

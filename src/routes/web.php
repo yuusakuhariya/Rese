@@ -34,18 +34,18 @@ Route::get('/', [ShopController::class, 'shopAll'])->name('shopAll');
 Route::get('/search', [ShopController::class, 'shopAll'])->name('search');
 
 // ユーザー検索機能
-Route::get('/user_search', [AdminController::class, 'adminUserList'])->name('userSearch');
+Route::get('/userSearch', [AdminController::class, 'adminUserList'])->name('userSearch');
 // ユーザー一覧
-Route::get('/admin-userList', [AdminController::class, 'adminUserList'])->name('adminUserList');
+Route::get('/adminUserList', [AdminController::class, 'adminUserList'])->name('adminUserList');
 // 店代表者登録
-Route::post('/user_create', [AdminController::class, 'userStore'])->name('userStore');
+Route::post('/userCreate', [AdminController::class, 'userStore'])->name('userStore');
 // ユーザー削除
-Route::delete('/user_delete/{id}', [AdminController::class, 'userDelete'])->name('userDelete');
+Route::delete('/userDelete/{id}', [AdminController::class, 'userDelete'])->name('userDelete');
 // 管理者からのメール送信画面
-Route::get('/admin-mail', [AdminController::class, 'adminMail'])->name('adminMail');
+Route::get('/adminMail', [AdminController::class, 'adminMail'])->name('adminMail');
 
 // 店舗代表者による店舗作成
-Route::post('/shop_create', [ShopManegerController::class, 'shopStore'])->name('shopStore');
+Route::post('/shopCreate', [ShopManegerController::class, 'shopStore'])->name('shopStore');
 // 店舗代表者による店舗更新
 Route::put('/shopUpdate', [ShopManegerController::class, 'shopUpdate'])->name('shopUpdate');
 
@@ -55,17 +55,17 @@ Route::get('/loginMenu', [MenuController::class, 'loginMenu'])->name('loginMenu'
 // 店舗代表者メニュー
 Route::get('/shopMgMenu', [MenuController::class, 'shopManegerMenu'])->name('shopManegerMenu');
 // 予約一覧メニュー
-Route::get('/reservation_list_menu', [MenuController::class, 'reservationListMenu'])->name('reservationListMenu');
+Route::get('/reservationListMenu', [MenuController::class, 'reservationListMenu'])->name('reservationListMenu');
 // 管理者メニュー１
-Route::get('/admin-menu_1', [MenuController::class, 'adminMenu_1'])->name('adminMenu_1');
+Route::get('/adminMenuUserListMail', [MenuController::class, 'adminMenuUserListMail'])->name('adminMenuUserListMail');
 // 管理者メニュー2
-Route::get('/admin-menu_2', [MenuController::class, 'adminMenu_2'])->name('adminMenu_2');
+Route::get('/adminMenuShopRegisterMail', [MenuController::class, 'adminMenuShopRegisterMail'])->name('adminMenuShopRegisterMail');
 // 管理者メニュー3
-Route::get('/admin-menu_3', [MenuController::class, 'adminMenu_3'])->name('adminMenu_3');
+Route::get('adminMenuShopRegisterUserList', [MenuController::class, 'adminMenuShopRegisterUserList'])->name('adminMenuShopRegisterUserList');
 
 
 // 詳細と予約ページ表示
-Route::get('/shop/{id}', [ReservationController::class, 'shop_detail'])->name('shop_detail');
+Route::get('/shop/{id}', [ReservationController::class, 'shopDetail'])->name('shopDetail');
 // 予約追加
 Route::post('/done', [ReservationController::class, 'store'])->name('store');
 // 予約削除
@@ -74,12 +74,12 @@ Route::delete('/delete/{id}', [ReservationController::class, 'delete'])->name('d
 Route::put('/update/{id}', [ReservationController::class, 'update'])->name('update');
 
 // マイページ
-Route::get('/my_page/{id}', [MypageController::class, 'my_page'])->name('my_page');
+Route::get('/myPage/{id}', [MypageController::class, 'myPage'])->name('myPage');
 
 // 評価ページ
 Route::get('/review/{id}', [ReviewController::class, 'review'])->name('review');
 // レビュー追加
-Route::post('/posting', [ReviewController::class, 'reviewStore'])->name('review-store');
+Route::post('/posting', [ReviewController::class, 'reviewStore'])->name('reviewStore');
 
 // お気に入り追加・削除
 Route::put('/favorite/{id}/{user_id}/{shop_id}', [FavoriteController::class, 'addFavorite'])->name('addFavorites');
@@ -102,16 +102,16 @@ Route::middleware('auth')->group(function () {
 
 
 // メール送信機能
-Route::post('/send-notification', [MailController::class, 'sendNotification'])->name('send.notification');
+Route::post('/sendNotification', [MailController::class, 'sendNotification'])->name('send.notification');
 
 // 各店舗の予約確認表示
-Route::get('/reservation_list/{id}', [ReservationListController::class, 'reservationList'])->name('reservationList');
+Route::get('/reservationList/{id}', [ReservationListController::class, 'reservationList'])->name('reservationList');
 
 // 決済機能
 Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge');
 
 // QRコード表示
-Route::get('/generate-qr-code', [QRCodeController::class, 'generateQRCode'])->name('QRCode');
+Route::get('/generateQRCode', [QRCodeController::class, 'generateQRCode'])->name('QRCode');
 
 // QRコードの店認証
 Route::get('/reservations/{id}', [ReservationController::class, 'checkQRcode'])->name('checkQRcode');

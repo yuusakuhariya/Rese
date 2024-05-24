@@ -80,7 +80,7 @@
                     <div class="card-content_button">
                         <div class="detail-button">
                             <button class="detail">
-                                <a class="detail-inner" href="{{ route('shop_detail', ['id' => $shop->id]) }}">詳しくみる</a>
+                                <a class="detail-inner" href="{{ route('shopDetail', ['id' => $shop->id]) }}">詳しくみる</a>
                             </button>
                         </div>
                         @if($user)
@@ -127,7 +127,7 @@
                     <div class="card-content_button">
                         <div class="detail-button">
                             <button class="detail">
-                                <a class="detail-inner" href="{{ route('shop_detail', ['id' => $shop->id]) }}">詳しくみる</a>
+                                <a class="detail-inner" href="{{ route('shopDetail', ['id' => $shop->id]) }}">詳しくみる</a>
                             </button>
                         </div>
                         @if($user)

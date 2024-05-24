@@ -16,7 +16,7 @@
                     <button class="logout-button">ログアウト</button>
                 </form>
             </div>
-            <div class="massage"><a href="{{ route('my_page', ['id' => auth()->user()->id]) }}">マイページ</a></div>
+            <div class="massage"><a href="{{ route('myPage', ['id' => auth()->user()->id]) }}">マイページ</a></div>
         </div>
     </div>
 </main>

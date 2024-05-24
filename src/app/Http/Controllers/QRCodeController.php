@@ -17,7 +17,7 @@ class QRCodeController extends Controller
         if ($reservation && $reservation->is_visited == 0) {
             $url = URL::to("/reservations/{$reservation->id}");
             $qrCode = QrCode::size(250)->generate($url);
-            return view('qr_code', ['qrCode' => $qrCode]);
+            return view('QRCode', ['qrCode' => $qrCode]);
         } else {
             return redirect()->back();
         }

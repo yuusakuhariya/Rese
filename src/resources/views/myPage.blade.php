@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rese</title>
     <link rel="stylesheet" href="{{ asset('/css/sanitize.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/css/my_page.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/myPage.css') }}" />
 </head>
 
 <body>
@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="card-content_button">
                                     <div class="detail-button">
-                                        <button class="detail"><a class="detail-inner" href="{{ route('shop_detail', ['id' => $favorite->shop->id]) }}">詳しくみる</a>
+                                        <button class="detail"><a class="detail-inner" href="{{ route('shopDetail', ['id' => $favorite->shop->id]) }}">詳しくみる</a>
                                     </div>
                                     <div class="favorite-button">
                                         <button class="logo">

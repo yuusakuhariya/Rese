@@ -16,7 +16,7 @@
     <header class="header">
         <div class="header_inner">
             <div class="header_menu">
-                <a href="{{ route('adminMenu_2') }}">
+                <a href="{{ route('adminMenuShopRegisterMail') }}">
                     <button class="menu_button" href="/">
                         <span class="hamburger_bar"></span>
                         <span class="hamburger_bar"></span>
