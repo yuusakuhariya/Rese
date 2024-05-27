@@ -6,14 +6,12 @@ class MenuController extends Controller
 {
     public function homeMenu()
     {
-        $prevurl = url()->previous();
-        return view('homeMenu', compact('prevurl'));
+        return view('homeMenu');
     }
 
     public function loginMenu()
     {
-        $prevurl = url()->previous();
-        return view('loginMenu', compact('prevurl'));
+        return view('loginMenu');
     }
 
 

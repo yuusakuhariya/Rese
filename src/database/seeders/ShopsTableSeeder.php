@@ -16,7 +16,7 @@ class ShopsTableSeeder extends Seeder
     public function run()
     {
         // ユーザーID
-        $userId = DB::table('users')->where('email', 'd@yahoo.co.jp')->value('id');
+        $userId = DB::table('users')->where('email', 'b@yahoo.co.jp')->value('id');
 
         // ジャンルID
         $areaTokyoId = DB::table('areas')->where('area_name', '東京都')->value('id');

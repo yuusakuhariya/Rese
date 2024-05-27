@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rese</title>
     <link rel="stylesheet" href="{{ asset('/css/sanitize.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/css/admin-userList.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/adminUserList.css') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -40,7 +40,7 @@
                         <option value="shop">店舗代表者</option>
                         <option value="admin">管理者</option>
                     </select>
-                    <input class="search-name" type="text" name="keyword" value="" placeholder="name">
+                    <input class="search-name" type="text" name="keyword" value="" placeholder="名前">
                     <button class="search-button" type="submit">検索</button>
                 </form>
                 <div class="table">

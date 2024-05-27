@@ -44,7 +44,7 @@
             @csrf
             <div class="select">
                 <select name="area_id">
-                    <option value="" selected>All area</option>
+                    <option value="" selected>地域</option>
                     @foreach ($AllAreas as $area)
                     <option value="{{ $area->id }}">{{ $area->area_name}}</option>
                     @endforeach
@@ -52,14 +52,14 @@
             </div>
             <div class="select">
                 <select name="genre_id">
-                    <option value="" selected>All genre</option>
+                    <option value="" selected>ジャンル</option>
                     @foreach ($AllGenres as $genre)
                     <option value="{{ $genre->id }}">{{ $genre->genre_name}}</option>
                     @endforeach
                 </select>
             </div>
             <button class="search-button" type="submit"></button>
-            <input class="search-input" type="text" name="keyword" value="" placeholder="Search …">
+            <input class="search-input" type="text" name="keyword" value="" placeholder="文字入力 …">
         </form>
     </header>
 

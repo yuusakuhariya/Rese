@@ -9,13 +9,13 @@
 <main>
     <div class="container">
         <div class="content_title">
-            <div class="content_title_login">login</div>
+            <div class="content_title_login">ログイン</div>
         </div>
         <div class="form">
             <form class="form_login" action="/login" method="post">
                 @csrf
                 <div class="form_field">
-                    <span><img src="/image/mail.svg"></span><input class="input_email" type="email" name="email" placeholder="Email" value="{{ old('email') }}">
+                    <span><img src="/image/mail.svg"></span><input class="input_email" type="email" name="email" placeholder="メールアドレス" value="{{ old('email') }}">
                     <div class="form_error">
                         @error('email')
                         {{ $message }}
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="form_field">
-                    <span><img src="/image/key.svg"></span><input class="input_password" type="password" name="password" placeholder="Password">
+                    <span><img src="/image/key.svg"></span><input class="input_password" type="password" name="password" placeholder="パスワード">
                     <div class="form_error">
                         @error('password')
                         {{ $message }}
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div align="right" class="form_field">
-                    <button class="form_button" type="submit">ログイン</button>
+                    <button class="form_button" type="submit">ログインする</button>
                 </div>
             </form>
         </div>

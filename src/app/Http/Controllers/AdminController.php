@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use App\Models\Shop;
-use App\Models\Reservation;
 use App\Http\Requests\AdminFormRequest;
 
 class AdminController extends Controller
@@ -33,7 +31,7 @@ class AdminController extends Controller
     public function adminUserList(Request $request)
     {
         $userSearches = User::RoleSearch($request->role)->KeywordSearch($request->keyword)->paginate(10);
-        return view('admin-userList', compact('userSearches'));
+        return view('adminUserList', compact('userSearches'));
     }
 
     public function adminMail()
@@ -41,6 +39,6 @@ class AdminController extends Controller
         $user = auth()->user();
         $users = User::where('role','user')->get();
 
-        return view('admin-mail', compact('user', 'users'));
+        return view('adminMail', compact('user', 'users'));
     }
 }

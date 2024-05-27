@@ -24,7 +24,7 @@ class ShopManegerController extends Controller
             'area_id' => $area->id,
             'genre_id' => $genre->id,
             'content' => $request->content,
-            'img_path' => $request->file('img_path')->store('public/images'), // 本番環境は、ここの画像保存をS3へ保存するように書き換える。
+            'img_path' => $request->file('img_path')->store('public/images'),
         ]);
         return redirect()->back();
     }
@@ -42,7 +42,7 @@ class ShopManegerController extends Controller
             'area_id' => $area->id,
             'genre_id' => $genre->id,
             'content' => $request->content,
-            'img_path' => $request->file('img_path')->store('public/images'), // 本番環境は、ここの画像保存をS3へ保存するように書き換える。
+            'img_path' => $request->file('img_path')->store('public/images'),
         ]);
 
         return redirect()->back();

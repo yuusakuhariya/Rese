@@ -22,7 +22,7 @@
         <div class="header_inner">
             <div class="header_menu">
                 <button class="close_button">
-                    <a class="close_button_inner" href="{{ $prevurl }}">
+                    <a class="close_button_inner" href="{{ url()->previous() }}">
                         <span class="dli-close"></span>
                     </a>
                 </button>

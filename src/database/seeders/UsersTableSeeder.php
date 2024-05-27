@@ -18,10 +18,10 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => 'd',
-                'email' => 'd@yahoo.co.jp',
+                'name' => 'b',
+                'email' => 'b@yahoo.co.jp',
                 'password' => Hash::make('password'),
-                'role' => 'user',
+                'role' => 'shop',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

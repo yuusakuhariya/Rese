@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-title">
                     <div class="form-title-inner">メールアドレス</div>
-                    <input class="form-input" type="email" name="email" placeholder="email" value="{{ old('email') }}">
+                    <input class="form-input" type="email" name="email" placeholder="メールアドレス" value="{{ old('email') }}">
                 </div>
                 <div class="form-error">
                     @error('email')
@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-title">
                     <div class="form-title-inner">パスワード</div>
-                    <input class="form-input" type="password" name="password" placeholder="password">
+                    <input class="form-input" type="password" name="password" placeholder="パスワード">
                 </div>
                 <div class="form-error">
                     @error('password')
