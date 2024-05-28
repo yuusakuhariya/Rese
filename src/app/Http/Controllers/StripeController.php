@@ -19,7 +19,7 @@ class StripeController extends Controller
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
         $charge = Charge::create(array(
-            'amount' => 100,
+            'amount' => $reservation->price,
             'currency' => 'jpy',
             'source' => $request->stripeToken,
         ));
