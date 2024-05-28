@@ -27,8 +27,20 @@ use App\Http\Controllers\QRCodeController;
 |
 */
 
-
 Route::get('/', [ShopController::class, 'shopAll'])->name('shopAll');
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+    Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('/register', [RegisteredUserController::class, 'store']);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/shopManeger', [ShopController::class, 'shopManeger'])->name('shopManeger');
+    Route::get('/admin', [ShopController::class, 'admin'])->name('admin');
+});
+
 Route::get('/search', [ShopController::class, 'shopAll'])->name('search');
 
 Route::get('/userSearch', [AdminController::class, 'adminUserList'])->name('userSearch');
@@ -60,18 +72,6 @@ Route::post('/posting', [ReviewController::class, 'reviewStore'])->name('reviewS
 
 Route::put('/favorite/{id}/{user_id}/{shop_id}', [FavoriteController::class, 'addFavorite'])->name('addFavorites');
 Route::delete('/unfavorite/{id}/{user_id}/{shop_id}', [FavoriteController::class, 'removeFavorite'])->name('removeFavorites');
-
-Route::middleware('guest')->group(function () {
-    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-    Route::post('/login', [AuthenticatedSessionController::class, 'store']);
-    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-    Route::post('/register', [RegisteredUserController::class, 'store']);
-});
-
-Route::middleware('auth')->group(function () {
-    Route::get('/shopManeger', [ShopController::class, 'shopManeger'])->name('shopManeger');
-    Route::get('/admin', [ShopController::class, 'admin'])->name('admin');
-});
 
 Route::post('/sendNotification', [MailController::class, 'sendNotification'])->name('send.notification');
 

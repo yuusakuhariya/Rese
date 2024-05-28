@@ -158,7 +158,7 @@
                 <h2 class="content-title">店舗 情報</h2>
                 <div class="container-inner">
                     <div class="card-img">
-                        <img class="shop-img" src="{{ Storage::url($shop->img_path) }}" alt="サンプル画像">
+                        <img class="shop-img" src="{{ Storage::url($shop->img_path) }}" onerror="this.onerror=null; this.src='{{ $shop->img_path }}'" alt="サンプル画像">
                     </div>
                     <div class="shop-card">
                         <div class="shop_name">{{ $shop->shop_name }}</div>
