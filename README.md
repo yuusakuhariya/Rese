@@ -70,7 +70,7 @@ Rese（飲食店予約サービス）
   * Docker-compose (https://docs.docker.com/compose/)
 * プロジェクトのディレクトリの作成。
 * プロジェクトの git クローン
-  * 
+  * https://github.com/yuusakuhariya/Rese.git
 * .env ファイル作成し、local 環境設定実行
   * cp .env.example .env
   * .env ファイル設定する（下記に.env ファイル記載）
@@ -174,7 +174,7 @@ STRIPE_SECRET=sk_test_51P2nYJCaZBJlTawRIxuT2qrpVrwr6lc666fwteHxldZf4muZbpZPkdVdp
   * docker-compose のインストール
   * git のインストール
 * プロジェクトの git クローン
-  * git clone （htt の git クローンを乗せる）
+  * https://github.com/yuusakuhariya/Rese.git
 * .env ファイル作成し、本番環境設定実行（下記に .env ファイル記載）
   * cp .env.example .env
 * docker-compose.yml の修正（下記に docker-compose.yml ファイル記載）
