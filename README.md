@@ -63,29 +63,29 @@ Rese（飲食店予約サービス）
 
 
 ## 環境構築
-* 概要
+### 概要
   * php のフレームワークの Laravel を Docker-compose で動作させ、Nginx でWebサーバーを構築し、mysql でデータベースを管理し、PHPMyAdmin で操作できるようにする手順
-* 以下のソフトウェアがインストールされていることを確認
+### 以下のソフトウェアがインストールされていることを確認
   * Docker (https://www.docker.com/)
   * Docker-compose (https://docs.docker.com/compose/)
-* プロジェクトのディレクトリの作成。
-* プロジェクトの git クローン
+### プロジェクトのディレクトリの作成。
+### プロジェクトの git クローン
   * https://github.com/yuusakuhariya/Rese.git
-* .env ファイル作成し、local 環境設定実行
+### .env ファイル作成し、local 環境設定実行
   * cp .env.example .env
   * .env ファイル設定する（下記に.env ファイル記載）
-* Docker-compose コンテナをビルドして起動する
+### Docker-compose コンテナをビルドして起動する
   * docker-compose up -d --build
-* Laravelアプリケーションをインストールし、アプリケーションキーを生成する
+### Laravelアプリケーションをインストールし、アプリケーションキーを生成する
   * docker-compose exec app composer install
   * docker-compose exec app php artisan key:generate
-* データベースのマイグレーションを実行する
+### データベースのマイグレーションを実行する
   * php artisan migrate
-* シーダーを実行する
+### シーダーを実行する
   * php artisan db:seed
-* http://localhost にアクセスして Laravel アプリケーションにアクセスできることを確認する
-* http://localhost:8080 にアクセスして PhpMyAdmin でデータベースを管理できることを確認する
-* メール機能の設定。（現在は作成者のアカウントが登録済み）
+### http://localhost にアクセスして Laravel アプリケーションにアクセスできることを確認する
+### http://localhost:8080 にアクセスして PhpMyAdmin でデータベースを管理できることを確認する
+### メール機能の設定。（現在は作成者のアカウントが登録済み）
   * https://mailtrap.io/ にアクセスし登録する。（アカウント変更時のみ実施）
   * .env ファイルの設定。（アカウント変更時のみ .env ファイル修正する）
     * 登録した情報を設定する
@@ -94,7 +94,7 @@ Rese（飲食店予約サービス）
     * 最後の行に、 "* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1" を追加する
     * php コンテナに入り、 "root@0ccf6d48031b:/var/www# php artisan schedule:work" を実行する
     * 解除する際は "ctl＋c" ボタンで解除
-* 支払い機能の設定。（現在は作成者のアカウントが登録済み、テストデータで実行中）
+### 支払い機能の設定。（現在は作成者のアカウントが登録済み、テストデータで実行中）
   * laravel cashier のインストール
     * "composer.json" ファイル内の "require" セクションで、"laravel/cashier" のバージョンを "laravel/cashier": "^13.0" へ変更する
     * php コンテナに入り、 "composer update" を実行する
@@ -104,11 +104,13 @@ Rese（飲食店予約サービス）
   * Stripeのアカウント登録。（アカウント変更時のみ実施）
     * https://dashboard.stripe.com/login?locale=ja-JP にアクセスし登録
   * .env ファイルの設定。（アカウント変更時のみ.envファイル修正する）
-    
-* lacal環境の完成 .env ファイル
+
+### lacal環境の完成
+* local環境の.env ファイル
+```
 APP_NAME=Laravel
 APP_ENV=local
-APP_KEY=base64:kJVo2JRMTm3R8713OjfnF5xGnrkBs5gY4EeHSqVZx7g=
+APP_KEY=base64:kJVo2JRMTm3R8713OjfnF5xGnrkBs5gY4EeHSqVZx7g=  // docker-compose exec app php artisan key:generateで自動挿入
 APP_DEBUG=true
 APP_URL=http://localhost
 
@@ -139,10 +141,10 @@ REDIS_PORT=6379
 MAIL_MAILER=smtp
 MAIL_HOST=sandbox.smtp.mailtrap.io
 MAIL_PORT=2525
-MAIL_USERNAME=81d6d5183afb7e
-MAIL_PASSWORD=1ff2023996b4b2
+MAIL_USERNAME=81d6d5183afb7e  // mailtrapのユーザー名（現在は開発者のユーザー名指定）
+MAIL_PASSWORD=1ff2023996b4b2  // mailtrapのパスワード（現在は開発者のパスワード指定）
 MAIL_ENCRYPTION=tls
-MAIL_FROM_ADDRESS=yuusaku08030213@yahoo.co.jp
+MAIL_FROM_ADDRESS=yuusaku08030213@yahoo.co.jp  // 送信元のメールアドレス（現在は開発者のメールアドレス指定）
 MAIL_FROM_NAME="${APP_NAME}"
 
 AWS_ACCESS_KEY_ID=
@@ -161,36 +163,36 @@ MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 
 STRIPE_KEY=pk_test_51P2nYJCaZBJlTawRqBynctR6PDDGaPAlheOKouITqvVF2CUzxlqtSYphCWhnwZIIVF35MxV2SLfC6LQ2FDu0agdc00ilY41xsQ
 STRIPE_SECRET=sk_test_51P2nYJCaZBJlTawRIxuT2qrpVrwr6lc666fwteHxldZf4muZbpZPkdVdpAg4TmLKazL98HA0E9RBwUn8PTS65a5u00Qone0NZ3
-
+```
 
 ## 本番環境構築（簡易手順）
-* 概要
-* AWS のアカウント登録
-* EC2 の設定
-* SSH に接続
-* 作業ディレクトリの作成。
-* 作業ディレクトリに移動後、必要なソフトウェアのインストール実行
+### AWS のアカウント登録
+### EC2 の設定
+### SSH に接続
+### 作業ディレクトリの作成
+### 作業ディレクトリに移動後、必要なソフトウェアのインストール実行
   * docker のインストール
   * docker-compose のインストール
   * git のインストール
-* プロジェクトの git クローン
+### プロジェクトの git クローン
   * https://github.com/yuusakuhariya/Rese.git
-* .env ファイル作成し、本番環境設定実行（下記に .env ファイル記載）
+### .env ファイル作成し、本番環境設定実行（下記に .env ファイル記載）
   * cp .env.example .env
-* docker-compose.yml の修正（下記に docker-compose.yml ファイル記載）
-* Laravel アプリケーションをインストールし、アプリケーションキーを生成する
+### docker-compose.yml の修正（下記に docker-compose.yml ファイル記載）
+### Laravel アプリケーションをインストールし、アプリケーションキーを生成する
   * docker-compose exec app composer install
   * docker-compose exec app php artisan key:generate 
-* .env ファイルのAPP部分の修正
-* RDS の設定
-* データベースのマイグレーションを実行する
+### .env ファイルのAPP部分の修正
+### RDS の設定
+### データベースのマイグレーションを実行する
   * artisan migrate
-* .env ファイルの DB 部分の修正
-* S3 の設定
+### .env ファイルの DB 部分の修正
+### S3 の設定
   * .env ファイルの AWS 部分の修正
-* 画像を S3 のストレージに保存
+### 画像を S3 のストレージに保存
   * ブロックパブリックアクセス(バケット設定)の項目を全てOFFにする
   * パケットポリシーの修正
+```
     {
        "Version": "2012-10-17",
        "Statement": [
@@ -210,7 +212,9 @@ STRIPE_SECRET=sk_test_51P2nYJCaZBJlTawRIxuT2qrpVrwr6lc666fwteHxldZf4muZbpZPkdVdp
            }
         ]
     }
+```
   * コードの修正（ShopManegerController.php）
+```
   <?php
 
 namespace App\Http\Controllers;
@@ -267,14 +271,25 @@ class ShopManegerController extends Controller
     }
 
 }
+```
   * 必要パッケージのインストール
     * php コンテナに入り、 "composer require league/flysystem-aws-s3-v3 ~1.0" を実行する
-* EC2のIPv4 アドレス（HTTP）に接続しブラウザに表示される
+### EC2のIPv4 アドレス（HTTP）に接続しブラウザに表示される
+### 本番環境の完成
+* 本番環境の.envファイル
+```
+
+```
+
+* 本番環境のdocker-compose.yml
+```
+
+```
 
 ## 他記載内容
-* 予約削除時、払い戻しは不可とする。
-* 予約時に先払いの金額入力可能。
-* QRコード読み取り方法
+### 予約削除時、払い戻しは不可とする。
+### 予約時に先払いの金額入力可能。
+### QRコード読み取り方法
   * QRコードを読み取りできるカメラにて読み取りする。
   * QRコードを読み取ったらログインページへ。
   * その店舗代表者がログインし、予約リストの確認をすると、来店項目が「済」になっている。
