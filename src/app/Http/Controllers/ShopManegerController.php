@@ -5,12 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;
+use App\Models\Reservation;
 use App\Http\Requests\ShopManegerFormRequest;
 
 
 class ShopManegerController extends Controller
 {
-    public function shopStore(ShopManegerFormRequest $request)
+    public function shopStore()
+    {
+        $user = auth()->user();
+        $shops = Shop::with('Area', 'Genre')->where('user_id', $user->id)->get();
+        return view('shopManegerStore', compact('shops'));
+    }
+
+    public function shopCreate(ShopManegerFormRequest $request)
     {
         $user = auth()->user();
         $area_name = $request->area_name;
@@ -46,6 +54,15 @@ class ShopManegerController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function shopManegerReservationList($id)
+    {
+        $user = auth()->user();
+        $shops = Shop::where('user_id', $user->id)->where('id', $id)->get();
+        $reservations = Reservation::whereIn('shop_id', $shops)->with('user')->paginate(10);
+
+        return view('shopManegerReservationList', compact('user', 'shops', 'reservations'));
     }
 
 }

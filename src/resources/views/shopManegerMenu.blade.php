@@ -16,7 +16,7 @@
         <div class="header_inner">
             <div class="header_menu">
                 <button class="close_button">
-                    <a class="close_button_inner" href="/">
+                    <a class="close_button_inner" href="{{ url()->previous() }}">
                         <span class="dli-close"></span>
                     </a>
                 </button>
@@ -27,7 +27,8 @@
     <main>
         <div class="container">
             <div class="content">
-                <div class="massage"><a href="{{ route('reservationList', ['id' => auth()->user()->id]) }}">予約一覧</a></div>
+                <div class="massage"><a href="/">店舗一覧</a></div>
+                <div class="massage"><a href="{{ route('shopStore') }}">店舗登録</a></div>
                 <div class="massage">
                     <form class="logout-form" action="/logout" method="post">
                         @csrf
@@ -37,7 +38,6 @@
             </div>
         </div>
     </main>
-
 
 </body>
 

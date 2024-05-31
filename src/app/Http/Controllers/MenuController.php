@@ -30,15 +30,9 @@ class MenuController extends Controller
         return view('myPage');
     }
 
-
     public function shopManegerMenu()
     {
         return view('shopManegerMenu');
-    }
-
-    public function reservationListMenu()
-    {
-        return view('reservationListMenu');
     }
 
     public function adminMenuUserListMail()

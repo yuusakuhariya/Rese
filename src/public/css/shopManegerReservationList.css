@@ -1,0 +1,131 @@
+body {
+    background: #f3f3f3;
+}
+
+.header_inner {
+    display: flex;
+    margin: 30px 80px;
+}
+
+.header_title {
+    font-weight: bold;
+    font-size: 24px;
+    color: rgb(250, 90, 40);
+    margin-left: 14px;
+}
+
+.close_button {
+    width: 30px;
+    height: 32px;
+    position: relative;
+    border: 2px solid rgb(250, 90, 40);
+    background-color: rgb(250, 90, 40);
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 3px 3px 2px rgb(167, 161, 161);
+}
+
+.close_button_inner {
+    text-decoration: none;
+    color: white;
+}
+
+
+.dli-close {
+    display: inline-block;
+    vertical-align: middle;
+    color: #ffffff;
+    line-height: 1;
+    width: 1em;
+    height: 0.1em;
+    background: currentColor;
+    border-radius: 0.1em;
+    position: relative;
+    transform: rotate(45deg);
+}
+
+.dli-close::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: inherit;
+    transform: rotate(90deg);
+}
+
+
+button {
+    border-color: transparent;
+    background: transparent;
+    cursor: pointer;
+}
+
+
+.list-table {
+    width: 70%;
+    margin: 0 auto;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.table {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+tr {
+    text-align: center;
+}
+
+th,
+td {
+    font-size: 20px;
+    padding: 10px 8px;
+}
+
+.table-td_role {
+    font-size: 18px;
+    width: 20%;
+}
+
+.table-td_name {
+    font-size: 18px;
+    width: 10%;
+    text-align: center;
+}
+
+.table-td_email {
+    font-size: 18px;
+    width: 20%;
+    text-align: center;
+}
+
+.table-td_date {
+    width: 10%;
+    text-align: center;
+    text-align: center;
+}
+
+.table-td_time {
+    font-size: 18px;
+    width: 10%;
+    text-align: center;
+}
+
+.table-td_number-of-person {
+    font-size: 18px;
+    width: 10%;
+    text-align: center;
+}
+
+
+.pagination {
+    margin-top: 20px;
+    justify-content: center;
+
+}

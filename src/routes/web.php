@@ -28,6 +28,7 @@ use App\Http\Controllers\QRCodeController;
 */
 
 Route::get('/', [ShopController::class, 'shopAll'])->name('shopAll');
+Route::get('/search', [ShopController::class, 'shopAll'])->name('search');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -37,11 +38,9 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/shopManeger', [ShopController::class, 'shopManeger'])->name('shopManeger');
+    Route::get('/shopList', [ShopController::class, 'shopList'])->name('shopList');
     Route::get('/admin', [ShopController::class, 'admin'])->name('admin');
 });
-
-Route::get('/search', [ShopController::class, 'shopAll'])->name('search');
 
 Route::get('/userSearch', [AdminController::class, 'adminUserList'])->name('userSearch');
 Route::get('/adminUserList', [AdminController::class, 'adminUserList'])->name('adminUserList');
@@ -49,16 +48,17 @@ Route::post('/userCreate', [AdminController::class, 'userStore'])->name('userSto
 Route::delete('/userDelete/{id}', [AdminController::class, 'userDelete'])->name('userDelete');
 Route::get('/adminMail', [AdminController::class, 'adminMail'])->name('adminMail');
 
-Route::post('/shopCreate', [ShopManegerController::class, 'shopStore'])->name('shopStore');
+Route::get('/shopStore', [ShopManegerController::class, 'shopStore'])->name('shopStore');
+Route::post('/shopCreate', [ShopManegerController::class, 'shopCreate'])->name('shopCreate');
 Route::put('/shopUpdate', [ShopManegerController::class, 'shopUpdate'])->name('shopUpdate');
+Route::get('/shopMgReservationList/{id}', [ShopManegerController::class, 'shopManegerReservationList'])->name('shopManegerReservationList');
 
 Route::get('/homeMenu', [MenuController::class, 'homeMenu'])->name('homeMenu');
 Route::get('/loginMenu', [MenuController::class, 'loginMenu'])->name('loginMenu');
 Route::get('/shopMgMenu', [MenuController::class, 'shopManegerMenu'])->name('shopManegerMenu');
-Route::get('/reservationListMenu', [MenuController::class, 'reservationListMenu'])->name('reservationListMenu');
 Route::get('/adminMenuUserListMail', [MenuController::class, 'adminMenuUserListMail'])->name('adminMenuUserListMail');
 Route::get('/adminMenuShopRegisterMail', [MenuController::class, 'adminMenuShopRegisterMail'])->name('adminMenuShopRegisterMail');
-Route::get('adminMenuShopRegisterUserList', [MenuController::class, 'adminMenuShopRegisterUserList'])->name('adminMenuShopRegisterUserList');
+Route::get('/adminMenuShopRegisterUserList', [MenuController::class, 'adminMenuShopRegisterUserList'])->name('adminMenuShopRegisterUserList');
 
 Route::get('/shop/{id}', [ReservationController::class, 'shopDetail'])->name('shopDetail');
 Route::post('/done', [ReservationController::class, 'store'])->name('store');
@@ -74,8 +74,6 @@ Route::put('/favorite/{id}/{user_id}/{shop_id}', [FavoriteController::class, 'ad
 Route::delete('/unfavorite/{id}/{user_id}/{shop_id}', [FavoriteController::class, 'removeFavorite'])->name('removeFavorites');
 
 Route::post('/sendNotification', [MailController::class, 'sendNotification'])->name('send.notification');
-
-Route::get('/reservationList/{id}', [ReservationListController::class, 'reservationList'])->name('reservationList');
 
 Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge');
 

@@ -37,7 +37,7 @@ class ShopController extends Controller
         } elseif (Gate::allows('shop')) {
             $user = auth()->user();
             $shops = Shop::with('Area', 'Genre')->where('user_id', $user->id)->get();
-            return view('shopManeger', compact('shops'));
+            return view('shopManegerShopList', compact('shops'));
 
         } elseif (Gate::allows('admin')) {
             $userSearches = User::RoleSearch($request->role)->KeywordSearch($request->keyword)->get();
