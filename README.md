@@ -73,7 +73,7 @@ Rese（飲食店予約サービス）
   * https://github.com/yuusakuhariya/Rese.git
 ### .env ファイル作成し、local 環境設定実行
   * cp .env.example .env
-  * .env ファイル設定する（下記に.env ファイル記載）
+  * .env ファイル設定する（下記に .env ファイル記載）
 ### Docker-compose コンテナをビルドして起動する
   * docker-compose up -d --build
 ### Laravelアプリケーションをインストールし、アプリケーションキーを生成する
@@ -85,9 +85,9 @@ Rese（飲食店予約サービス）
   * php artisan db:seed
 ### http://localhost にアクセスして Laravel アプリケーションにアクセスできることを確認する
 ### http://localhost:8080 にアクセスして PhpMyAdmin でデータベースを管理できることを確認する
-### メール機能の設定（現在は作成者のアカウントが登録済み）
+### メール機能の設定（現在は作成者のアカウントが登録済み、テストメール機能実行中）
   * https://mailtrap.io/ にアクセスし登録する。（アカウント変更時のみ実施）
-  * .env ファイルの設定。（アカウント変更時のみ .env ファイル修正する）
+  * .env ファイルの設定。（アカウント変更時のみ .env ファイル修正する）（下記に .env ファイル記載）
     * 登録した情報を設定する
   * リマインダー機能の実行
     * ターミナルで、"crontab -e" を実行しcron設定する
@@ -104,7 +104,7 @@ Rese（飲食店予約サービス）
     * "laravel/cashier" インストール後、php コンテナに入り、 "php artisan migrate" 実行し、各テーブルとカラムが作成される
   * Stripeのアカウント登録。（アカウント変更時のみ実施）
     * https://dashboard.stripe.com/login?locale=ja-JP にアクセスし登録
-  * .env ファイルの設定。（アカウント変更時のみ.envファイル修正する）
+  * .env ファイルの設定。（アカウント変更時のみ.envファイル修正する）（下記に .env ファイル記載）
 
 ### lacal環境の完成
 * local環境の.env ファイル
@@ -183,12 +183,14 @@ STRIPE_SECRET=sk_test_51P2nYJCaZBJlTawRIxuT2qrpVrwr6lc666fwteHxldZf4muZbpZPkdVdp
 ### Laravel アプリケーションをインストールし、アプリケーションキーを生成する
   * docker-compose exec app composer install
   * docker-compose exec app php artisan key:generate 
-### .env ファイルのAPP部分の修正
+### .env ファイルのAPP部分の修正（下記に .env ファイル記載）
+### 支払い機能の設定
+  * local環境の.envファイルと同様に設定する
 ### RDS の設定
 ### データベースのマイグレーションを実行する
   * artisan migrate
-### .env ファイルの DB 部分の修正
-### S3 の設定
+### .env ファイルの DB 部分の修正（下記に .env ファイル記載）
+### S3 の設定（下記に .env ファイル記載）
   * .env ファイルの AWS 部分の修正
 ### 画像を S3 のストレージに保存
   * ブロックパブリックアクセス(バケット設定)の項目を全てOFFにする
