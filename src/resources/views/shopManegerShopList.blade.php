@@ -46,7 +46,7 @@
                 <div class="card-content_button">
                     <div class="detail-button">
                         <button class="detail">
-                            <a class="detail-inner" href="">更新</a>
+                            <a class="detail-inner" href="{{ route('shopUpdate',['id' => $shop->id]) }}">更新</a>
                         </button>
                     </div>
                     <div class="detail-button">

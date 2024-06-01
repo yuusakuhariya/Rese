@@ -81,7 +81,6 @@ button {
 @media screen and (max-width : 767px) {
     .shop-user_container {
         margin: 10px 20px;
-        display: block;
     }
 }
 
@@ -102,6 +101,13 @@ button {
 @media screen and (max-width : 767px) {
     .container-inner {
         width: 80%;
+        margin: 20px auto;
+    }
+}
+
+@media screen and (min-width : 768px) and (max-width: 1024px) {
+    .container-inner {
+        width: 40%;
         margin: 20px auto;
     }
 }

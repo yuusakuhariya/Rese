@@ -27,19 +27,25 @@ use App\Http\Controllers\QRCodeController;
 |
 */
 
+
+
+
+
 Route::get('/', [ShopController::class, 'shopAll'])->name('shopAll');
 Route::get('/search', [ShopController::class, 'shopAll'])->name('search');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/home', [ShopController::class, 'shopAll'])->name('loginShopAll');
+    Route::get('/loginSearch', [ShopController::class, 'shopAll'])->name('loginSearch');
+    Route::get('/shopList', [ShopController::class, 'shopList'])->name('shopList');
+    Route::get('/admin', [ShopController::class, 'admin'])->name('admin');
+});
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
     Route::post('/login', [AuthenticatedSessionController::class, 'store']);
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('/register', [RegisteredUserController::class, 'store']);
-});
-
-Route::middleware('auth')->group(function () {
-    Route::get('/shopList', [ShopController::class, 'shopList'])->name('shopList');
-    Route::get('/admin', [ShopController::class, 'admin'])->name('admin');
 });
 
 Route::get('/userSearch', [AdminController::class, 'adminUserList'])->name('userSearch');
@@ -50,7 +56,8 @@ Route::get('/adminMail', [AdminController::class, 'adminMail'])->name('adminMail
 
 Route::get('/shopStore', [ShopManegerController::class, 'shopStore'])->name('shopStore');
 Route::post('/shopCreate', [ShopManegerController::class, 'shopCreate'])->name('shopCreate');
-Route::put('/shopUpdate', [ShopManegerController::class, 'shopUpdate'])->name('shopUpdate');
+Route::get('/shopUpdate/{id}', [ShopManegerController::class, 'shopUpdate'])->name('shopUpdate');
+Route::put('/shopRenew', [ShopManegerController::class, 'shopRenew'])->name('shopRenew');
 Route::get('/shopMgReservationList/{id}', [ShopManegerController::class, 'shopManegerReservationList'])->name('shopManegerReservationList');
 
 Route::get('/homeMenu', [MenuController::class, 'homeMenu'])->name('homeMenu');

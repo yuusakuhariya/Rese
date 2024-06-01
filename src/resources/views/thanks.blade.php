@@ -14,13 +14,11 @@
 
     <header class="header">
         <div class="header_inner">
-            <a href="{{ route('loginMenu') }}">
                 <button class="menu_button" type="submit">
                     <span class="hamburger_bar"></span>
                     <span class="hamburger_bar"></span>
                     <span class="hamburger_bar"></span>
                 </button>
-            </a>
             <div class="header_title">Rese</div>
         </div>
     </header>
@@ -31,7 +29,7 @@
                 <div class="content_message">
                     会員登録ありがとうございます
                 </div>
-                <div class="content_message_login"><a class="login-button" href="{{ route('shopAll') }}">ログインする</a></div>
+                <div class="content_message_login"><a class="login-button" href="{{ route('loginShopAll') }}">ログインする</a></div>
             </div>
         </div>
     </main>

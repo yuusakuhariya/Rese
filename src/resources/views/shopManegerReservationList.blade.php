@@ -17,7 +17,7 @@
         <div class="header_inner">
             <div class="header_menu">
                 <button class="close_button">
-                    <a class="close_button_inner" href="{{ url()->previous() }}">
+                    <a class="close_button_inner" href="/">
                         <span class="dli-close"></span>
                     </a>
                 </button>

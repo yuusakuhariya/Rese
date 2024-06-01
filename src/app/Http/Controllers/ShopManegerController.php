@@ -34,10 +34,18 @@ class ShopManegerController extends Controller
             'content' => $request->content,
             'img_path' => $request->file('img_path')->store('public/images'),
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('success', '新しい店舗が作成されました。');
     }
 
-    public function shopUpdate(ShopManegerFormRequest $request)
+
+    public function shopUpdate($id)
+    {
+        $user = auth()->user();
+        $shop = Shop::with('Area', 'Genre')->where('user_id', $user->id)->where('id', $id)->first();
+        return view('shopManegerUpdate', compact('shop'));
+    }
+
+    public function shopRenew(ShopManegerFormRequest $request)
     {
         $area_name = $request->area_name;
         $genre_name = $request->genre_name;
