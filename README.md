@@ -85,7 +85,7 @@ Rese（飲食店予約サービス）
   * php artisan db:seed
 ### http://localhost にアクセスして Laravel アプリケーションにアクセスできることを確認する
 ### http://localhost:8080 にアクセスして PhpMyAdmin でデータベースを管理できることを確認する
-### メール機能の設定。（現在は作成者のアカウントが登録済み）
+### メール機能の設定（現在は作成者のアカウントが登録済み）
   * https://mailtrap.io/ にアクセスし登録する。（アカウント変更時のみ実施）
   * .env ファイルの設定。（アカウント変更時のみ .env ファイル修正する）
     * 登録した情報を設定する
@@ -94,7 +94,8 @@ Rese（飲食店予約サービス）
     * 最後の行に、 "* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1" を追加する
     * php コンテナに入り、 "root@0ccf6d48031b:/var/www# php artisan schedule:work" を実行する
     * 解除する際は "ctl＋c" ボタンで解除
-### 支払い機能の設定。（現在は作成者のアカウントが登録済み、テストデータで実行中）
+    * リマインダーの時刻はAM9:00で固定（時間変更の際は開発者へ）
+### 支払い機能の設定（現在は作成者のアカウントが登録済み、テストデータで実行中）
   * laravel cashier のインストール
     * "composer.json" ファイル内の "require" セクションで、"laravel/cashier" のバージョンを "laravel/cashier": "^13.0" へ変更する
     * php コンテナに入り、 "composer update" を実行する
@@ -161,8 +162,8 @@ PUSHER_APP_CLUSTER=mt1
 MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
 MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 
-STRIPE_KEY=pk_test_51P2nYJCaZBJlTawRqBynctR6PDDGaPAlheOKouITqvVF2CUzxlqtSYphCWhnwZIIVF35MxV2SLfC6LQ2FDu0agdc00ilY41xsQ
-STRIPE_SECRET=sk_test_51P2nYJCaZBJlTawRIxuT2qrpVrwr6lc666fwteHxldZf4muZbpZPkdVdpAg4TmLKazL98HA0E9RBwUn8PTS65a5u00Qone0NZ3
+STRIPE_KEY=pk_test_51P2nYJCaZBJlTawRqBynctR6PDDGaPAlheOKouITqvVF2CUzxlqtSYphCWhnwZIIVF35MxV2SLfC6LQ2FDu0agdc00ilY41xsQ  // stripeのキー（現在は開発者のキー指定）
+STRIPE_SECRET=sk_test_51P2nYJCaZBJlTawRIxuT2qrpVrwr6lc666fwteHxldZf4muZbpZPkdVdpAg4TmLKazL98HA0E9RBwUn8PTS65a5u00Qone0NZ3  // stripeのシークレットキー（現在は開発者のシークレットキー指定）
 ```
 
 ## 本番環境構築（簡易手順）
@@ -275,21 +276,140 @@ class ShopManegerController extends Controller
   * 必要パッケージのインストール
     * php コンテナに入り、 "composer require league/flysystem-aws-s3-v3 ~1.0" を実行する
 ### EC2のIPv4 アドレス（HTTP）に接続しブラウザに表示される
-### 本番環境の完成
+
+### 本番環境設定の完成
 * 本番環境の.envファイル
 ```
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=base64:7UYr97dRkEkV2XgKc6CwsnLtbxrAutoB4TZVHeirB04=　// docker-compose exec app php artisan key:generateで自動挿入 
+APP_DEBUG=true
+APP_URL=http://54.95.11.238  // Elastic IPアドレスを指定
+
+LOG_CHANNEL=stack
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
+DB_CONNECTION=mysql  // RDSのサービス名
+DB_HOST=coachtech-rese-db.choe4eoeo7z5.ap-northeast-1.rds.amazonaws.com  // データベースのエンドポイント
+DB_PORT=3306  // ポート番号
+DB_DATABASE=coachtech_laravel_Rese  // データベース名
+DB_USERNAME=coachtech_Rese1  // データベースのユーザー名
+DB_PASSWORD=coachtech-Rese  // データベースのパスワード
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+FILESYSTEM_DRIVER=local
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_MAILER=smtp  // メール機能のサービス名
+MAIL_HOST=sandbox.smtp.mailtrap.io  // mailtrapホスト名
+MAIL_PORT=2525  // ポート番号
+MAIL_USERNAME=81d6d5183afb7e  // mailtrapのユーザー名（現在は開発者のユーザー名指定）
+MAIL_PASSWORD=1ff2023996b4b2  // mailtrapのユーザー名（現在は開発者のパスワード指定）
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=yuusaku08030213@yahoo.co.jp  // 送信元のメールアドレス（現在は開発者のメールアドレス指定）
+MAIL_FROM_NAME="${APP_NAME}"
+
+AWS_ACCESS_KEY_ID= // AWSのアクセスキー（キーは開発者に直接聞いてください）
+AWS_SECRET_ACCESS_KEY= // AWSのシークレットアクセスキー（キーは開発者に直接聞いてください）
+AWS_DEFAULT_REGION=ap-northeast-1  // リージョン名
+AWS_BUCKET=bucket-coachtech-aws-rese  // バケット名
+AWS_USE_PATH_STYLE_ENDPOINT=false 
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_APP_CLUSTER=mt1
+
+MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+STRIPE_KEY=pk_test_51P2nYJCaZBJlTawRqBynctR6PDDGaPAlheOKouITqvVF2CUzxlqtSYphCWhnwZIIVF35MxV2SLfC6LQ2FDu0agdc00ilY41xsQ  // stripeのキー（現在は開発者のキー指定）
+STRIPE_SECRET=sk_test_51P2nYJCaZBJlTawRIxuT2qrpVrwr6lc666fwteHxldZf4muZbpZPkdVdpAg4TmLKazL98HA0E9RBwUn8PTS65a5u00Qone0NZ3  // stripeのシークレットキー（現在は開発者のシークレットキー指定）
 
 ```
 
 * 本番環境のdocker-compose.yml
 ```
+version: '3.8'
 
+services:
+    nginx:
+        image: nginx:1.21.1
+        ports:
+            - "80:80"
+        volumes:
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ./src:/var/www/
+        depends_on:
+            - php
+
+    php:
+        build: ./docker/php
+        volumes:
+            - ./src:/var/www/
+
+    mysql:
+        image: mysql:8.0.26
+        environment:
+            MYSQL_ROOT_PASSWORD: 
+            MYSQL_DATABASE: coachtech_laravel_Rese  // RDSのデータベース名
+            MYSQL_USER: coachtech_Rese1  // RDSのデータベースのユーザー名
+            MYSQL_PASSWORD: coachtech-Rese  // RDSのデータベースのパスワード
+        command:
+            mysqld --default-authentication-plugin=mysql_native_password
+        volumes:
+            - ./docker/mysql/data:/var/lib/mysql
+            - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST=coachtech-rese-db.choe4eoeo7z5.ap-northeast-1.rds.amazonaws.com  // SDRのエンドポイント
+            - PMA_USER=coachtech_Rese1  // RDSのデータベースのユーザー名
+            - PMA_PASSWORD=coachtech-Rese  // RDSのデータベースのパスワード
+        depends_on:
+            - mysql
+        ports:
+            - 8080:80
 ```
 
 ## 他記載内容
-### 予約削除時、払い戻しは不可とする。
-### 予約時に先払いの金額入力可能。
+### 言語は全て日本語使用
+### 予約削除時、払い戻しは不可とする
+### 予約時に先払いの金額入力可能
 ### QRコード読み取り方法
   * QRコードを読み取りできるカメラにて読み取りする。
-  * QRコードを読み取ったらログインページへ。
+  * QRコードを読み取ったらログインページURLへ。
   * その店舗代表者がログインし、予約リストの確認をすると、来店項目が「済」になっている。
+    * データベースが更新されているのを確認。
+### メール認証について
+  * メール認証は mailtrap を使用。
+  * ユーザーはご自身で登録。（メール認証必要）
+  * 店舗代表者は管理者によって登録。（メール認証不要）
+  * 管理者の登録は開発者によって登録。（メール認証不要）
+### メール機能について
+  * メール機能は mailtrap を使用。
+  * local環境でテスト実施して下さい。
+### 支払い機能について
+  * 支払い環境は stripe を使用。（テスト機能で実施）
+  * local環境でテスト実施して下さい。
+### リマインダー機能について
+  * local環境でテスト実施して下さい 。
+### シーダー内容（初期データ）
+| role   | name | email         | password  |
+|:-------|------|---------------|----------:|
+| admin  | a    | a@yahoo.co.jp | a1234567  |
+| shop   | b    | b@yahoo.co.jp | b1234567  |
+| user   | c    | c@yahoo.co.jp | c1234567  | 
+  * shopデータは案件シート参照（全ての初期店舗データは b に紐付けされています）
