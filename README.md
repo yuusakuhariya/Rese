@@ -65,10 +65,10 @@ Rese（飲食店予約サービス）
 ## 環境構築
 ### 概要
   * php のフレームワークの Laravel を Docker-compose で動作させ、Nginx でWebサーバーを構築し、mysql でデータベースを管理し、PHPMyAdmin で操作できるようにする手順
-### 以下のソフトウェアがインストールされていることを確認
+### 作業ディレクトリの作成
+### 作業ディレクトリに移動後、必要なソフトウェアのインストール実行
   * Docker (https://www.docker.com/)
   * Docker-compose (https://docs.docker.com/compose/)
-### プロジェクトのディレクトリの作成。
 ### プロジェクトの git クローン
   * https://github.com/yuusakuhariya/Rese.git
 ### .env ファイル作成し、local 環境設定実行
@@ -85,7 +85,7 @@ Rese（飲食店予約サービス）
   * php artisan db:seed
 ### http://localhost にアクセスして Laravel アプリケーションにアクセスできることを確認する
 ### http://localhost:8080 にアクセスして PhpMyAdmin でデータベースを管理できることを確認する
-### メール機能の設定（現在は作成者のアカウントが登録済み、テストメール機能実行中）
+### メール機能の設定（現在は開発者のアカウントが登録済み、テストメール機能実行中）
   * https://mailtrap.io/ にアクセスし登録する。（アカウント変更時のみ実施）
   * .env ファイルの設定。（アカウント変更時のみ .env ファイル修正する）（下記に .env ファイル記載）
     * 登録した情報を設定する
