@@ -181,6 +181,8 @@ STRIPE_SECRET=sk_test_51P2nYJCaZBJlTawRIxuT2qrpVrwr6lc666fwteHxldZf4muZbpZPkdVdp
 ### .env ファイル作成し、本番環境設定実行（下記に .env ファイル記載）
   * cp .env.example .env
 ### docker-compose.yml の修正（下記に docker-compose.yml ファイル記載）
+### Docker-compose コンテナをビルドして起動する
+  * docker-compose up -d --build
 ### Laravel アプリケーションをインストールし、アプリケーションキーを生成する
   * docker-compose exec app composer install
   * docker-compose exec app php artisan key:generate 
