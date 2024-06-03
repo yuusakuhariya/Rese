@@ -6,7 +6,7 @@ Rese（飲食店予約サービス）
 * 外部の飲食店予約サービスは手数料を取られるので自社で予約サービスを持ちたい。
 
 ## アプリケーションURL
-* （awsで設定）
+* 54.65.164.125（awsで設定中）
 
 ## 機能一覧
 * 会員登録（名前、メールアドレス、パスワード）
@@ -37,7 +37,7 @@ Rese（飲食店予約サービス）
 * 管理者による店舗代表者登録
 * 全ユーザー情報の一覧取得
 * 全ユーザー情報の権限検索
-* 全ユーザー情報の名前検索
+* 全ユーザー情報の名前検索（文字入力）
 * 各ユーザー情報の削除
 * 管理者から一般ユーザーへのメール送信
 
@@ -102,7 +102,7 @@ Rese（飲食店予約サービス）
     * php コンテナに入り、 "composer update" を実行する
     * php コンテナに入り、 "composer require laravel/cashier" を実行しインストールする
   * データベースの追加
-    * "laravel/cashier" インストール後、php コンテナに入り、 "php artisan migrate" 実行し、各テーブルとカラムが作成される
+    * "laravel/cashier" インストール後、php コンテナに入り、 "php artisan migrate" 実行するとカラムが追加される
   * Stripeのアカウント登録。（アカウント変更時のみ実施）
     * https://dashboard.stripe.com/login?locale=ja-JP にアクセスし登録
   * .env ファイルの設定。（アカウント変更時のみ.envファイル修正する）（下記に .env ファイル記載）
@@ -192,6 +192,8 @@ STRIPE_SECRET=sk_test_51P2nYJCaZBJlTawRIxuT2qrpVrwr6lc666fwteHxldZf4muZbpZPkdVdp
 ### RDS の設定
 ### データベースのマイグレーションを実行する
   * artisan migrate
+### シーダーを実行する
+  * php artisan db:seed
 ### .env ファイルの DB 部分の修正（下記に .env ファイル記載）
 ### S3 の設定（下記に .env ファイル記載）
   * .env ファイルの AWS 部分の修正
@@ -280,7 +282,11 @@ class ShopManegerController extends Controller
 ```
   * 必要パッケージのインストール
     * php コンテナに入り、 "composer require league/flysystem-aws-s3-v3 ~1.0" を実行する
-### EC2のIPv4 アドレス（HTTP）に接続しブラウザに表示される
+### EC2のElastic IPアドレスを設定し、IPアドレスを固定
+  * EC2インスタンスに関連付け
+### Elastic IPアドレス（HTTP）に接続しブラウザに表示される
+  * 54.65.164.125 
+
 
 ### 本番環境設定の完成
 * 本番環境の.envファイル
@@ -388,8 +394,8 @@ services:
         ports:
             - 8080:80
 ```
-
 ## 他記載内容
+### 本番環境に関しては、AWSのIPアドレスの固定（Elastic IPアドレス）が設定されているため、Elastic IPアドレスで確認をして下さい。
 ### 言語は全て日本語使用
 ### 予約削除時、払い戻しは不可とする
 ### 予約時に先払いの金額入力可能
@@ -418,3 +424,22 @@ services:
 | shop   | b    | b@yahoo.co.jp | b1234567  |
 | user   | c    | c@yahoo.co.jp | c1234567  | 
   * shopデータは案件シート参照（全ての初期店舗データは b に紐付けされています）
+### ユーザー登録時のコメントアウトについて
+  * 開発者が管理者の依頼を受け、簡易的にユーザー、店舗代表者、管理者を登録できるように auth/register.blade.php ファイルで登録箇所をコメントアウトしている。
+```
+<div class="role">
+                    <label class="role-type" for="role">登録タイプ</label>
+                    <select name="role">
+                        <option value="user">ユーザー</option>
+                        <!-- <option value="">選択してください</option> -->
+                        <!-- <option value="user">ユーザー</option> -->
+                        <!-- <option value="shop">店舗代表者</option> -->
+                        <!-- <option value="admin">管理者</option> -->
+                    </select>
+                    <div class="form_error">
+                        @error('role')
+                        {{ $message }}
+                        @enderror
+                    </div>
+                </div>
+```
