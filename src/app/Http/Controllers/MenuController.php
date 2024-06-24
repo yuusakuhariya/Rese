@@ -6,12 +6,12 @@ class MenuController extends Controller
 {
     public function homeMenu()
     {
-        return view('homeMenu');
+        return view('home_menu');
     }
 
     public function loginMenu()
     {
-        return view('loginMenu');
+        return view('login_menu');
     }
 
 
@@ -27,26 +27,26 @@ class MenuController extends Controller
 
     public function myPage()
     {
-        return view('myPage');
+        return view('my_page');
     }
 
     public function shopManegerMenu()
     {
-        return view('shopManegerMenu');
+        return view('shop_maneger_menu');
     }
 
     public function adminMenuUserListMail()
     {
-        return view('adminMenuUserListMail');
+        return view('admin_menu_user_list_mail');
     }
 
     public function adminMenuShopRegisterMail()
     {
-        return view('adminMenuShopRegisterMail');
+        return view('admin_menu_shop_register_mail');
     }
 
     public function adminMenuShopRegisterUserList()
     {
-        return view('adminMenuShopRegisterUserList');
+        return view('admin_menu_shop_register_user_list');
     }
 }

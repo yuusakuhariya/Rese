@@ -14,7 +14,7 @@ class ReservationController extends Controller
     {
         $user = auth()->user();
         $shop = Shop::find($shop_id);
-        return view('shopDetail', compact('shop', 'user'));
+        return view('shop_detail', compact('shop', 'user'));
     }
 
     public function store(ReservationFormRequest $request)

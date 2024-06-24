@@ -33,6 +33,11 @@ class Shop extends Model
         return $this->hasMany(Reservation::class);
     }
 
+    public function favorites()
+    {
+        return $this->hasMany(User::class);
+    }
+
     public function scopeKeywordSearch($query, $keyword)
     {
         if(!empty($keyword))

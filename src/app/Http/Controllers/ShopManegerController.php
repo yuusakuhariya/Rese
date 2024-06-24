@@ -15,7 +15,7 @@ class ShopManegerController extends Controller
     {
         $user = auth()->user();
         $shops = Shop::with('Area', 'Genre')->where('user_id', $user->id)->get();
-        return view('shopManegerStore', compact('shops'));
+        return view('shop_maneger_store', compact('shops'));
     }
 
     public function shopCreate(ShopManegerFormRequest $request)
@@ -42,7 +42,7 @@ class ShopManegerController extends Controller
     {
         $user = auth()->user();
         $shop = Shop::with('Area', 'Genre')->where('user_id', $user->id)->where('id', $id)->first();
-        return view('shopManegerUpdate', compact('shop'));
+        return view('shop_maneger_update', compact('shop'));
     }
 
     public function shopRenew(ShopManegerFormRequest $request)
@@ -70,7 +70,7 @@ class ShopManegerController extends Controller
         $shops = Shop::where('user_id', $user->id)->where('id', $id)->get();
         $reservations = Reservation::whereIn('shop_id', $shops)->with('user')->paginate(10);
 
-        return view('shopManegerReservationList', compact('user', 'shops', 'reservations'));
+        return view('shop_maneger_reservation_list', compact('user', 'shops', 'reservations'));
     }
 
 }

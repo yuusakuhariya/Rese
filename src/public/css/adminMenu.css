@@ -84,7 +84,7 @@ button {
     margin-bottom: 20px;
 }
 
-a {
+.message-tag {
     color: rgb(112, 201, 53);
     text-decoration: none;
 }

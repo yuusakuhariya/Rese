@@ -58,12 +58,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function favorite($userId)
     {
-            $this->favorites()->attach($userId);
+        $this->favorites()->attach($userId);
     }
 
     public function unfavorite($userId)
     {
-            $this->favorites()->detach($userId);
+        $this->favorites()->detach($userId);
     }
 
     public function scopeKeywordSearch($query, $keyword)

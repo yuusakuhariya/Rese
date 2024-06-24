@@ -31,7 +31,7 @@ class AdminController extends Controller
     public function adminUserList(Request $request)
     {
         $userSearches = User::RoleSearch($request->role)->KeywordSearch($request->keyword)->paginate(10);
-        return view('adminUserList', compact('userSearches'));
+        return view('admin_user_list', compact('userSearches'));
     }
 
     public function adminMail()
@@ -39,6 +39,6 @@ class AdminController extends Controller
         $user = auth()->user();
         $users = User::where('role','user')->get();
 
-        return view('adminMail', compact('user', 'users'));
+        return view('admin_mail', compact('user', 'users'));
     }
 }

@@ -186,13 +186,6 @@ select {
     justify-content: space-between;
 }
 
-@media screen and (max-width : 767px) {
-    .all-shop_container {
-        margin: 10px 20px;
-        display: block;
-    }
-}
-
 @media screen and (min-width : 768px) and (max-width: 1024px) {
     .all-shop_container {
         margin: 30px 30px;
@@ -210,7 +203,7 @@ select {
 
 @media screen and (max-width : 767px) {
     .favorite-card {
-        width: 100%;
+        width: 45%;
         margin: 20px 0;
     }
 }

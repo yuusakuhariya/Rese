@@ -32,12 +32,12 @@ class ShopController extends Controller
             } else {
                 $searchShops = null;
             }
-            return view('shopAll', compact('user', 'favoriteShopIds', 'searchShops', 'AllShopLists', 'AllGenres', 'AllAreas'));
+            return view('shop_all', compact('user', 'favoriteShopIds', 'searchShops', 'AllShopLists', 'AllGenres', 'AllAreas'));
 
         } elseif (Gate::allows('shop')) {
             $user = auth()->user();
             $shops = Shop::with('Area', 'Genre')->where('user_id', $user->id)->get();
-            return view('shopManegerShopList', compact('shops'));
+            return view('shop_maneger_shop_list', compact('shops'));
 
         } elseif (Gate::allows('admin')) {
             $userSearches = User::RoleSearch($request->role)->KeywordSearch($request->keyword)->get();
@@ -54,6 +54,6 @@ class ShopController extends Controller
         $AllShopLists = Shop::with('Area', 'Genre')->get();
         $AllGenres = Genre::all();
         $AllAreas = Area::all();
-        return view('shopAll', compact('user', 'favoriteShopIds', 'searchShops', 'AllShopLists', 'AllGenres', 'AllAreas'));
+        return view('shop_all', compact('user', 'favoriteShopIds', 'searchShops', 'AllShopLists', 'AllGenres', 'AllAreas'));
     }
 }

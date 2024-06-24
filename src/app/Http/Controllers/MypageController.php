@@ -20,6 +20,6 @@ class MypageController extends Controller
             ->with('shop.area', 'shop.genre')
             ->get();
 
-        return view('myPage', compact('reservations', 'user', 'favorites'));
+        return view('my_page', compact('reservations', 'user', 'favorites'));
     }
 }
