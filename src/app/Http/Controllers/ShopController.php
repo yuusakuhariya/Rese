@@ -23,16 +23,79 @@ class ShopController extends Controller
         }
 
         if (Gate::allows('user')) {
-            $AllShopLists = Shop::with('Area', 'Genre')->get();
-            $AllGenres = Genre::all();
-            $AllAreas = Area::all();
-
             if ($request->has('keyword')) {
-                $searchShops = Shop::with('genre', 'area')->AreaSearch($request->area_id)->GenreSearch($request->genre_id)->KeywordSearch($request->keyword)->get();
+                $searchShops = Shop::with('Genre', 'Area', 'Review')->areaSearch($request->area_id)->genreSearch($request->genre_id)->keywordSearch($request->keyword)->get();
+                foreach ($searchShops as $shop) {
+                    if ($shop->Review->isNotEmpty()) {
+                        $averageRating = $shop->Review->avg('rating');
+                        $shop->Review->rating = number_format($averageRating, 1);
+                        $shop->Review->comment = $shop->Review->count('comment');
+                    } else {
+                        $shop->Review->rating = 0;
+                        $shop->Review->comment = 0;
+                    }
+                }
             } else {
                 $searchShops = null;
             }
-            return view('shop_all', compact('user', 'favoriteShopIds', 'searchShops', 'AllShopLists', 'AllGenres', 'AllAreas'));
+            // $allShopLists = Shop::with('Area', 'Genre','Review')->get();
+            // foreach ($allShopLists as $shop) {
+            //     if ($shop->Review->isNotEmpty()) {
+            //         $averageRating = $shop->Review->avg('rating');
+            //         $shop->Review->rating = number_format($averageRating, 1);
+            //         $shop->Review->comment = $shop->Review->count('comment');
+            //     } else {
+            //         $shop->Review->rating = 0;
+            //         $shop->Review->comment = 0;
+            //     }
+            // }
+
+            $sort = $request->get('sort'); // リクエストからソートのパラメータを取得
+            $query = Shop::with('Area', 'Genre', 'Review'); // リレーションをロードし、クエリを作成
+
+            // 各店舗の平均評価を計算
+            $allShopLists = $query->get()->map(function ($shop) {
+                if ($shop->Review->isNotEmpty()) {
+                    $averageRating = $shop->Review->avg('rating');
+                    $shop->average_rating = number_format($averageRating, 1);
+                } else {
+                    $shop->average_rating = 0; // レビューがない場合のデフォルト値
+                }
+                return $shop;
+            });
+
+            // ソートのパラメータに応じてリストを並べ替える
+            switch ($sort) {
+                case 'area':
+                    $allShopLists = $allShopLists->sortBy('area_id');
+                    break;
+                case 'genre':
+                    $allShopLists = $allShopLists->sortBy('genre_id');
+                    break;
+                case 'high_to_low':
+                    $allShopLists = $allShopLists->sortByDesc('average_rating');
+                    break;
+                case 'low_to_high':
+                    $allShopLists = $allShopLists->sortBy('average_rating');
+                    break;
+                case 'shop_name_asc':
+                    // 店舗名の昇順（あいうえお順）にソート
+                    $allShopLists = $allShopLists->sortBy('shop_name', SORT_LOCALE_STRING);
+                    break;
+                default:
+                    // デフォルトは何もしない
+                    break;
+            }
+
+            // 各店舗のコメント数を計算
+            foreach ($allShopLists as $shop) {
+                $shop->comment_count = $shop->Review->count('comment');
+            }
+
+
+            $allGenres = Genre::all();
+            $allAreas = Area::all();
+            return view('shop_all', compact('user', 'favoriteShopIds', 'searchShops', 'allShopLists', 'allGenres', 'allAreas'));
 
         } elseif (Gate::allows('shop')) {
             $user = auth()->user();
@@ -40,20 +103,67 @@ class ShopController extends Controller
             return view('shop_maneger_shop_list', compact('shops'));
 
         } elseif (Gate::allows('admin')) {
-            $userSearches = User::RoleSearch($request->role)->KeywordSearch($request->keyword)->get();
+            $userSearches = User::roleSearch($request->role)->keywordSearch($request->keyword)->get();
             return view('admin');
         }
 
 
         if ($request->has('keyword')) {
-            $searchShops = Shop::with('genre', 'area')->AreaSearch($request->area_id)->GenreSearch($request->genre_id)->KeywordSearch($request->keyword)->get();
+            $searchShops = Shop::with('Genre', 'Area','Review')->areaSearch($request->area_id)->genreSearch($request->genre_id)->KeywordSearch($request->keyword)->get();
+            foreach ($searchShops as $shop) {
+                if ($shop->Review->isNotEmpty()) {
+                    $averageRating = $shop->Review->avg('rating');
+                    $shop->Review->rating = number_format($averageRating, 1);
+                    $shop->Review->comment = $shop->Review->count('comment');
+                } else {
+                    $shop->Review->rating = 0;
+                    $shop->Review->comment = 0;
+                }
+            }
         } else {
             $searchShops = null;
         }
 
-        $AllShopLists = Shop::with('Area', 'Genre')->get();
-        $AllGenres = Genre::all();
-        $AllAreas = Area::all();
-        return view('shop_all', compact('user', 'favoriteShopIds', 'searchShops', 'AllShopLists', 'AllGenres', 'AllAreas'));
+        $sort = $request->get('sort');
+        $query = Shop::with('Area', 'Genre', 'Review');
+
+        $allShopLists = $query->get()->map(function ($shop) {
+            if ($shop->Review->isNotEmpty()) {
+                $averageRating = $shop->Review->avg('rating');
+                $shop->average_rating = number_format($averageRating, 1);
+            } else {
+                $shop->average_rating = 0;
+            }
+            return $shop;
+        });
+
+        switch ($sort) {
+            case 'area':
+                $allShopLists = $allShopLists->sortBy('area_id');
+                break;
+            case 'genre':
+                $allShopLists = $allShopLists->sortBy('genre_id');
+                break;
+            case 'high_to_low':
+                $allShopLists = $allShopLists->sortByDesc('average_rating');
+                break;
+            case 'low_to_high':
+                $allShopLists = $allShopLists->sortBy('average_rating');
+                break;
+            case 'shop_name_asc':
+                // 店舗名の昇順（あいうえお順）にソート(カラムにフリガナ追加しないとできない)
+                $allShopLists = $allShopLists->sortBy('shop_name');
+                break;
+            default:
+                break;
+        }
+
+        foreach ($allShopLists as $shop) {
+            $shop->comment_count = $shop->Review->count('comment');
+        }
+
+        $allGenres = Genre::all();
+        $allAreas = Area::all();
+        return view('shop_all', compact('user', 'favoriteShopIds', 'searchShops', 'allShopLists', 'allGenres', 'allAreas'));
     }
 }

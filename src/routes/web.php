@@ -29,7 +29,7 @@ use App\Http\Controllers\QRCodeController;
 
 
 
-
+Route::get('/shops', [ShopController::class, 'shopAll'])->name('shops');
 
 Route::get('/', [ShopController::class, 'shopAll'])->name('shopAll');
 Route::get('/search', [ShopController::class, 'shopAll'])->name('search');
@@ -53,12 +53,16 @@ Route::get('/adminUserList', [AdminController::class, 'adminUserList'])->name('a
 Route::post('/userCreate', [AdminController::class, 'userStore'])->name('userStore');
 Route::delete('/userDelete/{id}', [AdminController::class, 'userDelete'])->name('userDelete');
 Route::get('/adminMail', [AdminController::class, 'adminMail'])->name('adminMail');
+Route::get('/admin_review_List', [AdminController::class, 'adminReviewList'])->name('adminReviewList');
+Route::delete('/admin_review_delete', [AdminController::class, 'adminReviewDelete'])->name('adminReviewDelete');
 
 Route::get('/shopStore', [ShopManegerController::class, 'shopStore'])->name('shopStore');
 Route::post('/shopCreate', [ShopManegerController::class, 'shopCreate'])->name('shopCreate');
 Route::get('/shopUpdate/{id}', [ShopManegerController::class, 'shopUpdate'])->name('shopUpdate');
 Route::put('/shopRenew', [ShopManegerController::class, 'shopRenew'])->name('shopRenew');
 Route::get('/shopMgReservationList/{id}', [ShopManegerController::class, 'shopManegerReservationList'])->name('shopManegerReservationList');
+Route::get('/shopMgReservationList/{id}/export', [ShopManegerController::class, 'exportCsv'])->name('reservation.exportCsv');
+
 
 Route::get('/homeMenu', [MenuController::class, 'homeMenu'])->name('homeMenu');
 Route::get('/loginMenu', [MenuController::class, 'loginMenu'])->name('loginMenu');
@@ -66,6 +70,7 @@ Route::get('/shopMgMenu', [MenuController::class, 'shopManegerMenu'])->name('sho
 Route::get('/adminMenuUserListMail', [MenuController::class, 'adminMenuUserListMail'])->name('adminMenuUserListMail');
 Route::get('/adminMenuShopRegisterMail', [MenuController::class, 'adminMenuShopRegisterMail'])->name('adminMenuShopRegisterMail');
 Route::get('/adminMenuShopRegisterUserList', [MenuController::class, 'adminMenuShopRegisterUserList'])->name('adminMenuShopRegisterUserList');
+Route::get('/adminMenuReviewList', [MenuController::class, 'adminMenuReviewList'])->name('adminMenuReviewList');
 
 Route::get('/shop/{id}', [ReservationController::class, 'shopDetail'])->name('shopDetail');
 Route::post('/done', [ReservationController::class, 'store'])->name('store');
@@ -76,6 +81,9 @@ Route::get('/myPage/{id}', [MypageController::class, 'myPage'])->name('myPage');
 
 Route::get('/review/{id}', [ReviewController::class, 'review'])->name('review');
 Route::post('/posting', [ReviewController::class, 'reviewStore'])->name('reviewStore');
+Route::delete('/review_delete/{id}', [ReviewController::class, 'reviewDelete'])->name('reviewDelete');
+Route::get('/review_edit/{id}', [ReviewController::class, 'reviewEdit'])->name('reviewEdit');
+Route::put('/review_update/{id}', [ReviewController::class, 'reviewUpdate'])->name('reviewUpdate');
 
 Route::put('/favorite/{id}/{user_id}/{shop_id}', [FavoriteController::class, 'addFavorite'])->name('addFavorites');
 Route::delete('/unfavorite/{id}/{user_id}/{shop_id}', [FavoriteController::class, 'removeFavorite'])->name('removeFavorites');
@@ -87,4 +95,7 @@ Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge
 Route::get('/generateQRCode', [QRCodeController::class, 'generateQRCode'])->name('QRCode');
 
 Route::get('/reservations/{id}', [ReservationController::class, 'checkQRcode'])->name('checkQRcode');
+
+Route::get('/review_list/{id}', [ReviewController::class, 'reviewList'])->name('review_list');
+
 

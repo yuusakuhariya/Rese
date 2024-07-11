@@ -19,6 +19,7 @@ class CreateReviewsTable extends Migration
             $table->unsignedBigInteger('shop_id');
             $table->unsignedInteger('rating')->default(0);
             $table->text('comment')->nullable();
+            $table->string('img_path')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

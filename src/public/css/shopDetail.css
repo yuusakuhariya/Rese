@@ -126,7 +126,6 @@ button {
 
 .card-img {
     width: 100%;
-    height: 400px;
 }
 
 .shop-img {
@@ -146,6 +145,14 @@ button {
 
 .card-detail {
     width: 100%;
+}
+
+.review-button {
+    margin-top: 30px;
+}
+
+.review-button_inner {
+    color: black;
 }
 
 
@@ -262,3 +269,54 @@ td {
 .error {
     color: red;
 }
+
+/* PRO追加実装 */
+.all-review {
+    margin-top: 50px;
+    background-color: rgb(50, 105, 255);
+    text-align: center;
+    padding: 8px 0;
+}
+.all-review_button {
+    text-decoration: none;
+    color: white;
+}
+
+.review-container {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    margin-top: 30px;
+    padding: 10px 0;
+}
+
+
+.review-container_wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.review-edit {
+    color: black;
+}
+
+.review-delete {
+    margin-left: 20px;
+}
+.review-delete_button {
+    text-decoration: underline;
+    font-size: 16px;
+}
+
+.star {
+    color: gold;
+    font-size: 32px;
+    margin-right: -5px;
+}
+
+.empty-star {
+    color: lightgray;
+    font-size: 32px;
+    margin-right: -5px;
+}
+

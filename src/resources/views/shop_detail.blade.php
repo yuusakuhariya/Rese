@@ -58,6 +58,46 @@
                 <div class="card-detail">
                     {{ $shop->content }}
                 </div>
+                <div class="all-review">
+                    <a class="all-review_button" href="{{route('review_list', ['id' => $shop->id]) }}">全ての口コミ情報</a>
+                </div>
+                @auth
+                <div class="review-container">
+                    @if(isset($existingReview))
+                    @foreach($reviews as $review)
+                    @if($review->user_id === auth()->id())
+                    <div class="review-container_wrap">
+                        <div class="review-actions">
+                            <a class="review-edit" href="{{ route('reviewEdit', ['id' => $shop->id]) }}">口コミを編集</a>
+                            <form class="review-delete" action="{{ route('reviewDelete', ['id' => $review->id]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="review-delete_button">口コミを削除</button>
+                            </form>
+                        </div>
+                        <div class="rating">
+                            @for ($i = 1; $i <= 5; $i++) @if ($i <=$review->rating)
+                                <span class="star">★</span>
+                                @else
+                                <span class="empty-star">★</span>
+                                @endif
+                                @endfor
+                        </div>
+                        <div class="review-comment">
+                            {{ $review->comment }}
+                        </div>
+                    </div>
+                    @endif
+                    @endforeach
+                    @else
+                    <div class="review-container_wrap">
+                        <div class="review-button">
+                            <a class="review-button_inner" href="{{ route('review', ['id' => $shop->id]) }}">口コミを投稿する</a>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+                @endauth
             </div>
 
             <div class="container-reservation">
@@ -112,6 +152,11 @@
                         </div>
                         <div class="select">
                             <input class="price_text" type="text" name="price" onChange="document.querySelector('input[name=\'price\'].item-date_inner').value = this.value;">
+                        </div>
+                        <div class="error">
+                            @error('price')
+                            {{$errors->first('price')}}
+                            @enderror
                         </div>
                         <div class="inner-item">
                             <table class="inner-table">

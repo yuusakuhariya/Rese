@@ -26,6 +26,9 @@
     </header>
 
     <main>
+        <div class="csv-export">
+            <a class="csv-button" href="{{ route('reservation.exportCsv', ['id' => $shops->first()->id]) }}">Export to CSV</a>
+        </div>
         <div class="table">
             <table class="list-table">
                 <tr>

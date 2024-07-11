@@ -26,7 +26,8 @@ class ReservationFormRequest extends FormRequest
         return [
             'date' => 'required',
             'time' => 'required',
-            'number_of_person' => 'required'
+            'number_of_person' => 'required',
+            'price' => 'numeric',
         ];
     }
     public function messages()
@@ -34,7 +35,8 @@ class ReservationFormRequest extends FormRequest
         return [
             'date.required' => '日付を選択して下さい',
             'time.required' => '時間を選択して下さい',
-            'number_of_person.required' => '人数を選択して下さい'
+            'number_of_person.required' => '人数を選択して下さい',
+            'price.numeric' => '数字を入れて下さい',
         ];
     }
 }

@@ -38,6 +38,11 @@ class Shop extends Model
         return $this->hasMany(User::class);
     }
 
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function scopeKeywordSearch($query, $keyword)
     {
         if(!empty($keyword))
@@ -54,7 +59,7 @@ class Shop extends Model
         }
     }
 
-        public function scopeGenreSearch($query, $genre_id)
+    public function scopeGenreSearch($query, $genre_id)
     {
         if (!empty($genre_id))
         {

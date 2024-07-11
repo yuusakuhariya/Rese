@@ -49,4 +49,9 @@ class MenuController extends Controller
     {
         return view('admin_menu_shop_register_user_list');
     }
+
+    public function adminMenuReviewList()
+    {
+        return view('admin_menu_review_list');
+    }
 }

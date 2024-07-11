@@ -29,6 +29,7 @@
             <div class="content">
                 <div class="massage"><a class="message-tag" href="/">店舗登録</a></div>
                 <div class="massage"><a class="message-tag" href="{{ route('adminUserList') }}">ユーザー一覧</a></div>
+                <div class="massage"><a class="message-tag" href="{{ route('adminReviewList') }}">レビュー一覧</a></div>
                 <div class="massage">
                     <form class="logout-form" action="/logout" method="post">
                         @csrf

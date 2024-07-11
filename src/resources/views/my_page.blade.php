@@ -67,7 +67,7 @@
                         @endif
                         <div class="future-button">
                             <div class="review-button">
-                                <a class="review-button_inner" href="{{ route('review', ['id' => $reservation->id]) }}">評価</a>
+                                <!-- <a class="review-button_inner" href="{{ route('review', ['id' => $reservation->id]) }}">評価</a> -->
                             </div>
                             <form class="delete-button" action="{{ route('delete', ['id' => $reservation->id]) }}" method="post">
                                 @csrf

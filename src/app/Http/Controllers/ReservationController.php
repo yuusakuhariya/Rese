@@ -6,15 +6,24 @@ namespace App\Http\Controllers;
 use App\Models\Shop;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use App\Models\Review;
 use App\Http\Requests\ReservationFormRequest;
 
 class ReservationController extends Controller
 {
-    public function shopDetail($shop_id)
+    public function shopDetail($id)
     {
         $user = auth()->user();
-        $shop = Shop::find($shop_id);
-        return view('shop_detail', compact('shop', 'user'));
+        $shop = Shop::find($id);
+        $reviews = Review::where('shop_id', $shop->id)->with('user')->get();
+
+        $existingReview = null;
+        if ($user) {
+            $existingReview = Review::where('user_id', $user->id)
+                ->where('shop_id', $shop->id)
+                ->first();
+        }
+        return view('shop_detail', compact('shop', 'user', 'reviews', 'existingReview'));
     }
 
     public function store(ReservationFormRequest $request)

@@ -14,10 +14,21 @@ class Review extends Model
         'shop_id',
         'rating',
         'comment',
+        'img_path',
     ];
 
     public function reservation()
     {
-        return $this->belongsTo(reservation::class);
+        return $this->belongsTo(Reservation::class);
+    }
+
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

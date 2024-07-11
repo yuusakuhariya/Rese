@@ -7,6 +7,7 @@ use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Reservation;
 use App\Http\Requests\ShopManegerFormRequest;
+use Illuminate\Support\Facades\Response;
 
 
 class ShopManegerController extends Controller
@@ -71,6 +72,41 @@ class ShopManegerController extends Controller
         $reservations = Reservation::whereIn('shop_id', $shops)->with('user')->paginate(10);
 
         return view('shop_maneger_reservation_list', compact('user', 'shops', 'reservations'));
+    }
+
+
+    public function exportCsv($id)
+    {
+        $user = auth()->user();
+        $shops = Shop::where('user_id', $user->id)->where('id', $id)->get();
+        $reservations = Reservation::whereIn('shop_id', $shops)->with('user')->get();
+
+        $fileName = '';
+
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = ['ID', 'User_id'];
+
+        $callback = function() use($reservations, $columns) {
+            $file = fopen('php://output','w');
+            fputcsv($file,$columns);
+
+            foreach ($reservations as $reservation) {
+                $row =[
+                    $reservation->id,
+                    $reservation->user_id
+                ];
+                fputcsv($file, $row);
+            }
+            fclose($file);
+        };
+        return Response::stream($callback, 200, $headers);
     }
 
 }

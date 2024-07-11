@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Review;
 use App\Http\Requests\AdminFormRequest;
 
 class AdminController extends Controller
@@ -27,7 +28,6 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-
     public function adminUserList(Request $request)
     {
         $userSearches = User::RoleSearch($request->role)->KeywordSearch($request->keyword)->paginate(10);
@@ -41,4 +41,18 @@ class AdminController extends Controller
 
         return view('admin_mail', compact('user', 'users'));
     }
+
+    public function adminReviewList()
+    {
+        $reviews = Review::with('shop', 'user')->paginate(10);
+        return view('admin_review_list', compact('reviews'));
+    }
+
+    public function adminReviewDelete(request $request)
+    {
+        Review::find($request->id)->delete();
+        return redirect()->back();
+    }
+
+
 }
