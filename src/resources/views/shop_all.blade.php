@@ -68,6 +68,7 @@
             @csrf
             <select name="sort" class="sort_select" onchange="this.form.submit()">
                 <option value="">選択してください</option>
+                <option value="random">ランダム</option>
                 <option value="area">地域</option>
                 <option value="genre">ジャンル</option>
                 <option value="high_to_low">評価高</option>

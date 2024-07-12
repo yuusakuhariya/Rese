@@ -50,21 +50,19 @@ class ShopController extends Controller
             //     }
             // }
 
-            $sort = $request->get('sort'); // リクエストからソートのパラメータを取得
-            $query = Shop::with('Area', 'Genre', 'Review'); // リレーションをロードし、クエリを作成
+            $sort = $request->get('sort');
+            $query = Shop::with('Area', 'Genre', 'Review');
 
-            // 各店舗の平均評価を計算
             $allShopLists = $query->get()->map(function ($shop) {
                 if ($shop->Review->isNotEmpty()) {
                     $averageRating = $shop->Review->avg('rating');
                     $shop->average_rating = number_format($averageRating, 1);
                 } else {
-                    $shop->average_rating = 0; // レビューがない場合のデフォルト値
+                    $shop->average_rating = null;
                 }
                 return $shop;
             });
 
-            // ソートのパラメータに応じてリストを並べ替える
             switch ($sort) {
                 case 'area':
                     $allShopLists = $allShopLists->sortBy('area_id');
@@ -78,16 +76,17 @@ class ShopController extends Controller
                 case 'low_to_high':
                     $allShopLists = $allShopLists->sortBy('average_rating');
                     break;
+                case 'random':
+                    $allShopLists = $allShopLists->shuffle();
+                    break;
                 case 'shop_name_asc':
-                    // 店舗名の昇順（あいうえお順）にソート
+                    // 店舗名の昇順（あいうえお順）にソート(カラムにフリガナ追加しないとできない)
                     $allShopLists = $allShopLists->sortBy('shop_name', SORT_LOCALE_STRING);
                     break;
                 default:
-                    // デフォルトは何もしない
                     break;
             }
 
-            // 各店舗のコメント数を計算
             foreach ($allShopLists as $shop) {
                 $shop->comment_count = $shop->Review->count('comment');
             }
@@ -132,7 +131,7 @@ class ShopController extends Controller
                 $averageRating = $shop->Review->avg('rating');
                 $shop->average_rating = number_format($averageRating, 1);
             } else {
-                $shop->average_rating = 0;
+                $shop->average_rating = null;
             }
             return $shop;
         });
@@ -145,10 +144,13 @@ class ShopController extends Controller
                 $allShopLists = $allShopLists->sortBy('genre_id');
                 break;
             case 'high_to_low':
-                $allShopLists = $allShopLists->sortByDesc('average_rating');
+                $allShopLists = $allShopLists->sortByDesc('average_rating')->values();
                 break;
             case 'low_to_high':
-                $allShopLists = $allShopLists->sortBy('average_rating');
+                $allShopLists = $allShopLists->sortBy('average_rating')->values();
+                break;
+            case 'random':
+                $allShopLists = $allShopLists->shuffle();
                 break;
             case 'shop_name_asc':
                 // 店舗名の昇順（あいうえお順）にソート(カラムにフリガナ追加しないとできない)
@@ -157,6 +159,10 @@ class ShopController extends Controller
             default:
                 break;
         }
+
+        $noReviewShops = $allShopLists->whereNull('average_rating');
+        $allShopLists = $allShopLists->whereNotNull('average_rating');
+        $allShopLists = $allShopLists->concat($noReviewShops);
 
         foreach ($allShopLists as $shop) {
             $shop->comment_count = $shop->Review->count('comment');
