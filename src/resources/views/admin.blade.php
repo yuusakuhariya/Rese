@@ -68,6 +68,33 @@
                 </div>
             </form>
         </div>
+        <div class="shop-import-csv_container">
+            <h2 class="content-title">店舗CSV 登録</h2>
+            <form class="shop-import-csv_form" action="{{ route('csvImportShop') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="select">
+                    <label class="select_label" for="select_user">店舗代表者ユーザーを選択:</label>
+                    <select class="select_user" name="select_user" id="select_user">
+                        <option value="">選択してください</option>
+                        @foreach($users as $user)
+                        <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->email }})</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="csv">
+                    <label class="csv_label" for="csv_file">CSVファイルを選択:</label>
+                    <input class="input_csv" type="file" name="shop" id="csv_file" required>
+                </div>
+                <div class="button">
+                    <button class="csv-form_button" type="submit">店舗情報をインポート</button>
+                </div>
+            </form>
+            @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+            @endif
+        </div>
     </main>
 
 </body>

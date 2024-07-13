@@ -55,6 +55,7 @@ Route::delete('/userDelete/{id}', [AdminController::class, 'userDelete'])->name(
 Route::get('/adminMail', [AdminController::class, 'adminMail'])->name('adminMail');
 Route::get('/admin_review_List', [AdminController::class, 'adminReviewList'])->name('adminReviewList');
 Route::delete('/admin_review_delete', [AdminController::class, 'adminReviewDelete'])->name('adminReviewDelete');
+Route::post('/import_shop', [AdminController::class, 'csvImportShop'])->name('csvImportShop');
 
 Route::get('/shopStore', [ShopManegerController::class, 'shopStore'])->name('shopStore');
 Route::post('/shopCreate', [ShopManegerController::class, 'shopCreate'])->name('shopCreate');

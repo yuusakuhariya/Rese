@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Review;
 use App\Http\Requests\AdminFormRequest;
+use App\Http\Requests\CsvImportRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ShopsImport;
+
 
 class AdminController extends Controller
 {
@@ -54,5 +58,24 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function csvImportShop(Request $request)
+    {
+        // バリデーションルールを定義
 
+
+        try {
+            $userId = $request->select_user;
+            // ファイルを取得
+            $file = $request->file('shop');
+
+            // インポートを実行
+            Excel::import(new ShopsImport($userId), $file);
+
+            // 成功メッセージを返す
+            return back()->with('success', 'CSVファイルのインポートに成功しました。');
+        } catch (\Exception $e) {
+            // エラーメッセージを返す
+            return back()->with('error', 'インポート中にエラーが発生しました: ' . $e->getMessage());
+        }
+    }
 }

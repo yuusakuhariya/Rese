@@ -102,8 +102,9 @@ class ShopController extends Controller
             return view('shop_maneger_shop_list', compact('shops'));
 
         } elseif (Gate::allows('admin')) {
+            $users = User::where('role', 'shop')->get();
             $userSearches = User::roleSearch($request->role)->keywordSearch($request->keyword)->get();
-            return view('admin');
+            return view('admin',compact('users'));
         }
 
 
