@@ -93,9 +93,7 @@
                         <div class="review-content">
                             <div class="review-frame">
                                 <div class="review-like_icon">★</div>
-
                                 <div class="review-average">{{ $shop->Review->rating }}</div>
-
                             </div>
                             <div class="review-frame">
                                 <div class="review-comment_icon"><a class="icon_button" href="{{route('review_list', ['id' => $shop->id]) }}"></a></div>
@@ -154,9 +152,7 @@
                         <div class="review-content">
                             <div class="review-frame">
                                 <div class="review-like_icon">★</div>
-
                                 <div class="review-average">{{ $shop->average_rating }}</div>
-
                             </div>
                             <div class="review-frame">
                                 <div class="review-comment_icon"><a class="icon_button" href="{{route('review_list', ['id' => $shop->id]) }}"></a></div>

@@ -28,27 +28,27 @@ class ShopsImport implements ToModel, WithHeadingRow, WithValidation
     public function model(array $row)
     {
 
-        $area = Area::where('area_name', $row['area_name'])->first();
-        $genre = Genre::where('genre_name', $row['genre_name'])->first();
+        $area = Area::where('area_name', $row['地域名'])->first();
+        $genre = Genre::where('genre_name', $row['ジャンル名'])->first();
 
         return new Shop([
-            'shop_name' => $row['shop_name'],
+            'shop_name' => $row['店舗名'],
             'user_id' => $this->userId,
             'area_id' => $area->id,
             'genre_id' => $genre->id,
-            'content' => $row['content'],
-            'img_path' => $row['img_path'],
+            'content' => $row['店舗概要'],
+            'img_path' => $row['画像URL'],
         ]);
     }
 
     public function rules(): array
     {
         return [
-            'shop_name' => 'required|string|max:50',
-            'area_name' => 'required|in:東京都,大阪府,福岡県',
-            'genre_name' => 'required|in:寿司,焼肉,イタリアン,居酒屋,ラーメン',
-            'content' => 'required|string|max:400',
-            'img_path' => [
+            '店舗名' => 'required|string|max:50',
+            '地域名' => 'required|in:東京都,大阪府,福岡県',
+            'ジャンル名' => 'required|in:寿司,焼肉,イタリアン,居酒屋,ラーメン',
+            '店舗概要' => 'required|string|max:400',
+            '画像URL' => [
                 'required',
                 'url',
                 new AllowedImageFormat,
@@ -60,17 +60,17 @@ class ShopsImport implements ToModel, WithHeadingRow, WithValidation
     public function customValidationMessages()
     {
         return [
-            'shop_name.required' => '店舗名は必ず記入してください。',
-            'shop_name.max' => '店舗名は50字以内で記入してください。',
-            'area_name.required' => '地域名は必ず記入してください。',
-            'area_name.in' => '地域は「東京都」「大阪府」「福岡県」のいずれかを選択してください。',
-            'genre_name.required' => 'ジャンル名は必ず記入してください。',
-            'genre_name.in' => 'ジャンルは「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のいずれかを選択してください。',
-            'content.required' => '店舗概要は必ず記入してください。',
-            'content.max' => '店舗概要は400字以内で記入してください。',
-            'img_path.required' => '画像URLは必ず記入してください。',
-            'img_path.url' => '画像はURLで指定してください。',
-            'img_path.max' => '画像ファイルのサイズは2MB以内にしてください。',
+            '店舗名.required' => '店舗名は必ず記入してください。',
+            '店舗名.max' => '店舗名は50字以内で記入してください。',
+            '地域名.required' => '地域名は必ず記入してください。',
+            '地域名.in' => '地域は「東京都」「大阪府」「福岡県」のいずれかを選択してください。',
+            'ジャンル名.required' => 'ジャンル名は必ず記入してください。',
+            'ジャンル名.in' => 'ジャンルは「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のいずれかを選択してください。',
+            '店舗概要.required' => '店舗概要は必ず記入してください。',
+            '店舗概要.max' => '店舗概要は400字以内で記入してください。',
+            '画像URL.required' => '画像URLは必ず記入してください。',
+            '画像URL.url' => '画像はURLで指定してください。',
+            '画像URL.max' => '画像ファイルのサイズは2MB以内にしてください。',
         ];
     }
 }
