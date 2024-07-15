@@ -185,7 +185,7 @@ STRIPE_SECRET=sk_test_51P2nYJCaZBJlTawRIxuT2qrpVrwr6lc666fwteHxldZf4muZbpZPkdVdp
   * docker-compose up -d --build
 ### Laravel アプリケーションをインストールし、アプリケーションキーを生成する
   * docker-compose exec app composer install
-  * docker-compose exec app php artisan key:generate 
+  * docker-compose exec app php artisan key:generate
 ### .env ファイルのAPP部分の修正（下記に .env ファイル記載）
 ### 支払い機能の設定
   * local環境の.envファイルと同様に設定する
@@ -422,7 +422,7 @@ services:
 |:-------|------|---------------|----------:|
 | admin  | a    | a@yahoo.co.jp | a1234567  |
 | shop   | b    | b@yahoo.co.jp | b1234567  |
-| user   | c    | c@yahoo.co.jp | c1234567  | 
+| user   | c    | c@yahoo.co.jp | c1234567  |
   * shopデータは案件シート参照（全ての初期店舗データは b に紐付けされています）
 ### ユーザー登録時のコメントアウトについて
   * 開発者が管理者の依頼を受け、簡易的にユーザー、店舗代表者、管理者を登録できるように auth/register.blade.php ファイルで登録箇所をコメントアウトしている。
@@ -444,22 +444,50 @@ services:
                 </div>
 ```
 
-## 追加実装
+# 追加実装
+## 機能一覧
+* 口コミ投稿
+* 口コミ編集
+* 口コミ削除
+* 店舗口コミ一覧
+* 全店舗ソート
+* 管理者による店舗csvインポート
+## テーブル設計（追加）
+* 「reviews」テーブルに「img_path」カラムを追加。
+## 基本設計書（追加と修正）
+* View
+  * admin_menu_review_list.blade.php
+  * admin_review_list.blade.php
+  * review_list.blade.php
+  * reviewEdit.blade.php
+* Route Controller
+|         パス         | メソッド | ルート先コントローラー |     アクション     | 認証必須 |       説明         |
+|:---------------------|---------|----------------------|-------------------|---------|-------------------:|
+| /admin_review_List   | get     | AdminController      | adminReviewList   |         | 全レビューリスト一覧 |
+| /admin_review_delete | delete  | AdminController      | adminReviewDelete |         | レビュー削除        |
+| /import_shop         | post    | AdminController      | csvImportSho      |         | csvインポート       |
+| /review_delete/{id}  | delete  | ReviewController     | reviewDelete      |         | レビュー削除        |
+| /review_edit/{id}    | get     | ReviewController     | reviewEdit        |         | レビュー編集ページ   |
+| review_update/{id}   | put     | ReviewController     | reviewUpdate      |         | レビュー更新        |
+| /review_list/{id}    | get     | ReviewController     | reviewList        |         | 店舗ごとレビュー一覧 |
+* imports
+  * shopImport.php
+    * shopImport.phpにバリデーションルール記載。
 ### 口コミ機能
-  * 店舗詳細ページに追加。
-   * 未ログイン時、選択店舗の全口コミ表示。
-   * ログイン済時、選択店舗の全口コミ表示、口コミがまだない場合、「投稿」ボタンにて口コミ作成可能。
-   * ログイン済時、選択店舗の全口コミ表示、口コミがある場合、「編集」ボタンにて口コミ編集可能、「削除」ボタンにて口コミ削除可能。
+* 店舗詳細ページに追加。
+  * 未ログイン時、選択店舗の全口コミ表示。
+  * ログイン済時、選択店舗の全口コミ表示、口コミがまだない場合、「投稿」ボタンにて口コミ作成可能。
+  * ログイン済時、選択店舗の全口コミ表示、口コミがある場合、「編集」ボタンにて口コミ編集可能、「削除」ボタンにて口コミ削除可能。
   * 管理者ページの「レビュー一覧」から全レビューの表示と削除可能。
 ### 店舗一覧ソート機能
-  * 「ランダム」「地域」「ジャンル」「評価高い」「評価低い」のソート機能。
-   * 評価が一件もない場合は評価平均値は未表示。
-   * 評価が一件もない場合は「評価高い」「評価低い」時は最後尾に表示。
-   * コメントアイコンは評価の数が表示され、コメントアイコンを押すとその店舗の全評価詳細ページへ移動する。
+* 「ランダム」「地域」「ジャンル」「評価高い」「評価低い」のソート機能。
+  * 評価が一件もない場合は評価平均値は未表示。
+  * 評価が一件もない場合は「評価高い」「評価低い」時は最後尾に表示。
+  * コメントアイコンは評価の数が表示され、コメントアイコンを押すとその店舗の全評価詳細ページへ移動する。
 ### csvインポート
-  * laravelのmaatwebsite/excelパッケージを使用。
-  * 管理者ページの「店舗代表者登録 店舗CSV登録」からcsvファイルインポート可能。
-  * CSVファイルのヘッダーの内容
-|  店舗名 | ID | 地域名 | ジャンル名 | 店舗概要 | 画像URL |
-|:-------|----|--------|-----------|---------|--------:|
-   * 「ID」は管理者ページにて選択すため、csvファイルでは空欄にする。
+* laravelのmaatwebsite/excelパッケージを使用。
+* 管理者ページの「店舗代表者登録 店舗CSV登録」からcsvファイルインポート可能。
+### CSVファイルのヘッダーの内容
+| 店舗名 | ID | 地域名 | ジャンル名 | 店舗概要 | 画像URL |
+|:-------|----|-------|-----------|---------|--------:|
+* 「ID」は管理者ページにて選択するため、csvファイルでは空欄にする。
