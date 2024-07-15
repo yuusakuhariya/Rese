@@ -38,17 +38,6 @@ class ShopController extends Controller
             } else {
                 $searchShops = null;
             }
-            // $allShopLists = Shop::with('Area', 'Genre','Review')->get();
-            // foreach ($allShopLists as $shop) {
-            //     if ($shop->Review->isNotEmpty()) {
-            //         $averageRating = $shop->Review->avg('rating');
-            //         $shop->Review->rating = number_format($averageRating, 1);
-            //         $shop->Review->comment = $shop->Review->count('comment');
-            //     } else {
-            //         $shop->Review->rating = 0;
-            //         $shop->Review->comment = 0;
-            //     }
-            // }
 
             $sort = $request->get('sort');
             $query = Shop::with('Area', 'Genre', 'Review');

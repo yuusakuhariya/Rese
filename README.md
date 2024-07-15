@@ -470,6 +470,7 @@ services:
 | /review_edit/{id}    | get     | ReviewController     | reviewEdit        |         | レビュー編集ページ   |
 | review_update/{id}   | put     | ReviewController     | reviewUpdate      |         | レビュー更新        |
 | /review_list/{id}    | get     | ReviewController     | reviewList        |         | 店舗ごとレビュー一覧 |
+| /review-search       | get     | AdminController      | adminReviewList   |         | レビュー検索        |
 ### imports
 * shopImport.php
   * shopImport.phpにバリデーションルール記載。

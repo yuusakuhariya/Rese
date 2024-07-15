@@ -48,12 +48,13 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [RegisteredUserController::class, 'store']);
 });
 
-Route::get('/userSearch', [AdminController::class, 'adminUserList'])->name('userSearch');
 Route::get('/adminUserList', [AdminController::class, 'adminUserList'])->name('adminUserList');
+Route::get('/userSearch', [AdminController::class, 'adminUserList'])->name('userSearch');
 Route::post('/userCreate', [AdminController::class, 'userStore'])->name('userStore');
 Route::delete('/userDelete/{id}', [AdminController::class, 'userDelete'])->name('userDelete');
 Route::get('/adminMail', [AdminController::class, 'adminMail'])->name('adminMail');
 Route::get('/admin_review_List', [AdminController::class, 'adminReviewList'])->name('adminReviewList');
+Route::get('/review-search', [AdminController::class, 'adminReviewList'])->name('reviewSearch');
 Route::delete('/admin_review_delete', [AdminController::class, 'adminReviewDelete'])->name('adminReviewDelete');
 Route::post('/import_shop', [AdminController::class, 'csvImportShop'])->name('csvImportShop');
 

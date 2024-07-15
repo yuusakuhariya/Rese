@@ -47,9 +47,13 @@ class AdminController extends Controller
         return view('admin_mail', compact('user', 'users'));
     }
 
-    public function adminReviewList()
+    public function adminReviewList(Request $request)
     {
-        $reviews = Review::with('shop', 'user')->paginate(10);
+        $reviews = Review::with('shop', 'user')->ReviewSearch($request->shop_id)->KeywordSearch($request->keyword)->paginate(10);
+        if ($reviews->isEmpty()) {
+            $reviews = Review::with('shop', 'user')->paginate(10);
+        }
+
         return view('admin_review_list', compact('reviews'));
     }
 

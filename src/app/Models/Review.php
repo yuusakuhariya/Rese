@@ -31,4 +31,20 @@ class Review extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeReviewSearch($query, $shop_id)
+    {
+        if ($shop_id) {
+            $query->where('shop_id', $shop_id);
+        }
+    }
+
+    public function scopeKeywordSearch($query, $keyword)
+    {
+        if ($keyword) {
+            $query->whereHas('shop', function ($query) use ($keyword) {
+                $query->where('shop_name', 'like', '%' . $keyword . '%');
+            });
+        }
+    }
 }

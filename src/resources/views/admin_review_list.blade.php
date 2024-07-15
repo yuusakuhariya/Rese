@@ -29,6 +29,21 @@
     </header>
 
     <main>
+        <div class="search">
+            <form class="review-search" action="{{ route('reviewSearch') }}" method="get">
+                @csrf
+                <div class="review-select">
+                    <select class="review-select_shop_name" name="shop_id">
+                        <option value="" selected>全店舗</option>
+                        @foreach($reviews as $review)
+                        <option value="{{ $review->shop_id}}">{{ $review->shop->shop_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <input class="review-search_input" type="text" name="keyword" value="" placeholder="文字入力 …">
+                <button class="review-search_button" type="submit">検索する</button>
+            </form>
+        </div>
         <div class="table">
             <table class="list-table">
                 <tr>
@@ -41,7 +56,7 @@
                 @foreach ($reviews as $review)
                 <tr>
                     <td class="table-td_shop-name">{{ $review->shop->shop_name }}</td>
-                    <td class="table-td_user-name">{{ $review->user->name }}</td>
+                    <td class=" table-td_user-name">{{ $review->user->name }}</td>
                     <td class="table-td_rating">
                         <div class="rating">
                             @for ($i = 1; $i <= 5; $i++) @if ($i <=$review->rating)
