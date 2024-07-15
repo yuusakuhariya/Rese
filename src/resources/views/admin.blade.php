@@ -74,7 +74,7 @@
                 @csrf
                 <div class="select">
                     <label class="select_label" for="select_user">店舗代表者ユーザーを選択:</label>
-                    <select class="select_user" name="select_user" id="select_user">
+                    <select class="select_user" name="select_user" id="select_user" required>
                         <option value="">選択してください</option>
                         @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->email }})</option>
@@ -90,8 +90,15 @@
                 </div>
             </form>
             @if (session('error'))
-            <div class="alert alert-danger">
+            <div class="alert">
                 {{ session('error') }}
+                @if (session('validationErrors'))
+                <div class="alert-content">
+                    @foreach (session('validationErrors') as $error)
+                    <div class="alert-content_all">{{ $error }}</div>
+                    @endforeach
+                </div>
+                @endif
             </div>
             @endif
         </div>

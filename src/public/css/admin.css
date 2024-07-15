@@ -169,3 +169,15 @@ body {
     color: white;
     padding: 3px 34px;
 }
+
+
+.alert {
+    color: red;
+    margin-top: 30px;
+}
+.alert-content {
+    margin-top: 20px;
+}
+.alert-content_all {
+    margin-bottom: 10px;
+}
