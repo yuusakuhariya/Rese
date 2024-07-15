@@ -460,7 +460,7 @@ services:
   * admin_review_list.blade.php
   * review_list.blade.php
   * reviewEdit.blade.php
-* Route Controller
+### Route Controller
 |         パス         | メソッド | ルート先コントローラー |     アクション     | 認証必須 |       説明         |
 |:---------------------|---------|----------------------|-------------------|---------|-------------------:|
 | /admin_review_List   | get     | AdminController      | adminReviewList   |         | 全レビューリスト一覧 |
