@@ -455,7 +455,7 @@ services:
 ## テーブル設計（追加）
 * 「reviews」テーブルに「img_path」カラムを追加。
 ## 基本設計書（追加と修正）
-* View
+### View
   * admin_menu_review_list.blade.php
   * admin_review_list.blade.php
   * review_list.blade.php
@@ -470,9 +470,9 @@ services:
 | /review_edit/{id}    | get     | ReviewController     | reviewEdit        |         | レビュー編集ページ   |
 | review_update/{id}   | put     | ReviewController     | reviewUpdate      |         | レビュー更新        |
 | /review_list/{id}    | get     | ReviewController     | reviewList        |         | 店舗ごとレビュー一覧 |
-* imports
-  * shopImport.php
-    * shopImport.phpにバリデーションルール記載。
+### imports
+* shopImport.php
+  * shopImport.phpにバリデーションルール記載。
 ### 口コミ機能
 * 店舗詳細ページに追加。
   * 未ログイン時、選択店舗の全口コミ表示。
