@@ -79,13 +79,8 @@ class AllowedImageFormat implements Rule
 {
     public function passes($attribute, $value)
     {
-        // 画像の拡張子を取得する
         $extension = strtolower(pathinfo($value, PATHINFO_EXTENSION));
-
-        // 許可する画像形式
         $allowedFormats = ['jpg', 'png'];
-
-        // 拡張子が許可する形式に含まれているかチェックする
         return in_array($extension, $allowedFormats);
     }
 
