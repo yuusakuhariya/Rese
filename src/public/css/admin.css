@@ -105,7 +105,8 @@ body {
 }
 @media screen and (max-width: 1024px) {
     .form-input {
-        width: 50%;
+        width: 70%;
+        height: 35px;
     }
 }
 

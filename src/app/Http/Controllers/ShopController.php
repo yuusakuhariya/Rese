@@ -52,6 +52,10 @@ class ShopController extends Controller
                 return $shop;
             });
 
+            $noReviewShops = $allShopLists->whereNull('average_rating');
+            $allShopLists = $allShopLists->whereNotNull('average_rating');
+            $allShopLists = $allShopLists->concat($noReviewShops);
+
             switch ($sort) {
                 case 'area':
                     $allShopLists = $allShopLists->sortBy('area_id');
@@ -75,6 +79,10 @@ class ShopController extends Controller
                 default:
                     break;
             }
+
+            $noReviewShops = $allShopLists->whereNull('average_rating');
+            $allShopLists = $allShopLists->whereNotNull('average_rating');
+            $allShopLists = $allShopLists->concat($noReviewShops);
 
             foreach ($allShopLists as $shop) {
                 $shop->comment_count = $shop->Review->count('comment');
@@ -125,6 +133,10 @@ class ShopController extends Controller
             }
             return $shop;
         });
+
+        $noReviewShops = $allShopLists->whereNull('average_rating');
+        $allShopLists = $allShopLists->whereNotNull('average_rating');
+        $allShopLists = $allShopLists->concat($noReviewShops);
 
         switch ($sort) {
             case 'area':

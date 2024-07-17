@@ -117,9 +117,9 @@
                                     charCount.textContent = textArea.value.length + '/' + maxLength;
 
                                     if (textArea.value.length > maxLength) {
-                                        charCount.style.color = 'red'; // 文字数が制限を超えたら赤色で表示するなどの追加処理が可能です
+                                        charCount.style.color = 'red';
                                     } else {
-                                        charCount.style.color = 'inherit'; // 制限内ならテキストカラーをデフォルトに戻す
+                                        charCount.style.color = 'inherit';
                                     }
                                 }
                             </script>
@@ -151,7 +151,6 @@
                                 fileInput.addEventListener('change', function(event) {
                                     const file = fileInput.files[0];
 
-                                    // Clear any existing preview
                                     previewContainer.innerHTML = '';
 
                                     if (file) {
@@ -162,7 +161,6 @@
                                             imgElement.src = e.target.result;
                                             previewContainer.appendChild(imgElement);
 
-                                            // Hide the text elements
                                             titleContent.style.display = 'none';
                                             titleContentItem.style.display = 'none';
                                         };
@@ -170,7 +168,6 @@
                                         reader.readAsDataURL(file);
                                     } else {
                                         previewContainer.textContent = 'No file chosen';
-                                        // Show the text elements if no file is chosen
                                         titleContent.style.display = 'block';
                                         titleContentItem.style.display = 'block';
                                     }

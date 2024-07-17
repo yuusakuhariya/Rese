@@ -7,11 +7,6 @@ body {
     justify-content: space-between;
     margin: 30px 80px;
 }
-@media screen and (max-width : 767px) {
-    .header {
-        margin: 20px 20px;
-    }
-}
 
 .header_inner {
     display: flex;
@@ -76,9 +71,20 @@ button {
     display: flex;
     width: 100%;
 }
+@media screen and (max-width: 1024px) {
+    .container {
+        width: 100%;
+        display: block;
+    }
+}
 
 .container-left {
     width: 40%;
+}
+@media screen and (max-width: 1024px) {
+    .container-left {
+        width: 100%;
+    }
 }
 
 .container-left_wrap {
@@ -103,17 +109,9 @@ button {
     box-shadow: 3px 3px 2px rgb(167, 161, 161);
     margin: 0 auto;
 }
-
-@media screen and (max-width : 767px) {
-    .favorite-card {
-        width: 45%;
-        margin: 20px 0;
-    }
-}
-
-@media screen and (min-width : 768px) and (max-width: 1024px) {
-    .favorite-card {
-        width: 28%;
+@media screen and (max-width: 1024px) {
+.favorite-card {
+        width: 60%;
     }
 }
 
@@ -183,13 +181,28 @@ button {
 .container-right {
     width: 60%;
 }
+@media screen and (max-width: 1024px) {
+.container-right {
+        width: 100%;
+    }
+}
 
 .review-title {
     margin: 0 80px;
 }
+@media screen and (max-width: 1024px) {
+    .review-title {
+        text-align: center;
+    }
+}
 
 .review-container {
     margin: 0 80px;
+}
+@media screen and (max-width: 1024px) {
+    .review-container {
+        text-align: center;
+    }
 }
 
 .rate-form {
@@ -197,6 +210,12 @@ button {
     flex-direction: row-reverse;
     justify-content: left;
 }
+@media screen and (max-width: 1024px) {
+    .rate-form {
+        justify-content: center;
+    }
+}
+
 
 .rate-form input[type=radio] {
     display: none;
@@ -230,11 +249,6 @@ button {
     font-size: 22px;
     border-radius: 4px;
     border: 1px solid rgb(199, 199, 199);
-}
-@media screen and (max-width : 767px) {
-    .comment-inner {
-        width: 90%;
-    }
 }
 
 .comment_subtitle {
