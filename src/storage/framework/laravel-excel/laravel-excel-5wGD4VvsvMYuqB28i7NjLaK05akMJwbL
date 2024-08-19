@@ -1,0 +1,2 @@
+shop_name,area_id,genre_id,content,img_path
+Test Shop,1,1,This is a test shop,https://example.com/image.jpg
